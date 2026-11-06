@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artesanías Alpaquitay del Perú - Catálogo Oficial</title>
     <meta name="google-site-verification" content="4ygvkM3ICirH5WaPUCMs72vfGwtyjnhQf20Qi6MB3L0" />
-</head>
     
     <!-- FAVICON PARA LA PESTAÑA -->
     <link rel="icon" type="image/png" href="logo.png">
@@ -43,26 +42,32 @@
     </div>
 
     <!-- ENCABEZADO -->
-    <header class="bg-[#4A3B32] text-white shadow-lg border-b border-[#6B5547] sticky top-0 z-50">
+    <header class="bg-[#4A3B32] text-white shadow-lg border-b border-[#6B5547] sticky top-[33px] z-40">
         <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
             
-
             <!-- LOGO Y NOMBRE CON ENLACE AL INICIO -->
             <a href="index.html" class="flex items-center gap-3 hover:opacity-90 transition-opacity">
-            <img src="logo.png" alt="Logo Artesanías Alpaquitay" class="w-14 h-14 rounded-full object-cover">
-            <div>
-             <h1 class="text-xl sm:text-2xl font-bold tracking-wider uppercase text-[#F3EFEA]">
-               ARTESANÍAS ALPAQUITAY
-            </h1>
-            <p class="text-xs text-[#D4C3B3]" id="header-subtitle">Handcrafted in Peru</p>
-          </div>
-         </a>
+                <img src="logo.png" alt="Logo Artesanías Alpaquitay" class="w-14 h-14 rounded-full object-cover">
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-bold tracking-wider uppercase text-[#F3EFEA]">
+                        ARTESANÍAS ALPAQUITAY
+                    </h1>
+                    <p class="text-xs text-[#D4C3B3]" id="header-subtitle">Handcrafted in Peru</p>
+                </div>
+            </a>
             
-            <!-- REDES SOCIALES Y WHATSAPP -->
-            <div class="flex items-center gap-4">
-                <a href="https://www.instagram.com/artesaniasalpaquitaydelperu/" target="_blank" class="hover:text-[#D4C3B3] transition text-lg" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=100054454091170&locale=es_LA" target="_blank" class="hover:text-[#D4C3B3] transition text-lg" title="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="https://www.tiktok.com/@artesanias_alpaquitay" target="_blank" class="hover:text-[#D4C3B3] transition text-lg" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            <!-- REDES SOCIALES, UBICACIÓN Y WHATSAPP -->
+            <div class="flex items-center gap-4 flex-wrap justify-center">
+                <a href="https://www.google.com/maps/dir//Artesan%C3%ADas+Alpaquitay+del+Per%C3%BA,+Alfonso+Ugarte+882,+Hualhuas+12105/@-11.9668736,-75.2582656,14z" target="_blank" class="bg-[#3D312A] hover:bg-[#2D231E] text-[#E6D5C3] text-xs px-3 py-2 rounded-full font-semibold flex items-center gap-2 border border-[#6B5547] transition" title="Alfonso Ugarte 882, Hualhuas, Huancayo">
+                    <i class="fas fa-map-marker-alt text-amber-400"></i> <span id="nav-location-text">Hualhuas, Perú</span>
+                </a>
+
+                <div class="flex items-center gap-3 text-lg border-l border-[#6B5547] pl-3">
+                    <a href="https://www.instagram.com/artesaniasalpaquitaydelperu/" target="_blank" class="hover:text-[#D4C3B3] transition" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=100054454091170&locale=es_LA" target="_blank" class="hover:text-[#D4C3B3] transition" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.tiktok.com/@artesanias_alpaquitay" target="_blank" class="hover:text-[#D4C3B3] transition" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+
                 <a href="https://wa.me/51940188831" target="_blank" class="bg-[#5C7654] hover:bg-[#4E6346] text-white text-xs px-3 py-2 rounded-full font-semibold flex items-center gap-2 shadow">
                     <i class="fab fa-whatsapp text-sm"></i> WhatsApp
                 </a>
@@ -201,7 +206,7 @@
         </div>
     </div>
 
-    <!-- PANEL LATERAL DEL CARRITO -->
+    <!-- PANEL LATERAL DEL CARRITO (INTERACTIVO Y CLICKEABLE) -->
     <div id="cartDrawer" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden justify-end z-50">
         <div class="bg-white w-full max-w-md h-full shadow-2xl p-6 flex flex-col justify-between">
             <div>
@@ -547,6 +552,7 @@
             es: {
                 topBar: '🌍 Envíos a todo el mundo | 100% Fibra de Alpaca y Tintes Naturales',
                 headerSub: 'Handcrafted in Peru | Artesanía Peruana',
+                locationText: 'Hualhuas, Perú',
                 bannerTitle: 'Colección Artesanal 100% Alpaca',
                 bannerDesc: 'Prendas únicas tejidas a mano con fibra pura de alpaca. Añade tus favoritas al carrito o haz clic en cualquier producto para ver sus especificaciones.',
                 tag1: '🌿 Tintes 100% Naturales',
@@ -585,6 +591,7 @@
             en: {
                 topBar: '🌍 Worldwide Shipping | 100% Alpaca Fiber & Natural Dyes',
                 headerSub: 'Handcrafted in Peru | Authentic Peruvian Craftsmanship',
+                locationText: 'Hualhuas, Peru',
                 bannerTitle: '100% Alpaca Handcrafted Collection',
                 bannerDesc: 'Unique hand-knitted garments made of pure alpaca fiber. Add your favorites to cart or click any product for specs.',
                 tag1: '🌿 100% Natural Dyes',
@@ -688,6 +695,7 @@
 
             document.getElementById('top-bar-text').innerText = t.topBar;
             document.getElementById('header-subtitle').innerText = t.headerSub;
+            document.getElementById('nav-location-text').innerText = t.locationText;
             document.getElementById('banner-title').innerText = t.bannerTitle;
             document.getElementById('banner-desc').innerText = t.bannerDesc;
             document.getElementById('tag-1').innerText = t.tag1;
@@ -730,6 +738,7 @@
             if (!document.getElementById('orderModal').classList.contains('hidden')) {
                 openModal(currentModalIndex);
             }
+            updateCartUI();
         }
 
         function setCategoryFilter(category) {
@@ -881,8 +890,8 @@
                 const row = document.createElement('div');
                 row.className = 'flex justify-between items-center bg-[#F7F4EF] p-3 rounded-xl border border-[#EBDDCF] text-xs';
                 row.innerHTML = `
-                    <div class="flex-1 pr-2">
-                        <p class="font-bold text-stone-900 leading-tight">${item.name}</p>
+                    <div class="flex-1 pr-2 cursor-pointer group" onclick="toggleCart(); openModal(${item.index})" title="Ver detalles del producto">
+                        <p class="font-bold text-stone-900 leading-tight group-hover:text-[#5C7654] transition underline decoration-dotted">${item.name}</p>
                         ${colorText}
                         <p class="text-stone-500 text-[11px] mt-0.5">$${item.price.toFixed(2)} USD</p>
                     </div>
