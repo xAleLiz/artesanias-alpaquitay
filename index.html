@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artesanías Alpaquitay del Perú - Catálogo Oficial</title>
+    <title>Artesanías Alpaquitay del Perú | Catálogo artesanal</title>
+<meta name="description" content="Prendas y accesorios artesanales de fibra de alpaca hechos en Hualhuas, Perú. Descubre el catálogo de Artesanías Alpaquitay.">
+<meta name="theme-color" content="#332820">
+<meta property="og:title" content="Artesanías Alpaquitay del Perú">
+<meta property="og:description" content="Textiles artesanales de fibra de alpaca hechos en Hualhuas, Perú.">
+<meta property="og:type" content="website">
     <meta name="google-site-verification" content="4ygvkM3ICirH5WaPUCMs72vfGwtyjnhQf20Qi6MB3L0" />
     
     <!-- FAVICON PARA LA PESTAÑA -->
@@ -18,7 +23,92 @@
         .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); }
         .thumb-img { transition: all 0.2s ease; cursor: pointer; }
         .thumb-img:hover { opacity: 0.8; transform: scale(1.05); }
+        html{scroll-behavior:smooth}
+        .section-kicker{color:#92745d;letter-spacing:.18em;text-transform:uppercase;font-size:.67rem;font-weight:800}
+        .editorial-card{background:linear-gradient(135deg,#fff 0%,#f4eee7 100%);border:1px solid #e9ded3}
+        .favorite-btn{position:absolute;right:12px;top:12px;width:38px;height:38px;border-radius:50%;background:#fff;color:#70584a;box-shadow:0 4px 14px #0002}
+        .favorite-btn.active{color:#a34b4b}
+        .admin-input{width:100%;border:1px solid #ddd1c5;border-radius:10px;padding:10px 12px;background:#fff;font-size:13px}
+        .admin-label{display:block;font-size:11px;font-weight:700;color:#665347;margin:10px 0 5px}
+        .modal-backdrop{background:rgba(20,15,12,.68);backdrop-filter:blur(5px)}
+        button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #9b795e;outline-offset:3px}
     </style>
+
+<style>
+  /* Menú flotante de categorías */
+  #floatingCategoryNav {
+    position: fixed;
+    right: 24px;
+    bottom: 96px;
+    z-index: 60;
+    font-family: inherit;
+  }
+  #floatingCategoryPanel {
+    width: min(270px, calc(100vw - 32px));
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #e6d8ca;
+    border-radius: 18px;
+    background: rgba(255, 253, 250, .98);
+    box-shadow: 0 16px 45px rgba(45, 35, 30, .2);
+    transform-origin: bottom right;
+    animation: categoryMenuIn .18s ease-out;
+  }
+  #floatingCategoryPanel[hidden] { display: none; }
+  @keyframes categoryMenuIn {
+    from { opacity: 0; transform: translateY(8px) scale(.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .floating-category-option {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    width: 100%;
+    padding: 11px 12px;
+    border-radius: 11px;
+    color: #554438;
+    font-size: 13px;
+    text-align: left;
+    transition: background .15s ease, color .15s ease;
+  }
+  .floating-category-option:hover { background: #f3ece5; }
+  .floating-category-option[aria-pressed="true"] {
+    color: white;
+    background: #4A3B32;
+    font-weight: 700;
+  }
+  .floating-category-option .category-check {
+    margin-left: auto;
+    opacity: 0;
+  }
+  .floating-category-option[aria-pressed="true"] .category-check { opacity: 1; }
+  #floatingCategoryToggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 48px;
+    padding: 0 18px;
+    border: 1px solid #6b5547;
+    border-radius: 999px;
+    color: #fff;
+    background: #4A3B32;
+    box-shadow: 0 8px 25px rgba(45, 35, 30, .25);
+    font-size: 13px;
+    font-weight: 700;
+    transition: transform .18s ease, background .18s ease;
+  }
+  #floatingCategoryToggle:hover { background: #382d26; transform: translateY(-2px); }
+  #floatingCategoryToggle:focus-visible, .floating-category-option:focus-visible {
+    outline: 3px solid #b99473;
+    outline-offset: 3px;
+  }
+  @media (max-width: 640px) {
+    #floatingCategoryNav { right: 16px; bottom: 88px; }
+    #floatingCategoryToggle { min-height: 46px; padding: 0 15px; }
+  }
+</style>
+
 </head>
 <body class="bg-[#F7F4EF] text-stone-900 font-sans antialiased min-h-screen flex flex-col justify-between">
 
@@ -75,6 +165,12 @@
         </div>
     </header>
 
+    <div class="bg-[#eee7df] border-b border-[#e2d6ca]">
+      <div class="max-w-6xl mx-auto px-6 py-2 flex items-center justify-between text-xs text-[#665347]">
+        <span><i class="fas fa-leaf mr-1"></i> Hecho a mano en Hualhuas, Junín</span>
+        <div class="flex gap-4"><button onclick="showFavorites()" class="font-semibold"><i class="far fa-heart mr-1"></i> Favoritos <span id="favorite-count">(0)</span></button><button onclick="openAdminLogin()" class="text-stone-500"><i class="fas fa-lock mr-1"></i> Administración</button></div>
+      </div>
+    </div>
     <!-- SECCIÓN PRINCIPAL -->
     <main class="max-w-6xl mx-auto px-6 py-8 flex-grow w-full">
 
@@ -87,7 +183,7 @@
             <div class="mt-4 flex flex-wrap justify-center gap-3 text-xs">
                 <span class="bg-[#2D231E]/65 px-3 py-1.5 rounded-full border border-[#6B5547]" id="tag-1">🌿 Tintes 100% Naturales</span>
                 <span class="bg-[#2D231E]/65 px-3 py-1.5 rounded-full border border-[#6B5547]" id="tag-2">🧶 100% Hecho a Mano</span>
-                <span class="bg-[#2D231E]/65 px-3 py-1.5 rounded-full border border-[#6B5547]" id="tag-3">💳 Pagos Seguros Directos</span>
+                <span class="bg-[#2D231E]/65 px-3 py-1.5 rounded-full border border-[#6B5547]" id="tag-3">🤎 Atención personalizada</span>
             </div>
         </div>
 
@@ -108,6 +204,31 @@
             </a>
         </div>
 
+        <section id="historia" class="editorial-card rounded-2xl p-7 md:p-10 mb-8 grid md:grid-cols-[1.2fr_.8fr] gap-8 items-center shadow-sm">
+          <div><p class="section-kicker mb-2">Nuestra esencia</p><h2 class="text-2xl md:text-3xl font-bold text-[#4A3B32] mb-3">Tradición que se siente, arte que se lleva</h2>
+          <p class="text-sm leading-7 text-stone-600">Desde Hualhuas, en el corazón del valle del Mantaro, compartimos piezas textiles inspiradas en la tradición andina. Cada diseño busca poner en valor el trabajo artesanal y la calidez de la fibra de alpaca.</p>
+          <p class="text-sm leading-7 text-stone-600 mt-3">Te invitamos a conocer nuestras prendas, elegir tus favoritas y escribirnos para recibir atención personalizada.</p></div>
+          <div class="rounded-xl bg-[#4A3B32] text-[#F3EFEA] p-7"><p class="text-xs tracking-widest uppercase text-[#D4C3B3] mb-3">Artesanías Alpaquitay</p><p class="text-xl font-semibold leading-relaxed">Cada pieza cuenta una historia de creatividad, dedicación y herencia andina.</p><p class="text-xs text-[#D4C3B3] mt-5"><i class="fas fa-map-marker-alt mr-1"></i> Hualhuas · Huancayo · Perú</p></div>
+        </section>
+        <section id="envios" class="bg-white rounded-2xl p-6 md:p-8 mb-8 border border-stone-200 shadow-sm">
+          <div class="grid md:grid-cols-3 gap-6 items-center"><div><p class="section-kicker mb-2">Compra con tranquilidad</p><h2 class="text-2xl font-bold text-[#4A3B32]">Envíos coordinados contigo</h2></div>
+          <div class="md:col-span-2 grid sm:grid-cols-2 gap-4 text-sm text-stone-600">
+            <p><i class="fas fa-box-open text-[#8C6D53] mr-2"></i><strong>Preparación:</strong> confirmamos disponibilidad antes del despacho.</p>
+            <p><i class="fas fa-truck text-[#8C6D53] mr-2"></i><strong>Destino y tarifa:</strong> se confirma según ciudad o país.</p>
+            <p><i class="fas fa-comments text-[#8C6D53] mr-2"></i><strong>Atención directa:</strong> resolvemos tus dudas por WhatsApp.</p>
+            <p><i class="fas fa-receipt text-[#8C6D53] mr-2"></i><strong>Total transparente:</strong> los precios del catálogo no incluyen envío.</p>
+          </div></div>
+        </section>
+        <section id="opiniones" class="mb-8"><div class="text-center mb-5"><p class="section-kicker mb-2">Experiencias</p><h2 class="text-2xl font-bold text-[#4A3B32]">Opiniones de nuestros clientes</h2><p class="text-xs text-stone-500 mt-2">Comparte tu experiencia con nuestra atención y productos.</p></div>
+          <div id="reviews-list" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div><div class="text-center mt-4"><button onclick="openReviewForm()" class="border border-[#8C6D53] text-[#4A3B32] rounded-full px-5 py-2.5 text-xs font-bold">Escribir una opinión</button></div>
+        </section>
+        <section id="faq" class="bg-white rounded-2xl border border-stone-200 p-6 md:p-8 mb-10"><div class="text-center mb-6"><p class="section-kicker mb-2">Ayuda</p><h2 class="text-2xl font-bold text-[#4A3B32]">Preguntas frecuentes</h2></div><div class="max-w-3xl mx-auto divide-y divide-stone-200">
+          <details class="py-4"><summary class="font-bold text-sm cursor-pointer">¿De qué material están elaborados?</summary><p class="text-sm text-stone-600 mt-3">Revisa la ficha de cada producto para conocer su material y características.</p></details>
+          <details class="py-4"><summary class="font-bold text-sm cursor-pointer">¿Cómo puedo hacer un pedido?</summary><p class="text-sm text-stone-600 mt-3">Agrega productos al carrito y elige el formulario de pedido o WhatsApp directo.</p></details>
+          <details class="py-4"><summary class="font-bold text-sm cursor-pointer">¿El precio incluye el envío?</summary><p class="text-sm text-stone-600 mt-3">No. El envío se cotiza según destino y se confirma antes de cerrar el pedido.</p></details>
+          <details class="py-4"><summary class="font-bold text-sm cursor-pointer">¿Qué medios de pago puedo utilizar?</summary><p class="text-sm text-stone-600 mt-3">Los medios vigentes se coordinan directamente al confirmar el pedido.</p></details>
+          <details class="py-4"><summary class="font-bold text-sm cursor-pointer">¿Puedo visitar la tienda?</summary><p class="text-sm text-stone-600 mt-3">Sí, estamos en Alfonso Ugarte 882, Hualhuas, Huancayo. Recomendamos escribir antes para coordinar.</p></details>
+        </div></section>
         <!-- BARRA DE BÚSQUEDA Y FILTROS POR CATEGORÍA -->
         <div class="mb-8 space-y-4">
             <!-- BARRA DE BÚSQUEDA -->
@@ -139,6 +260,7 @@
                 <p class="text-xs text-stone-400 mt-1" id="footer-desc">Textiles auténticos hechos a mano en el valle andino.</p>
             </div>
             
+            <div class="flex flex-wrap justify-center gap-4 text-xs text-stone-400"><a href="#historia">Historia</a><a href="#envios">Envíos</a><a href="#opiniones">Opiniones</a><a href="#faq">FAQ</a></div>
             <div class="flex items-center gap-6 text-xl">
                 <a href="https://www.instagram.com/artesaniasalpaquitaydelperu/" target="_blank" class="hover:text-[#D4C3B3] transition" title="Instagram"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.facebook.com/profile.php?id=100054454091170&locale=es_LA" target="_blank" class="hover:text-[#D4C3B3] transition" title="Facebook"><i class="fab fa-facebook"></i></a>
@@ -237,27 +359,63 @@
                         <i class="fas fa-wallet text-sm"></i> <span id="payment-box-title">Métodos de Pago Disponibles:</span>
                     </p>
                     <div class="space-y-1 text-[11px] text-stone-600">
-                        <p>🌍 <strong id="pay-intl-label">Internacional:</strong> Wise, Remitly, Western Union</p>
-                        <p>🇵🇪 <strong id="pay-loc-label">En Perú:</strong> Yape, Plin, BCP, Scotiabank</p>
+                        <p>🌍 <strong id="pay-intl-label">Internacional:</strong> consultar opciones vigentes</p>
+                        <p>🇵🇪 <strong id="pay-loc-label">En Perú:</strong> consultar opciones vigentes</p>
                     </div>
                 </div>
 
+                <div class="grid grid-cols-2 gap-2">
+                <button onclick="openCheckout()" class="w-full border border-[#5C7654] text-[#4A3B32] rounded-xl py-3 px-2 text-xs font-bold"><i class="fas fa-clipboard-list mr-1"></i>Pedido web</button>
                 <button onclick="checkoutWhatsApp()" id="checkoutBtn" class="w-full bg-[#5C7654] hover:bg-[#4E6346] text-white font-bold py-3 px-4 rounded-xl text-center text-xs flex items-center justify-center gap-2 shadow opacity-50 cursor-not-allowed transition" disabled>
-                    <i class="fab fa-whatsapp text-sm"></i> <span id="btn-checkout-text">Completar Pedido por WhatsApp</span>
-                </button>
+                    <i class="fab fa-whatsapp text-sm"></i> <span id="btn-checkout-text">WhatsApp directo</span>
+                </button></div>
             </div>
         </div>
     </div>
 
+    <div id="checkoutModal" class="fixed inset-0 modal-backdrop hidden items-center justify-center p-4 z-[70]" role="dialog" aria-modal="true">
+      <div class="bg-white rounded-2xl p-6 w-full max-w-lg max-h-[92vh] overflow-y-auto relative"><button onclick="closeCheckout()" class="absolute right-5 top-5 text-stone-400"><i class="fas fa-times"></i></button>
+        <p class="section-kicker">Pedido en línea</p><h2 class="text-xl font-bold text-[#4A3B32] mt-1 mb-2">Completa tus datos</h2><p class="text-xs text-stone-500 mb-4">El formulario prepara tu pedido y lo envía a la tienda por WhatsApp para confirmar disponibilidad, envío y pago.</p>
+        <form id="webOrderForm" class="space-y-3" onsubmit="submitWebOrder(event)">
+          <label class="block text-xs font-bold">Nombre completo<input class="admin-input mt-1" name="customerName" required maxlength="100"></label>
+          <label class="block text-xs font-bold">WhatsApp o teléfono<input class="admin-input mt-1" name="customerPhone" required maxlength="30"></label>
+          <label class="block text-xs font-bold">Ciudad y país<input class="admin-input mt-1" name="destination" required maxlength="120" placeholder="Huancayo, Perú"></label>
+          <label class="block text-xs font-bold">Dirección o referencia (opcional)<input class="admin-input mt-1" name="address" maxlength="180"></label>
+          <label class="block text-xs font-bold">Comentario (opcional)<textarea class="admin-input mt-1" name="notes" rows="2" maxlength="500"></textarea></label>
+          <button class="w-full bg-[#5C7654] text-white rounded-xl py-3 text-sm font-bold"><i class="fab fa-whatsapp mr-2"></i>Enviar pedido</button>
+        </form>
+      </div>
+    </div>
+    <div id="reviewModal" class="fixed inset-0 modal-backdrop hidden items-center justify-center p-4 z-[70]"><div class="bg-white rounded-2xl p-6 w-full max-w-md relative"><button onclick="closeReviewForm()" class="absolute right-5 top-5 text-stone-400"><i class="fas fa-times"></i></button><h2 class="text-xl font-bold text-[#4A3B32] mb-4">Comparte tu opinión</h2>
+      <form onsubmit="submitReview(event)" class="space-y-3"><input class="admin-input" name="reviewName" placeholder="Tu nombre o iniciales" maxlength="50" required><select class="admin-input" name="reviewRating"><option value="5">★★★★★ Excelente</option><option value="4">★★★★☆ Muy bueno</option><option value="3">★★★☆☆ Bueno</option><option value="2">★★☆☆☆ Regular</option><option value="1">★☆☆☆☆ Puede mejorar</option></select><textarea class="admin-input" name="reviewText" rows="4" placeholder="Cuéntanos tu experiencia" maxlength="400" required></textarea><p class="text-[10px] text-stone-500">Se guarda solo en este navegador; no se publica automáticamente a otros visitantes.</p><button class="w-full bg-[#4A3B32] text-white rounded-xl py-3 text-sm font-bold">Guardar opinión</button></form></div></div>
+    <div id="adminLoginModal" class="fixed inset-0 modal-backdrop hidden items-center justify-center p-4 z-[80]"><div class="bg-white rounded-2xl p-6 w-full max-w-sm relative"><button onclick="closeAdminLogin()" class="absolute right-5 top-5 text-stone-400"><i class="fas fa-times"></i></button><p class="section-kicker">Zona de administración local</p><h2 class="text-xl font-bold text-[#4A3B32] mt-1 mb-2">Acceso administrativo</h2><p class="text-xs text-stone-500 mb-4">Crea una contraseña local la primera vez (mínimo 8 caracteres).</p><form onsubmit="adminLogin(event)"><input id="adminPassword" type="password" class="admin-input mb-3" required placeholder="Contraseña"><button class="w-full bg-[#4A3B32] text-white rounded-xl py-3 text-sm font-bold">Ingresar</button></form><p id="admin-login-error" class="text-xs text-red-600 mt-3"></p></div></div>
+    <div id="adminPanel" class="fixed inset-0 bg-[#f7f4ef] hidden z-[90] overflow-y-auto"><div class="max-w-6xl mx-auto p-4 md:p-8">
+      <div class="flex flex-wrap justify-between items-center gap-3 mb-6"><div><p class="section-kicker">Gestión de tienda</p><h2 class="text-2xl font-bold text-[#4A3B32]">Panel administrativo</h2></div><div class="flex gap-2"><button onclick="closeAdminPanel()" class="border border-stone-300 rounded-xl px-4 py-2 text-xs font-bold">Volver a la tienda</button><button onclick="adminLogout()" class="bg-[#4A3B32] text-white rounded-xl px-4 py-2 text-xs font-bold">Cerrar sesión</button></div></div>
+      <div class="bg-amber-50 border border-amber-200 text-amber-900 rounded-xl p-4 text-xs leading-5 mb-6"><strong>Limitación importante:</strong> GitHub Pages es estático. Los cambios y la contraseña de este panel se guardan solo en este navegador y no son seguridad real frente a usuarios técnicos. Para un panel privado compartido entre dispositivos se requiere backend y autenticación de servidor.</div>
+      <div class="grid lg:grid-cols-[1fr_1.4fr] gap-6">
+        <section class="bg-white rounded-2xl p-5 border"><h3 id="admin-form-title" class="font-bold text-[#4A3B32] mb-3">Añadir producto</h3><form id="adminProductForm" onsubmit="saveAdminProduct(event)">
+          <label class="admin-label">Nombre</label><input id="adminName" class="admin-input" required maxlength="100">
+          <label class="admin-label">Precio USD</label><input id="adminPrice" class="admin-input" type="number" min="0" step=".01" required>
+          <label class="admin-label">Categoría</label><select id="adminCategory" class="admin-input"><option value="gorros">Gorros / Chullo</option><option value="mitones">Mitones / Muñequera</option><option value="vinchas">Vinchas</option><option value="otros">Otros</option></select>
+          <label class="admin-label">Descripción</label><textarea id="adminDesc" class="admin-input" rows="3" required></textarea>
+          <label class="admin-label">Material</label><input id="adminMaterial" class="admin-input" value="100% Fibra de Alpaca">
+          <label class="admin-label">Colores separados por coma</label><input id="adminColors" class="admin-input">
+          <label class="admin-label">Talla</label><input id="adminSize" class="admin-input" value="Estándar">
+          <label class="admin-label">Público</label><input id="adminPublic" class="admin-input" value="Unisex">
+          <label class="admin-label">Ruta de imagen (ej. img/producto.jpg)</label><input id="adminImage" class="admin-input">
+          <div class="flex gap-2 mt-4"><button class="flex-1 bg-[#5C7654] text-white rounded-xl py-3 text-xs font-bold">Guardar producto</button><button type="button" onclick="resetAdminForm()" class="border rounded-xl px-4 text-xs font-bold">Limpiar</button></div>
+        </form></section>
+        <section class="bg-white rounded-2xl p-5 border"><div class="flex justify-between mb-3"><h3 class="font-bold text-[#4A3B32]">Inventario</h3><span id="admin-product-count" class="text-xs text-stone-500"></span></div><div id="adminProductsList" class="space-y-2"></div><button onclick="exportCatalog()" class="mt-4 border border-[#8C6D53] text-[#4A3B32] rounded-xl px-4 py-2.5 text-xs font-bold"><i class="fas fa-download mr-1"></i>Exportar catálogo JSON</button></section>
+      </div></div></div>
     <!-- JAVASCRIPT -->
     <script>
         let currentLang = 'es';
         let currentModalIndex = 0;
         let currentCategory = 'all';
-        let cart = [];
+        let cart = JSON.parse(localStorage.getItem('alpaquitay_cart') || '[]');
 
         // BASE DE DATOS CON LOS 12 PRODUCTOS Y SUS 3 IMÁGENES JPG EN LA CARPETA img/
-        const productsData = [
+        let productsData = [
             // 1. CHULLO RIZO ANDINO
             {
                 category: 'gorros',
@@ -557,7 +715,7 @@
                 bannerDesc: 'Prendas únicas tejidas a mano con fibra pura de alpaca. Añade tus favoritas al carrito o haz clic en cualquier producto para ver sus especificaciones.',
                 tag1: '🌿 Tintes 100% Naturales',
                 tag2: '🧶 100% Hecho a Mano',
-                tag3: '💳 Pagos Seguros Directos',
+                tag3: '🤎 Atención personalizada',
                 storeTitle: '¡Visita nuestra Tienda y Taller Presencial!',
                 storeAddress: '📍 Alfonso Ugarte 882, Hualhuas 12105, Huancayo - Perú',
                 storeSub: 'Ven a conocer el proceso de tejido tradicional de alpaca.',
@@ -935,5 +1093,273 @@
             renderProducts();
         });
     </script>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const save = (k,v) => localStorage.setItem(k, JSON.stringify(v));
+  const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  let favorites = JSON.parse(localStorage.getItem('alpaquitay_favorites') || '[]');
+  let favoritesOnly = false;
+  let editing = null;
+
+  // Restore local catalog overrides and saved cart.
+  const storedProducts = localStorage.getItem('alpaquitay_products');
+  if(storedProducts){ try { productsData = JSON.parse(storedProducts); } catch(e) { console.warn('No se pudo leer el catálogo local.'); } }
+  cart = JSON.parse(localStorage.getItem('alpaquitay_cart') || '[]');
+
+  function drawProducts(){
+    const grid=$('product-grid'); if(!grid) return;
+    const q=$('searchInput').value.trim().toLowerCase();
+    grid.innerHTML='';
+    productsData.forEach((p,i)=>{
+      const d=p[currentLang] || p.es || p.en || {};
+      const key=String(p.id || i);
+      if(currentCategory!=='all' && p.category!==currentCategory) return;
+      if(favoritesOnly && !favorites.includes(key)) return;
+      const hay=[d.name,d.desc,d.material,d.colores].join(' ').toLowerCase();
+      if(q && !hay.includes(q)) return;
+      const card=document.createElement('article');
+      card.className='product-card bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden flex flex-col justify-between relative';
+      const image=esc((p.images||[])[0]||'logo.png');
+      card.innerHTML=`<div class="relative overflow-hidden group cursor-pointer" onclick="openModal(${i})">
+        <img src="${image}" alt="${esc(d.name)}" loading="lazy" onerror="this.onerror=null;this.src='logo.png'" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
+        <span class="absolute top-3 left-3 bg-[#4A3B32]/90 text-white text-xs px-2.5 py-1 rounded-full">Artesanal</span></div>
+        <button class="favorite-btn ${favorites.includes(key)?'active':''}" onclick="toggleFavorite('${key}')" aria-label="Favorito"><i class="${favorites.includes(key)?'fas':'far'} fa-heart"></i></button>
+        <div class="p-6 flex-1 flex flex-col justify-between"><div class="cursor-pointer" onclick="openModal(${i})">
+        <h3 class="font-bold text-lg text-stone-900">${esc(d.name)}</h3><p class="text-xs text-[#8C6D53] italic mb-2">${esc(d.eng||'')}</p>
+        <p class="text-stone-600 text-xs leading-relaxed">${esc(d.desc)}</p></div>
+        <div class="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between gap-2"><div><span class="text-lg font-extrabold text-[#4A3B32]">$${Number(p.price||0).toFixed(2)} USD</span><p class="text-[10px] text-stone-400">Envío no incluido</p></div>
+        <button onclick="openModal(${i})" class="bg-[#5C7654] hover:bg-[#4E6346] text-white text-xs px-3 py-2.5 rounded-xl font-bold">Ver producto</button></div></div>`;
+      grid.appendChild(card);
+    });
+    if(!grid.children.length) grid.innerHTML=`<div class="col-span-full text-center py-12 text-stone-500 text-sm">${favoritesOnly?'Aún no tienes favoritos guardados.':'No se encontraron productos.'}</div>`;
+    if($('favorite-count')) $('favorite-count').textContent=`(${favorites.length})`;
+  }
+  window.renderProducts=drawProducts;
+  window.filterProducts=drawProducts;
+  window.setCategoryFilter=function(category){
+    currentCategory=category;
+    document.querySelectorAll('#filter-buttons button').forEach(b=>{b.classList.remove('bg-[#4A3B32]','text-white','active');b.classList.add('bg-white','text-stone-700');});
+    const active=document.querySelector(`#filter-buttons button[onclick="setCategoryFilter('${category}')"]`);
+    if(active){active.classList.remove('bg-white','text-stone-700');active.classList.add('bg-[#4A3B32]','text-white','active');}
+    drawProducts();
+  };
+  window.toggleFavorite=function(key){
+    key=String(key); favorites=favorites.includes(key)?favorites.filter(x=>x!==key):[...favorites,key];
+    save('alpaquitay_favorites',favorites);drawProducts();
+  };
+  window.showFavorites=function(){
+    favoritesOnly=!favoritesOnly; $('searchInput').value='';
+    const grid=$('product-grid');drawProducts();grid.scrollIntoView({behavior:'smooth'});
+  };
+
+  // Cart renderer with persistence.
+  window.updateCartUI=function(){
+    save('alpaquitay_cart',cart);
+    const list=$('cartItemsList'),count=$('cart-count'),totalEl=$('cartTotalPrice'),btn=$('checkoutBtn');
+    if(!list)return;
+    let total=0,qty=0;list.innerHTML='';
+    if(!cart.length){list.innerHTML='<p class="text-xs text-stone-500 text-center py-8">Tu carrito está vacío.</p>';totalEl.textContent='$0.00 USD';count.textContent='0';btn.disabled=true;btn.classList.add('opacity-50','cursor-not-allowed');return;}
+    cart.forEach((item,i)=>{
+      qty+=item.qty;total+=item.price*item.qty;
+      const row=document.createElement('div');row.className='flex justify-between items-center bg-[#F7F4EF] p-3 rounded-xl border border-[#EBDDCF] text-xs';
+      row.innerHTML=`<div class="flex-1 pr-2"><p class="font-bold text-stone-900">${esc(item.name)}</p><p class="text-[10px] text-[#8C6D53]">Color: ${esc(item.color)}</p><p class="text-stone-500">$${Number(item.price).toFixed(2)} USD</p></div>
+      <div class="flex items-center gap-2"><div class="flex items-center border rounded-lg bg-white"><button onclick="changeQty(${i},-1)" class="px-2 py-1">−</button><span class="px-2">${item.qty}</span><button onclick="changeQty(${i},1)" class="px-2 py-1">+</button></div><button onclick="removeFromCart(${i})" class="text-red-500 p-1" aria-label="Eliminar"><i class="fas fa-trash"></i></button></div>`;
+      list.appendChild(row);
+    });
+    count.textContent=qty;totalEl.textContent='$'+total.toFixed(2)+' USD';btn.disabled=false;btn.classList.remove('opacity-50','cursor-not-allowed');
+  };
+  const oldChangeQty=window.changeQty;
+  window.changeQty=function(i,delta){oldChangeQty(i,delta);save('alpaquitay_cart',cart);};
+  const oldRemove=window.removeFromCart;
+  window.removeFromCart=function(i){oldRemove(i);save('alpaquitay_cart',cart);};
+
+  // Both order paths: direct WhatsApp and structured web form.
+  window.openCheckout=function(){if(!cart.length)return;$('checkoutModal').classList.remove('hidden');$('checkoutModal').classList.add('flex');};
+  window.closeCheckout=function(){$('checkoutModal').classList.add('hidden');$('checkoutModal').classList.remove('flex');};
+  window.submitWebOrder=function(e){
+    e.preventDefault();if(!cart.length)return;
+    const f=new FormData(e.target),lines=cart.map(x=>`- ${x.qty} x ${x.name} (${x.color}) — $${(x.qty*x.price).toFixed(2)} USD`).join('\n');
+    const total=cart.reduce((s,x)=>s+x.qty*x.price,0);
+    const msg=`Hola, deseo realizar este pedido:\n\n${lines}\n\nTotal estimado: $${total.toFixed(2)} USD (envío no incluido)\n\nNombre: ${f.get('customerName')}\nTeléfono: ${f.get('customerPhone')}\nDestino: ${f.get('destination')}\nDirección: ${f.get('address')||'No indicada'}\nComentario: ${f.get('notes')||'Ninguno'}\n\nPor favor, confirmen disponibilidad, envío y medios de pago.`;
+    window.open('https://wa.me/51940188831?text='+encodeURIComponent(msg),'_blank','noopener');closeCheckout();
+  };
+
+  // Customer reviews remain local to this browser; they are not presented as verified testimonials.
+  function getReviews(){return JSON.parse(localStorage.getItem('alpaquitay_reviews')||'[]');}
+  function drawReviews(){
+    const box=$('reviews-list');if(!box)return;const items=getReviews();box.innerHTML='';
+    if(!items.length){box.innerHTML='<div class="col-span-full text-center text-xs text-stone-500 bg-white border rounded-xl p-6">Todavía no hay opiniones. Puedes compartir tu experiencia.</div>';return;}
+    items.slice(-6).reverse().forEach(r=>{const el=document.createElement('article');el.className='bg-white border border-stone-200 rounded-xl p-5';
+      el.innerHTML=`<div class="text-amber-600 text-sm mb-2">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div><p class="text-sm text-stone-600">“${esc(r.text)}”</p><p class="text-xs font-bold text-[#4A3B32] mt-4">${esc(r.name)}</p><p class="text-[10px] text-stone-400">Guardada en este dispositivo</p>`;box.appendChild(el);});
+  }
+  window.openReviewForm=function(){$('reviewModal').classList.remove('hidden');$('reviewModal').classList.add('flex');};
+  window.closeReviewForm=function(){$('reviewModal').classList.add('hidden');$('reviewModal').classList.remove('flex');};
+  window.submitReview=function(e){e.preventDefault();const f=new FormData(e.target),a=getReviews();a.push({name:f.get('reviewName'),rating:Number(f.get('reviewRating')),text:f.get('reviewText')});save('alpaquitay_reviews',a);e.target.reset();closeReviewForm();drawReviews();};
+
+  // Admin catalog editor. This is intentionally local-only; GitHub Pages cannot secure client-side credentials.
+  window.openAdminLogin=function(){$('adminLoginModal').classList.remove('hidden');$('adminLoginModal').classList.add('flex');};
+  window.closeAdminLogin=function(){$('adminLoginModal').classList.add('hidden');$('adminLoginModal').classList.remove('flex');};
+  window.adminLogin=function(e){
+    e.preventDefault();const pass=$('adminPassword').value;let saved=localStorage.getItem('alpaquitay_admin_password');
+    if(!saved){if(pass.length<8){$('admin-login-error').textContent='Usa al menos 8 caracteres.';return;}localStorage.setItem('alpaquitay_admin_password',pass);alert('Contraseña local creada. Este acceso no es seguridad real para una web pública.');}
+    else if(pass!==saved){$('admin-login-error').textContent='Contraseña incorrecta.';return;}
+    closeAdminLogin();$('adminPassword').value='';$('adminPanel').classList.remove('hidden');drawAdmin();
+  };
+  window.closeAdminPanel=function(){$('adminPanel').classList.add('hidden');};
+  window.adminLogout=window.closeAdminPanel;
+  function drawAdmin(){
+    $('admin-product-count').textContent=productsData.length+' productos';const list=$('adminProductsList');list.innerHTML='';
+    productsData.forEach((p,i)=>{const d=p.es||{};const row=document.createElement('div');row.className='flex flex-wrap justify-between items-center gap-2 border rounded-xl p-3';
+      row.innerHTML=`<div><p class="font-bold text-sm">${esc(d.name)}</p><p class="text-xs text-stone-500">$${Number(p.price).toFixed(2)} USD · ${esc(p.category)}</p></div><div class="flex gap-3"><button onclick="editAdminProduct(${i})" class="text-xs font-bold text-green-700">Editar</button><button onclick="deleteAdminProduct(${i})" class="text-xs font-bold text-red-600">Eliminar</button></div>`;list.appendChild(row);});
+  }
+  window.saveAdminProduct=function(e){
+    e.preventDefault();const name=$('adminName').value.trim(),price=Number($('adminPrice').value),category=$('adminCategory').value,desc=$('adminDesc').value.trim();
+    if(!name||!desc||!Number.isFinite(price)||price<0){alert('Revisa el nombre, descripción y precio.');return;}
+    const colors=$('adminColors').value.split(',').map(x=>x.trim()).filter(Boolean),old=editing!==null?productsData[editing]:null;
+    const product={id:old?.id||'local-'+Date.now(),category,price,images:$('adminImage').value.trim()?[$('adminImage').value.trim()]:(old?.images||['logo.png']),
+      es:{name,eng:name,desc,material:$('adminMaterial').value||'100% Fibra de Alpaca',colores:colors.join(', ')||'Consultar',confeccion:old?.es?.confeccion||'Elaboración artesanal',talla:$('adminSize').value||'Estándar',publico:$('adminPublic').value||'Unisex',colorOptions:colors},
+      en:{name,eng:name,desc,material:$('adminMaterial').value||'Alpaca fiber',colores:colors.join(', ')||'Please ask',confeccion:'Handcrafted',talla:$('adminSize').value||'Standard',publico:$('adminPublic').value||'Unisex',colorOptions:colors}};
+    if(editing===null)productsData.push(product);else productsData[editing]=product;
+    save('alpaquitay_products',productsData);resetAdminForm();drawAdmin();drawProducts();alert('Catálogo guardado en este navegador.');
+  };
+  window.editAdminProduct=function(i){
+    const p=productsData[i],d=p.es||{};editing=i;$('admin-form-title').textContent='Editar producto';
+    $('adminName').value=d.name||'';$('adminPrice').value=p.price;$('adminCategory').value=p.category||'gorros';$('adminDesc').value=d.desc||'';
+    $('adminMaterial').value=d.material||'';$('adminColors').value=(d.colorOptions||[]).join(', ');$('adminSize').value=d.talla||'Estándar';$('adminPublic').value=d.publico||'Unisex';$('adminImage').value=(p.images||[])[0]||'';
+    $('admin-form-title').scrollIntoView({behavior:'smooth'});
+  };
+  window.resetAdminForm=function(){editing=null;$('adminProductForm').reset();$('admin-form-title').textContent='Añadir producto';$('adminMaterial').value='100% Fibra de Alpaca';$('adminSize').value='Estándar';$('adminPublic').value='Unisex';};
+  window.deleteAdminProduct=function(i){if(!confirm('¿Eliminar este producto del catálogo local?'))return;productsData.splice(i,1);save('alpaquitay_products',productsData);drawAdmin();drawProducts();};
+  window.exportCatalog=function(){const blob=new Blob([JSON.stringify(productsData,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='catalogo-alpaquitay.json';a.click();URL.revokeObjectURL(url);};
+
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeCheckout();closeReviewForm();closeAdminLogin();}});
+  document.addEventListener('DOMContentLoaded',()=>{drawProducts();updateCartUI();drawReviews();});
+  // Ensure the already-fired DOMContentLoaded case is covered when this script is parsed at body end.
+  drawProducts();updateCartUI();drawReviews();
+})();
+</script>
+
+
+<!-- MENÚ FLOTANTE DE CATEGORÍAS -->
+<div id="floatingCategoryNav">
+  <div id="floatingCategoryPanel" hidden>
+    <div class="px-3 pt-2 pb-2">
+      <p class="text-[10px] uppercase tracking-[.18em] font-extrabold text-[#9a7b63]">Ir directamente a</p>
+      <p class="text-sm font-bold text-[#4A3B32] mt-1">Explorar categorías</p>
+    </div>
+    <div id="floatingCategoryOptions" class="space-y-1"></div>
+  </div>
+  <button id="floatingCategoryToggle" type="button"
+          aria-expanded="false" aria-controls="floatingCategoryPanel"
+          onclick="toggleFloatingCategories()">
+    <i class="fas fa-layer-group"></i>
+    <span>Categorías</span>
+    <i id="floatingCategoryChevron" class="fas fa-chevron-up text-[10px]"></i>
+  </button>
+</div>
+
+<script>
+(function () {
+  const categoryNames = {
+    all: "Todos los productos",
+    gorros: "Gorros / Chullo",
+    mitones: "Mitones / Muñequera",
+    vinchas: "Vinchas",
+    otros: "Otros accesorios"
+  };
+  const categoryIcons = {
+    all: "fa-border-all",
+    gorros: "fa-hat-wizard",
+    mitones: "fa-mitten",
+    vinchas: "fa-ribbon",
+    otros: "fa-bag-shopping"
+  };
+
+  function getAvailableCategories() {
+    // Incluye las categorías actuales y "Otros accesorios" para productos nuevos del panel.
+    return ["all", "gorros", "mitones", "vinchas", "otros"];
+  }
+
+  function renderFloatingCategories() {
+    const container = document.getElementById("floatingCategoryOptions");
+    if (!container) return;
+    const current = window.activeFloatingCategory || "all";
+    container.innerHTML = "";
+
+    getAvailableCategories().forEach(category => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "floating-category-option";
+      button.setAttribute("aria-pressed", String(current === category));
+      button.innerHTML =
+        '<i class="fas ' + categoryIcons[category] + ' w-4 text-center"></i>' +
+        '<span>' + categoryNames[category] + '</span>' +
+        '<i class="fas fa-check category-check text-xs"></i>';
+      button.addEventListener("click", function () {
+        if (typeof window.setCategoryFilter === "function") {
+          window.setCategoryFilter(category);
+        }
+        closeFloatingCategories();
+        const catalog = document.getElementById("product-grid");
+        if (catalog) {
+          const y = catalog.getBoundingClientRect().top + window.scrollY - 115;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
+      });
+      container.appendChild(button);
+    });
+  }
+
+  window.toggleFloatingCategories = function () {
+    const panel = document.getElementById("floatingCategoryPanel");
+    const toggle = document.getElementById("floatingCategoryToggle");
+    const isOpen = toggle.getAttribute("aria-expanded") === "true";
+    if (isOpen) {
+      closeFloatingCategories();
+    } else {
+      renderFloatingCategories();
+      panel.hidden = false;
+      toggle.setAttribute("aria-expanded", "true");
+      document.getElementById("floatingCategoryChevron").className =
+        "fas fa-chevron-down text-[10px]";
+    }
+  };
+
+  function closeFloatingCategories() {
+    const panel = document.getElementById("floatingCategoryPanel");
+    const toggle = document.getElementById("floatingCategoryToggle");
+    if (!panel || !toggle) return;
+    panel.hidden = true;
+    toggle.setAttribute("aria-expanded", "false");
+    document.getElementById("floatingCategoryChevron").className =
+      "fas fa-chevron-up text-[10px]";
+  }
+
+  document.addEventListener("click", function (event) {
+    const nav = document.getElementById("floatingCategoryNav");
+    if (nav && !nav.contains(event.target)) closeFloatingCategories();
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") closeFloatingCategories();
+  });
+
+  // Sincroniza la categoría activa cuando se usan también los filtros originales.
+  const originalFilter = window.setCategoryFilter;
+  if (typeof originalFilter === "function") {
+    window.activeFloatingCategory = "all";
+    window.setCategoryFilter = function (category) {
+      originalFilter(category);
+      window.activeFloatingCategory = category;
+      renderFloatingCategories();
+    };
+  }
+  document.addEventListener("DOMContentLoaded", renderFloatingCategories);
+  renderFloatingCategories();
+})();
+</script>
+
 </body>
 </html>
