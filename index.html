@@ -909,7 +909,7 @@
       const client=window.supabase.createClient(cfg.url,cfg.anonKey);
       const {data,error}=await client.from('products').select('id,data,sort_order').order('sort_order',{ascending:true});
       if(error)throw error;
-      if(Array.isArray(data)&&data.length){
+      if(Array.isArray(data)){
         productsData=data.map(row=>({...row.data,id:row.id}));
         drawProducts();
       }
