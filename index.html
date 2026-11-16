@@ -390,8 +390,6 @@
       <form onsubmit="submitReview(event)" class="space-y-3"><input class="admin-input" name="reviewName" placeholder="Tu nombre o iniciales" maxlength="50" required><select class="admin-input" name="reviewRating"><option value="5">★★★★★ Excelente</option><option value="4">★★★★☆ Muy bueno</option><option value="3">★★★☆☆ Bueno</option><option value="2">★★☆☆☆ Regular</option><option value="1">★☆☆☆☆ Puede mejorar</option></select><textarea class="admin-input" name="reviewText" rows="4" placeholder="Cuéntanos tu experiencia" maxlength="400" required></textarea><p class="text-[10px] text-stone-500">Se guarda solo en este navegador; no se publica automáticamente a otros visitantes.</p><button class="w-full bg-[#4A3B32] text-white rounded-xl py-3 text-sm font-bold">Guardar opinión</button></form></div></div>
     <!-- CATÁLOGO DE PRODUCTOS -->
     <script src="productos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="supabase-config.js"></script>
     <!-- JAVASCRIPT -->
     <script>
         let currentLang = 'es';
@@ -802,8 +800,6 @@
   let favoritesOnly = false;
   let editing = null;
 
-  // El catálogo compartido se carga desde Supabase cuando la propietaria lo configure.
-  // Si aún no está configurado, se conserva el catálogo incluido en productos.js.
   cart = JSON.parse(localStorage.getItem('alpaquitay_cart') || '[]');
 
   function drawProducts(){
@@ -902,22 +898,7 @@
   window.submitReview=function(e){e.preventDefault();const f=new FormData(e.target),a=getReviews();a.push({name:f.get('reviewName'),rating:Number(f.get('reviewRating')),text:f.get('reviewText')});save('alpaquitay_reviews',a);e.target.reset();closeReviewForm();drawReviews();};
 
   document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeCheckout();closeReviewForm();}});
-  async function loadSharedCatalog(){
-    const cfg=window.ALPAQUITAY_SUPABASE_CONFIG||{};
-    if(!cfg.url||!cfg.anonKey||!window.supabase)return;
-    try{
-      const client=window.supabase.createClient(cfg.url,cfg.anonKey);
-      const {data,error}=await client.from('products').select('id,data,sort_order').order('sort_order',{ascending:true});
-      if(error)throw error;
-      if(Array.isArray(data)){
-        productsData=data.map(row=>({...row.data,id:row.id}));
-        drawProducts();
-      }
-    }catch(error){console.warn('No se pudo cargar el catálogo compartido; se mantiene la copia local.',error);}
-  }
-    document.addEventListener('DOMContentLoaded',()=>{drawProducts();updateCartUI();drawReviews();});
-  loadSharedCatalog();
-  // Ensure the already-fired DOMContentLoaded case is covered when this script is parsed at body end.
+  document.addEventListener('DOMContentLoaded',()=>{drawProducts();updateCartUI();drawReviews();});
   drawProducts();updateCartUI();drawReviews();
 })();
 </script>
