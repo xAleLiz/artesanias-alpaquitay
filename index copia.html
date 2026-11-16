@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artesanías Alpaquitay del Perú | Catálogo artesanal</title>
+<meta name="description" content="Prendas y accesorios artesanales de fibra de alpaca hechos en Hualhuas, Perú. Descubre el catálogo de Artesanías Alpaquitay.">
+<meta name="theme-color" content="#332820">
+<meta property="og:title" content="Artesanías Alpaquitay del Perú">
+<meta property="og:description" content="Textiles artesanales de fibra de alpaca hechos en Hualhuas, Perú.">
+<meta property="og:type" content="website">
+    <meta name="google-site-verification" content="4ygvkM3ICirH5WaPUCMs72vfGwtyjnhQf20Qi6MB3L0" />
+    
+    <!-- FAVICON PARA LA PESTAÑA -->
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <!-- CSS de Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Íconos de FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .product-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); }
+        .thumb-img { transition: all 0.2s ease; cursor: pointer; }
+        .thumb-img:hover { opacity: 0.8; transform: scale(1.05); }
+        html{scroll-behavior:smooth}
+        .section-kicker{color:#92745d;letter-spacing:.18em;text-transform:uppercase;font-size:.67rem;font-weight:800}
+        .editorial-card{background:linear-gradient(135deg,#fff 0%,#f4eee7 100%);border:1px solid #e9ded3}
+        .favorite-btn{position:absolute;right:12px;top:12px;width:38px;height:38px;border-radius:50%;background:#fff;color:#70584a;box-shadow:0 4px 14px #0002}
+        .favorite-btn.active{color:#a34b4b}
+        .admin-input{width:100%;border:1px solid #ddd1c5;border-radius:10px;padding:10px 12px;background:#fff;font-size:13px}
+        .admin-label{display:block;font-size:11px;font-weight:700;color:#665347;margin:10px 0 5px}
+        .modal-backdrop{background:rgba(20,15,12,.68);backdrop-filter:blur(5px)}
+        button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #9b795e;outline-offset:3px}
+    </style>
+
+<style>
+  /* Menú flotante de categorías */
+  #floatingCategoryNav {
+    position: fixed;
+    right: 24px;
+    bottom: 96px;
+    z-index: 60;
+    font-family: inherit;
+  }
+  #floatingCategoryPanel {
+    width: min(270px, calc(100vw - 32px));
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #e6d8ca;
+    border-radius: 18px;
+    background: rgba(255, 253, 250, .98);
+    box-shadow: 0 16px 45px rgba(45, 35, 30, .2);
+    transform-origin: bottom right;
+    animation: categoryMenuIn .18s ease-out;
+  }
+  #floatingCategoryPanel[hidden] { display: none; }
+  @keyframes categoryMenuIn {
+    from { opacity: 0; transform: translateY(8px) scale(.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .floating-category-option {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    width: 100%;
+    padding: 11px 12px;
+    border-radius: 11px;
+    color: #554438;
+    font-size: 13px;
+    text-align: left;
+    transition: background .15s ease, color .15s ease;
+  }
+  .floating-category-option:hover { background: #f3ece5; }
+  .floating-category-option[aria-pressed="true"] {
+    color: white;
+    background: #4A3B32;
+    font-weight: 700;
+  }
+  .floating-category-option .category-check {
+    margin-left: auto;
+    opacity: 0;
+  }
+  .floating-category-option[aria-pressed="true"] .category-check { opacity: 1; }
+  #floatingCategoryToggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 48px;
+    padding: 0 18px;
+    border: 1px solid #6b5547;
+    border-radius: 999px;
+    color: #fff;
+    background: #4A3B32;
+    box-shadow: 0 8px 25px rgba(45, 35, 30, .25);
+    font-size: 13px;
+    font-weight: 700;
+    transition: transform .18s ease, background .18s ease;
+  }
+  #floatingCategoryToggle:hover { background: #382d26; transform: translateY(-2px); }
+  #floatingCategoryToggle:focus-visible, .floating-category-option:focus-visible {
+    outline: 3px solid #b99473;
+    outline-offset: 3px;
+  }
+  @media (max-width: 640px) {
+    #floatingCategoryNav { right: 16px; bottom: 88px; }
+    #floatingCategoryToggle { min-height: 46px; padding: 0 15px; }
+  }
+</style>
+
+</head>
+<body class="bg-[#F7F4EF] text-stone-900 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- BARRA SUPERIOR CON IDIOMA Y ACCESO AL CARRITO -->
+    <div class="bg-[#2D231E] text-[#E6D5C3] text-xs py-2 px-6 flex justify-between items-center tracking-wide font-medium sticky top-0 z-50">
+        <span id="top-bar-text">🌍 Envíos a todo el mundo | 100% Fibra de Alpaca y Tintes Naturales</span>
+        
+        <div class="flex items-center gap-4">
+            <!-- BOTÓN CARRITO -->
+            <button onclick="toggleCart()" class="bg-[#5C7654] hover:bg-[#4E6346] text-white px-3 py-1.5 rounded-full flex items-center gap-2 shadow font-bold text-xs transition">
+                <i class="fas fa-shopping-bag"></i> <span id="cart-btn-text">Carrito</span> (<span id="cart-count">0</span>)
+            </button>
+
+            <!-- BOTONES DE IDIOMA -->
+            <div class="flex items-center gap-2">
+                <button onclick="setLanguage('es')" id="btn-es" class="font-bold underline text-white px-2 py-0.5 rounded bg-[#4A3B32]">ES</button>
+                <span class="text-stone-500">|</span>
+                <button onclick="setLanguage('en')" id="btn-en" class="hover:text-white px-2 py-0.5 rounded">EN</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ENCABEZADO -->
+    <header class="bg-[#4A3B32] text-white shadow-lg border-b border-[#6B5547] sticky top-[33px] z-40">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            
+            <!-- LOGO Y NOMBRE CON ENLACE AL INICIO -->
+            <a href="index.html" class="flex items-center gap-3 hover:opacity-90 transition-opacity">
+                <img src="logo.png" alt="Logo Artesanías Alpaquitay" class="w-14 h-14 rounded-full object-cover">
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-bold tracking-wider uppercase text-[#F3EFEA]">
+                        ARTESANÍAS ALPAQUITAY
+                    </h1>
+                    <p class="text-xs text-[#D4C3B3]" id="header-subtitle">Handcrafted in Peru</p>
+                </div>
+            </a>
+            
+            <!-- REDES SOCIALES, UBICACIÓN Y WHATSAPP -->
+            <div class="flex items-center gap-4 flex-wrap justify-center">
+                <a href="https://www.google.com/maps/dir//Artesan%C3%ADas+Alpaquitay+del+Per%C3%BA,+Alfonso+Ugarte+882,+Hualhuas+12105/@-11.9668736,-75.2582656,14z" target="_blank" class="bg-[#3D312A] hover:bg-[#2D231E] text-[#E6D5C3] text-xs px-3 py-2 rounded-full font-semibold flex items-center gap-2 border border-[#6B5547] transition" title="Alfonso Ugarte 882, Hualhuas, Huancayo">
+                    <i class="fas fa-map-marker-alt text-amber-400"></i> <span id="nav-location-text">Hualhuas, Perú</span>
+                </a>
+
+                <div class="flex items-center gap-3 text-lg border-l border-[#6B5547] pl-3">
+                    <a href="https://www.instagram.com/artesaniasalpaquitaydelperu/" target="_blank" class="hover:text-[#D4C3B3] transition" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=100054454091170&locale=es_LA" target="_blank" class="hover:text-[#D4C3B3] transition" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.tiktok.com/@artesanias_alpaquitay" target="_blank" class="hover:text-[#D4C3B3] transition" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+
+                <a href="https://wa.me/51940188831" target="_blank" class="bg-[#5C7654] hover:bg-[#4E6346] text-white text-xs px-3 py-2 rounded-full font-semibold flex items-center gap-2 shadow">
+                    <i class="fab fa-whatsapp text-sm"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-[#eee7df] border-b border-[#e2d6ca]">
+      <div class="max-w-6xl mx-auto px-6 py-2 flex items-center justify-between text-xs text-[#665347]">
+        <span><i class="fas fa-leaf mr-1"></i> Hecho a mano en Hualhuas, Junín</span>
+        <div class="flex gap-4"><button onclick="showFavorites()" class="font-semibold"><i class="far fa-heart mr-1"></i> Favoritos <span id="favorite-count">(0)</span></button><button onclick="openAdminLogin()" class="text-stone-500"><i class="fas fa-lock mr-1"></i> Administración</button></div>
+      </div>
+    </div>
+    <!-- SECCIÓN PRINCIPAL -->
+    <main class="max-w-6xl mx-auto px-6 py-8 flex-grow w-full">
+
+        <!-- PRESENTACIÓN -->
+        <div class="bg-[#4A3B32] text-[#F3EFEA] rounded-2xl p-8 mb-8 text-center shadow-md border border-[#6B5547]">
+            <h2 class="text-3xl font-extrabold mb-3" id="banner-title">Colección Artesanal 100% Alpaca</h2>
+            <p class="text-[#D4C3B3] max-w-2xl mx-auto text-sm leading-relaxed" id="banner-desc">
+                Prendas únicas tejidas a mano con fibra pura de alpaca. Añade tus favoritas al carrito o haz clic en cualquier producto para ver sus especificaciones.
+            </p>
+            <div class="mt-4 flex flex-wrap justify-center gap-3 text-xs">
+                <span class="bg-[#2D231E]/65 px-3 py-1.5 rounded-full border border-[#6B5547]" id="tag-1">🌿 Tintes 100% Naturales</span>
+                <span class="bg-[#2D231E]/65 px-3 py-1.5 rounded-full border border-[#6B5547]" id="tag-2">🧶 100% Hecho a Mano</span>
+                <span class="bg-[#2D231E]/65 px-3 py-1.5 rounded-full border border-[#6B5547]" id="tag-3">🤎 Atención personalizada</span>
+            </div>
+        </div>
+
+        <!-- SECCIÓN DE TIENDA FÍSICA / PRESENCIAL -->
+        <div class="bg-white rounded-2xl p-6 mb-8 shadow-sm border border-stone-200 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-4">
+                <div class="bg-[#F7F4EF] p-4 rounded-xl text-[#4A3B32] text-2xl border border-[#EBDDCF]">
+                    <i class="fas fa-store"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg text-stone-900" id="store-title">¡Visita nuestra Tienda y Taller Presencial!</h3>
+                    <p class="text-xs text-stone-600 mt-0.5" id="store-address">📍 Alfonso Ugarte 882, Hualhuas 12105, Huancayo - Perú</p>
+                    <p class="text-[11px] text-[#8C6D53] font-medium mt-1" id="store-sub">Ven a conocer el proceso de tejido tradicional de alpaca.</p>
+                </div>
+            </div>
+            <a href="https://www.google.com/maps/dir//Artesan%C3%ADas+Alpaquitay+del+Per%C3%BA,+Alfonso+Ugarte+882,+Hualhuas+12105/@-11.9668736,-75.2582656,14z/data=!4m8!4m7!1m0!1m5!1m1!1s0x910ebfac1bd66f31:0xc056993d536b1aef!2m2!1d-75.2560828!2d-11.9738307?entry=ttu" target="_blank" class="bg-[#4A3B32] hover:bg-[#382D26] text-white text-xs font-bold py-3 px-5 rounded-xl transition shadow flex items-center gap-2 whitespace-nowrap">
+                <i class="fas fa-map-marker-alt"></i> <span id="store-btn">Ver en Google Maps</span>
+            </a>
+        </div>
+
+        <section id="historia" class="editorial-card rounded-2xl p-7 md:p-10 mb-8 grid md:grid-cols-[1.2fr_.8fr] gap-8 items-center shadow-sm">
+          <div><p class="section-kicker mb-2">Nuestra esencia</p><h2 class="text-2xl md:text-3xl font-bold text-[#4A3B32] mb-3">Tradición que se siente, arte que se lleva</h2>
+          <p class="text-sm leading-7 text-stone-600">Desde Hualhuas, en el corazón del valle del Mantaro, compartimos piezas textiles inspiradas en la tradición andina. Cada diseño busca poner en valor el trabajo artesanal y la calidez de la fibra de alpaca.</p>
+          <p class="text-sm leading-7 text-stone-600 mt-3">Te invitamos a conocer nuestras prendas, elegir tus favoritas y escribirnos para recibir atención personalizada.</p></div>
+          <div class="rounded-xl bg-[#4A3B32] text-[#F3EFEA] p-7"><p class="text-xs tracking-widest uppercase text-[#D4C3B3] mb-3">Artesanías Alpaquitay</p><p class="text-xl font-semibold leading-relaxed">Cada pieza cuenta una historia de creatividad, dedicación y herencia andina.</p><p class="text-xs text-[#D4C3B3] mt-5"><i class="fas fa-map-marker-alt mr-1"></i> Hualhuas · Huancayo · Perú</p></div>
+        </section>
+        <section id="envios" class="bg-white rounded-2xl p-6 md:p-8 mb-8 border border-stone-200 shadow-sm">
+          <div class="grid md:grid-cols-3 gap-6 items-center"><div><p class="section-kicker mb-2">Compra con tranquilidad</p><h2 class="text-2xl font-bold text-[#4A3B32]">Envíos coordinados contigo</h2></div>
+          <div class="md:col-span-2 grid sm:grid-cols-2 gap-4 text-sm text-stone-600">
+            <p><i class="fas fa-box-open text-[#8C6D53] mr-2"></i><strong>Preparación:</strong> confirmamos disponibilidad antes del despacho.</p>
+            <p><i class="fas fa-truck text-[#8C6D53] mr-2"></i><strong>Destino y tarifa:</strong> se confirma según ciudad o país.</p>
+            <p><i class="fas fa-comments text-[#8C6D53] mr-2"></i><strong>Atención directa:</strong> resolvemos tus dudas por WhatsApp.</p>
+            <p><i class="fas fa-receipt text-[#8C6D53] mr-2"></i><strong>Total transparente:</strong> los precios del catálogo no incluyen envío.</p>
+          </div></div>
+        </section>
+        <section id="opiniones" class="mb-8"><div class="text-center mb-5"><p class="section-kicker mb-2">Experiencias</p><h2 class="text-2xl font-bold text-[#4A3B32]">Opiniones de nuestros clientes</h2><p class="text-xs text-stone-500 mt-2">Comparte tu experiencia con nuestra atención y productos.</p></div>
+          <div id="reviews-list" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div><div class="text-center mt-4"><button onclick="openReviewForm()" class="border border-[#8C6D53] text-[#4A3B32] rounded-full px-5 py-2.5 text-xs font-bold">Escribir una opinión</button></div>
+        </section>
+        <section id="faq" class="bg-white rounded-2xl border border-stone-200 p-6 md:p-8 mb-10"><div class="text-center mb-6"><p class="section-kicker mb-2">Ayuda</p><h2 class="text-2xl font-bold text-[#4A3B32]">Preguntas frecuentes</h2></div><div class="max-w-3xl mx-auto divide-y divide-stone-200">
+          <details class="py-4"><summary class="font-bold text-sm cursor-pointer">¿De qué material están elaborados?</summary><p class="text-sm text-stone-600 mt-3">Revisa la ficha de cada producto para conocer su material y características.</p></details>
+          <details class="py-4"><summary class="font-bold text-sm cursor-pointer">¿Cómo puedo hacer un pedido?</summary><p class="text-sm text-stone-600 mt-3">Agrega productos al carrito y elige el formulario de pedido o WhatsApp directo.</p></details>
+          <details class="py-4"><summary class="font-bold text-sm cursor-pointer">¿El precio incluye el envío?</summary><p class="text-sm text-stone-600 mt-3">No. El envío se cotiza según destino y se confirma antes de cerrar el pedido.</p></details>
+          <details class="py-4"><summary class="font-bold text-sm cursor-pointer">¿Qué medios de pago puedo utilizar?</summary><p class="text-sm text-stone-600 mt-3">Los medios vigentes se coordinan directamente al confirmar el pedido.</p></details>
+          <details class="py-4"><summary class="font-bold text-sm cursor-pointer">¿Puedo visitar la tienda?</summary><p class="text-sm text-stone-600 mt-3">Sí, estamos en Alfonso Ugarte 882, Hualhuas, Huancayo. Recomendamos escribir antes para coordinar.</p></details>
+        </div></section>
+        <!-- BARRA DE BÚSQUEDA Y FILTROS POR CATEGORÍA -->
+        <div class="mb-8 space-y-4">
+            <!-- BARRA DE BÚSQUEDA -->
+            <div class="relative max-w-md mx-auto">
+                <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-stone-400"></i>
+                <input type="text" id="searchInput" oninput="filterProducts()" placeholder="Buscar prendas, materiales o colores..." class="w-full bg-white border border-stone-300 rounded-full py-2.5 pl-11 pr-4 text-xs text-stone-800 placeholder-stone-400 focus:outline-none focus:border-[#4A3B32] shadow-sm">
+            </div>
+
+            <!-- FILTROS DE CATEGORÍAS -->
+            <div class="flex flex-wrap justify-center gap-2" id="filter-buttons">
+                <button onclick="setCategoryFilter('all')" class="filter-btn active bg-[#4A3B32] text-white px-4 py-2 rounded-full text-sm font-semibold transition" id="filter-all">Todos</button>
+                <button onclick="setCategoryFilter('gorros')" class="filter-btn bg-white hover:bg-[#EBDDCF] text-stone-700 px-4 py-2 rounded-full text-sm font-semibold transition border border-stone-200" id="filter-gorros">Gorros / Chullo</button>
+                <button onclick="setCategoryFilter('mitones')" class="filter-btn bg-white hover:bg-[#EBDDCF] text-stone-700 px-4 py-2 rounded-full text-sm font-semibold transition border border-stone-200" id="filter-mitones">Mitones / Muñequera</button>
+                <button onclick="setCategoryFilter('vinchas')" class="filter-btn bg-white hover:bg-[#EBDDCF] text-stone-700 px-4 py-2 rounded-full text-sm font-semibold transition border border-stone-200" id="filter-vinchas">Vinchas</button>
+            </div>
+        </div>
+
+        <!-- REJILLA DINÁMICA DE PRODUCTOS -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="product-grid">
+            <!-- Los 12 productos se renderizan aquí -->
+        </div>
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="bg-[#2D231E] text-stone-300 py-10 px-6 mt-16 border-t border-[#4A3B32]">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+            <div>
+                <h4 class="text-lg font-bold text-white tracking-wide">ARTESANÍAS ALPAQUITAY DEL PERÚ</h4>
+                <p class="text-xs text-stone-400 mt-1" id="footer-desc">Textiles auténticos hechos a mano en el valle andino.</p>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-4 text-xs text-stone-400"><a href="#historia">Historia</a><a href="#envios">Envíos</a><a href="#opiniones">Opiniones</a><a href="#faq">FAQ</a></div>
+            <div class="flex items-center gap-6 text-xl">
+                <a href="https://www.instagram.com/artesaniasalpaquitaydelperu/" target="_blank" class="hover:text-[#D4C3B3] transition" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=100054454091170&locale=es_LA" target="_blank" class="hover:text-[#D4C3B3] transition" title="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.tiktok.com/@artesanias_alpaquitay" target="_blank" class="hover:text-[#D4C3B3] transition" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://wa.me/51940188831" target="_blank" class="hover:text-emerald-400 transition" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="text-center text-xs text-stone-500 mt-8 pt-4 border-t border-[#4A3B32]" id="footer-copy">
+            © 2026 Artesanías Alpaquitay del Perú. Envíos internacionales directos desde Perú.
+        </div>
+    </footer>
+
+    <!-- BOTÓN FLOTANTE WHATSAPP -->
+    <a href="https://wa.me/51940188831?text=Hola,%20quisiera%20mas%20informacion%20sobre%20sus%20productos%20de%20alpaca" target="_blank" class="fixed bottom-6 right-6 bg-[#5C7654] hover:bg-[#4E6346] text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-2xl transition duration-300 z-50">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- VENTANA MODAL DETALLES PRODUCTO Y 3 FOTOS -->
+    <div id="orderModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative flex flex-col md:flex-row gap-6 items-start max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-stone-400 hover:text-stone-600 text-lg"><i class="fas fa-times"></i></button>
+            
+            <!-- SECCIÓN DE 3 FOTOS Y MINIATURAS -->
+            <div class="w-full md:w-1/2 flex flex-col gap-3">
+                <img id="modalMainImg" src="" alt="Producto" class="w-full h-64 object-cover rounded-xl shadow border border-stone-200">
+                <div class="flex gap-2 justify-center" id="modalThumbs"></div>
+            </div>
+            
+            <div class="flex-1 w-full space-y-3">
+                <div>
+                    <h3 class="text-xl font-bold text-stone-900 leading-snug" id="modalProductName">Producto</h3>
+                    <p class="text-xs text-[#8C6D53] font-medium italic" id="modalProductEng">English Name</p>
+                </div>
+                
+                <div>
+                    <p class="text-[#4A3B32] font-extrabold text-2xl" id="modalProductPrice">$0.00 USD</p>
+                    <p class="text-[11px] text-stone-400 font-medium" id="modalShippingLabel">Precio (envío no incluido)</p>
+                </div>
+
+                <p class="text-stone-600 text-xs leading-relaxed" id="modalProductDesc">Descripción...</p>
+
+                <!-- SELECTOR DE COLOR SEPARADO -->
+                <div id="colorContainer" class="space-y-1 hidden">
+                    <label class="text-xs font-bold text-[#4A3B32]" id="color-label">Selecciona el Color / Tono:</label>
+                    <select id="modalColorSelect" class="w-full bg-[#F7F4EF] border border-[#EBDDCF] text-stone-800 text-xs rounded-xl p-2.5 font-medium outline-none focus:border-[#5C7654]">
+                        <!-- Se llena dinámicamente -->
+                    </select>
+                </div>
+
+                <div class="bg-[#F7F4EF] rounded-xl p-3 border border-[#EBDDCF] text-xs text-stone-800 space-y-1">
+                    <p class="font-bold mb-1 text-[#4A3B32]" id="spec-header">Especificaciones:</p>
+                    <p>• <span class="font-semibold" id="label-material">Material:</span> <span id="specMaterial"></span></p>
+                    <p>• <span class="font-semibold" id="label-colores">Colores y Tintes:</span> <span id="specColores"></span></p>
+                    <p>• <span class="font-semibold" id="label-confeccion">Confección / Detalles:</span> <span id="specConfeccion"></span></p>
+                    <p>• <span class="font-semibold" id="label-talla">Talla:</span> <span id="specTalla"></span></p>
+                    <p>• <span class="font-semibold" id="label-publico">Público recomendado:</span> <span id="specPublico"></span></p>
+                </div>
+
+                <div class="pt-2">
+                    <button id="modalAddBtn" onclick="addCurrentFromModal()" class="w-full bg-[#5C7654] hover:bg-[#4E6346] text-white font-bold py-3 px-4 rounded-xl text-center text-xs flex items-center justify-center gap-2 shadow transition">
+                        <i class="fas fa-cart-plus text-sm"></i> <span id="btn-add-modal-text">Añadir al Carrito</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PANEL LATERAL DEL CARRITO (INTERACTIVO Y CLICKEABLE) -->
+    <div id="cartDrawer" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden justify-end z-50">
+        <div class="bg-white w-full max-w-md h-full shadow-2xl p-6 flex flex-col justify-between">
+            <div>
+                <div class="flex justify-between items-center pb-4 border-b border-stone-200">
+                    <h3 class="text-lg font-bold text-stone-900 flex items-center gap-2">
+                        <i class="fas fa-shopping-bag text-[#5C7654]"></i> <span id="cart-title">Tu Carrito de Compras</span>
+                    </h3>
+                    <button onclick="toggleCart()" class="text-stone-400 hover:text-stone-600 text-lg"><i class="fas fa-times"></i></button>
+                </div>
+
+                <!-- LISTA DE PRODUCTOS EN EL CARRITO -->
+                <div id="cartItemsList" class="py-4 space-y-3 max-h-[45vh] overflow-y-auto">
+                    <p class="text-xs text-stone-500 text-center py-8" id="empty-cart-text">Tu carrito está vacío.</p>
+                </div>
+            </div>
+
+            <!-- RESUMEN Y MÉTODOS DE PAGO DETALLADOS -->
+            <div class="pt-4 border-t border-stone-200 space-y-3">
+                <div class="flex justify-between items-center text-sm font-bold text-stone-900">
+                    <span id="total-label">Total estimado:</span>
+                    <span id="cartTotalPrice" class="text-lg text-[#4A3B32]">$0.00 USD</span>
+                </div>
+                <p class="text-[10px] text-stone-400 text-center" id="cart-shipping-note">* El costo de envío se coordina por WhatsApp según tu país.</p>
+
+                <!-- BLOQUE DETALLADO DE MÉTODOS DE PAGO -->
+                <div class="bg-[#F7F4EF] rounded-xl p-3 border border-[#EBDDCF] text-xs text-stone-800 space-y-2">
+                    <p class="font-bold text-[#4A3B32] flex items-center gap-1.5">
+                        <i class="fas fa-wallet text-sm"></i> <span id="payment-box-title">Métodos de Pago Disponibles:</span>
+                    </p>
+                    <div class="space-y-1 text-[11px] text-stone-600">
+                        <p>🌍 <strong id="pay-intl-label">Internacional:</strong> consultar opciones vigentes</p>
+                        <p>🇵🇪 <strong id="pay-loc-label">En Perú:</strong> consultar opciones vigentes</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                <button onclick="openCheckout()" class="w-full border border-[#5C7654] text-[#4A3B32] rounded-xl py-3 px-2 text-xs font-bold"><i class="fas fa-clipboard-list mr-1"></i>Pedido web</button>
+                <button onclick="checkoutWhatsApp()" id="checkoutBtn" class="w-full bg-[#5C7654] hover:bg-[#4E6346] text-white font-bold py-3 px-4 rounded-xl text-center text-xs flex items-center justify-center gap-2 shadow opacity-50 cursor-not-allowed transition" disabled>
+                    <i class="fab fa-whatsapp text-sm"></i> <span id="btn-checkout-text">WhatsApp directo</span>
+                </button></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="checkoutModal" class="fixed inset-0 modal-backdrop hidden items-center justify-center p-4 z-[70]" role="dialog" aria-modal="true">
+      <div class="bg-white rounded-2xl p-6 w-full max-w-lg max-h-[92vh] overflow-y-auto relative"><button onclick="closeCheckout()" class="absolute right-5 top-5 text-stone-400"><i class="fas fa-times"></i></button>
+        <p class="section-kicker">Pedido en línea</p><h2 class="text-xl font-bold text-[#4A3B32] mt-1 mb-2">Completa tus datos</h2><p class="text-xs text-stone-500 mb-4">El formulario prepara tu pedido y lo envía a la tienda por WhatsApp para confirmar disponibilidad, envío y pago.</p>
+        <form id="webOrderForm" class="space-y-3" onsubmit="submitWebOrder(event)">
+          <label class="block text-xs font-bold">Nombre completo<input class="admin-input mt-1" name="customerName" required maxlength="100"></label>
+          <label class="block text-xs font-bold">WhatsApp o teléfono<input class="admin-input mt-1" name="customerPhone" required maxlength="30"></label>
+          <label class="block text-xs font-bold">Ciudad y país<input class="admin-input mt-1" name="destination" required maxlength="120" placeholder="Huancayo, Perú"></label>
+          <label class="block text-xs font-bold">Dirección o referencia (opcional)<input class="admin-input mt-1" name="address" maxlength="180"></label>
+          <label class="block text-xs font-bold">Comentario (opcional)<textarea class="admin-input mt-1" name="notes" rows="2" maxlength="500"></textarea></label>
+          <button class="w-full bg-[#5C7654] text-white rounded-xl py-3 text-sm font-bold"><i class="fab fa-whatsapp mr-2"></i>Enviar pedido</button>
+        </form>
+      </div>
+    </div>
+    <div id="reviewModal" class="fixed inset-0 modal-backdrop hidden items-center justify-center p-4 z-[70]"><div class="bg-white rounded-2xl p-6 w-full max-w-md relative"><button onclick="closeReviewForm()" class="absolute right-5 top-5 text-stone-400"><i class="fas fa-times"></i></button><h2 class="text-xl font-bold text-[#4A3B32] mb-4">Comparte tu opinión</h2>
+      <form onsubmit="submitReview(event)" class="space-y-3"><input class="admin-input" name="reviewName" placeholder="Tu nombre o iniciales" maxlength="50" required><select class="admin-input" name="reviewRating"><option value="5">★★★★★ Excelente</option><option value="4">★★★★☆ Muy bueno</option><option value="3">★★★☆☆ Bueno</option><option value="2">★★☆☆☆ Regular</option><option value="1">★☆☆☆☆ Puede mejorar</option></select><textarea class="admin-input" name="reviewText" rows="4" placeholder="Cuéntanos tu experiencia" maxlength="400" required></textarea><p class="text-[10px] text-stone-500">Se guarda solo en este navegador; no se publica automáticamente a otros visitantes.</p><button class="w-full bg-[#4A3B32] text-white rounded-xl py-3 text-sm font-bold">Guardar opinión</button></form></div></div>
+    <div id="adminLoginModal" class="fixed inset-0 modal-backdrop hidden items-center justify-center p-4 z-[80]"><div class="bg-white rounded-2xl p-6 w-full max-w-sm relative"><button onclick="closeAdminLogin()" class="absolute right-5 top-5 text-stone-400"><i class="fas fa-times"></i></button><p class="section-kicker">Zona de administración local</p><h2 class="text-xl font-bold text-[#4A3B32] mt-1 mb-2">Acceso administrativo</h2><p class="text-xs text-stone-500 mb-4">Crea una contraseña local la primera vez (mínimo 8 caracteres).</p><form onsubmit="adminLogin(event)"><input id="adminPassword" type="password" class="admin-input mb-3" required placeholder="Contraseña"><button class="w-full bg-[#4A3B32] text-white rounded-xl py-3 text-sm font-bold">Ingresar</button></form><p id="admin-login-error" class="text-xs text-red-600 mt-3"></p></div></div>
+    <div id="adminPanel" class="fixed inset-0 bg-[#f7f4ef] hidden z-[90] overflow-y-auto"><div class="max-w-6xl mx-auto p-4 md:p-8">
+      <div class="flex flex-wrap justify-between items-center gap-3 mb-6"><div><p class="section-kicker">Gestión de tienda</p><h2 class="text-2xl font-bold text-[#4A3B32]">Panel administrativo</h2></div><div class="flex gap-2"><button onclick="closeAdminPanel()" class="border border-stone-300 rounded-xl px-4 py-2 text-xs font-bold">Volver a la tienda</button><button onclick="adminLogout()" class="bg-[#4A3B32] text-white rounded-xl px-4 py-2 text-xs font-bold">Cerrar sesión</button></div></div>
+      <div class="bg-amber-50 border border-amber-200 text-amber-900 rounded-xl p-4 text-xs leading-5 mb-6"><strong>Importante:</strong> Esta versión guarda los cambios en el navegador donde administras la tienda. GitHub Pages no ofrece una base de datos ni protege una contraseña escrita en el HTML. Para que solo tú puedas entrar de forma segura y que el inventario se sincronice con todos los clientes y dispositivos, luego debemos conectarlo a una base de datos y autenticación (backend). Descarga copias de seguridad con frecuencia.</div>
+      <div class="grid lg:grid-cols-[1fr_1.4fr] gap-6">
+        <section class="bg-white rounded-2xl p-5 border"><h3 id="admin-form-title" class="font-bold text-[#4A3B32] mb-3">Añadir producto</h3><form id="adminProductForm" onsubmit="saveAdminProduct(event)">
+          <label class="admin-label">Nombre</label><input id="adminName" class="admin-input" required maxlength="100">
+          <label class="admin-label">Precio USD</label><input id="adminPrice" class="admin-input" type="number" min="0" step=".01" required>
+          <label class="admin-label">Cantidad disponible (stock)</label><input id="adminStock" class="admin-input" type="number" min="0" step="1" value="0" required>
+          <p class="text-[10px] text-stone-500 mt-1">Coloca cuántas unidades tienes disponibles. Usa 0 si está agotado.</p>
+          <label class="admin-label">Categoría</label><select id="adminCategory" class="admin-input"><option value="gorros">Gorros / Chullo</option><option value="mitones">Mitones / Muñequera</option><option value="vinchas">Vinchas</option><option value="otros">Otros</option></select>
+          <label class="admin-label">Descripción</label><textarea id="adminDesc" class="admin-input" rows="3" required></textarea>
+          <label class="admin-label">Material</label><input id="adminMaterial" class="admin-input" value="100% Fibra de Alpaca">
+          <label class="admin-label">Colores separados por coma</label><input id="adminColors" class="admin-input">
+          <label class="admin-label">Talla</label><input id="adminSize" class="admin-input" value="Estándar">
+          <label class="admin-label">Público</label><input id="adminPublic" class="admin-input" value="Unisex">
+          <label class="admin-label">Fotografías del producto</label>
+          <input id="adminImageFiles" class="admin-input" type="file" accept="image/*" multiple onchange="previewAdminImages(event)">
+          <p class="text-[10px] text-stone-500 mt-1">Puedes elegir hasta 3 fotos desde tu computadora. Si no eliges nuevas fotos al editar, se conservarán las anteriores.</p>
+          <div id="adminImagePreview" class="flex gap-2 flex-wrap mt-2"></div>
+          <div class="flex gap-2 mt-4"><button class="flex-1 bg-[#5C7654] text-white rounded-xl py-3 text-xs font-bold">Guardar producto</button><button type="button" onclick="resetAdminForm()" class="border rounded-xl px-4 text-xs font-bold">Limpiar</button></div>
+        </form></section>
+        <section class="bg-white rounded-2xl p-5 border"><div class="flex justify-between mb-3"><h3 class="font-bold text-[#4A3B32]">Inventario</h3><span id="admin-product-count" class="text-xs text-stone-500"></span></div><div id="adminProductsList" class="space-y-2"></div><div class="flex flex-wrap gap-2 mt-4"><button onclick="exportCatalog()" class="border border-[#8C6D53] text-[#4A3B32] rounded-xl px-4 py-2.5 text-xs font-bold"><i class="fas fa-download mr-1"></i>Descargar copia</button><label class="border border-stone-300 text-stone-700 rounded-xl px-4 py-2.5 text-xs font-bold cursor-pointer"><i class="fas fa-upload mr-1"></i>Importar copia<input type="file" accept=".json,application/json" onchange="importCatalog(event)" class="hidden"></label></div><p class="text-[10px] text-stone-500 mt-2">La copia permite trasladar tu catálogo a otro navegador.</p></section>
+      </div></div></div>
+    <!-- JAVASCRIPT -->
+    <script>
+        let currentLang = 'es';
+        let currentModalIndex = 0;
+        let currentCategory = 'all';
+        let cart = JSON.parse(localStorage.getItem('alpaquitay_cart') || '[]');
+
+        // BASE DE DATOS CON LOS 12 PRODUCTOS Y SUS 3 IMÁGENES JPG EN LA CARPETA img/
+        let productsData = [
+            // 1. CHULLO RIZO ANDINO
+            {
+                category: 'gorros',
+                price: 20.00,
+                images: [
+                    'img/chullo-rizo-1.jpg', 
+                    'img/chullo-rizo-2.jpg',
+                    'img/chullo-rizo-3.jpg'
+                ],
+                es: { 
+                    name: 'Chullo Rizo Andino', eng: 'Andean Curly Alpaca Chullo', 
+                    desc: 'Chullo artesanal elaborado en fibra rizada de alpaca con una distintiva textura crespa. Su diseño unisex incluye cubreorejas abrigadoras con un adorno de botones de colores variados hechos también de alpaca.', 
+                    material: '100% Fibra de Alpaca', colores: 'Lila, Blanco', 
+                    confeccion: 'Cubreorejas con adorno de botones de alpaca en colores variados', talla: 'Estándar', publico: 'Unisex',
+                    colorOptions: ['Lila', 'Blanco']
+                },
+                en: { 
+                    name: 'Andean Curly Alpaca Chullo', eng: 'Chullo Rizo Andino', 
+                    desc: 'Handcrafted chullo hat made of curly alpaca fiber featuring a soft textured finish. Unisex fit with earflaps decorated with colorful handcrafted alpaca buttons.', 
+                    material: '100% Alpaca Fiber', colores: 'Lilac, White', 
+                    confeccion: 'Earflaps with varied color alpaca buttons', talla: 'Standard size', publico: 'Unisex',
+                    colorOptions: ['Lilac', 'White']
+                }
+            },
+            // 2. MITÓN RIZO ANDINO
+            {
+                category: 'mitones',
+                price: 20.00,
+                images: [
+                    'img/miton-rizo-1.jpg', 
+                    'img/miton-rizo-2.jpg',
+                    'img/miton-rizo-3.jpg'
+                ],
+                es: { 
+                    name: 'Mitón Rizo Andino', eng: 'Andean Curly Alpaca Mittens', 
+                    desc: 'Mitones artesanales elaborados en 100% fibra de alpaca con una distintiva textura rizada y suave. Diseñados para mujer, incorporan delicados adornos de flores y botones de colores variados en la muñeca.', 
+                    material: '100% Fibra de Alpaca', colores: 'Lila, Blanco', 
+                    confeccion: 'Flores y botones de colores variados tejidos en lana de alpaca en la muñeca', talla: 'Estándar', publico: 'Mujer',
+                    colorOptions: ['Lila', 'Blanco']
+                },
+                en: { 
+                    name: 'Andean Curly Alpaca Mittens', eng: 'Mitón Rizo Andino', 
+                    desc: 'Handcrafted mittens made of 100% curly alpaca fiber. Designed for women with delicate alpaca wool flowers and colorful buttons at the wrist.', 
+                    material: '100% Alpaca Fiber', colores: 'Lilac, White', 
+                    confeccion: 'Flowers and varied color alpaca buttons at wrist', talla: 'Standard size', publico: 'Women',
+                    colorOptions: ['Lilac', 'White']
+                }
+            },
+            // 3. MUÑEQUERA BOTÁNICA ANDINA
+            {
+                category: 'mitones',
+                price: 20.00,
+                images: [
+                    'img/muneca-botanica-1.jpg', 
+                    'img/muneca-botanica-2.jpg',
+                    'img/muneca-botanica-3.jpg'
+                ],
+                es: { 
+                    name: 'Muñequera Botánica Andina', eng: 'Andean Botanical Alpaca Wrist Warmer', 
+                    desc: 'Muñequeras artesanales elaboradas en 100% fibra de alpaca para mujer. Destacan por su refinado bordado floral hecho a mano que rinde homenaje a la flora andina.', 
+                    material: '100% Fibra de Alpaca', colores: 'Guindo, Gris, Beige', 
+                    confeccion: 'Bordado artesanal a mano con motivos botánicos/florales', talla: 'Estándar', publico: 'Mujer',
+                    colorOptions: ['Guindo', 'Gris', 'Beige']
+                },
+                en: { 
+                    name: 'Andean Botanical Alpaca Wrist Warmer', eng: 'Muñequera Botánica Andina', 
+                    desc: 'Handcrafted wrist warmers made of 100% alpaca fiber for women. Highlighted by delicate hand-embroidered floral motifs inspired by Andean flora.', 
+                    material: '100% Alpaca Fiber', colores: 'Burgundy, Gray, Beige', 
+                    confeccion: 'Hand-embroidered botanical floral designs', talla: 'Standard size', publico: 'Women',
+                    colorOptions: ['Burgundy', 'Gray', 'Beige']
+                }
+            },
+            // 4. MUÑEQUERA AMANECER ANDINO
+            {
+                category: 'mitones',
+                price: 20.00,
+                images: [
+                    'img/muneca-amanecer-1.jpg', 
+                    'img/muneca-amanecer-2.jpg',
+                    'img/muneca-amanecer-3.jpg'
+                ],
+                es: { 
+                    name: 'Muñequera Amanecer Andino', eng: 'Andean Sunrise Alpaca Wrist Warmer', 
+                    desc: 'Mitones tejidos artesanalmente en fibra 100% alpaca. Su diseño sin dedos brinda calidez y total libertad de movimiento, acentuado con un botón clásico.', 
+                    material: '100% Fibra de Alpaca', colores: 'Gris Claro, Gris Oscuro, Blanco, Negro, Marrón, Beige Oscuro', 
+                    confeccion: 'Botón decorativo en fibra de alpaca', talla: 'Estándar', publico: 'Unisex',
+                    colorOptions: ['Gris Claro', 'Gris Oscuro', 'Blanco', 'Negro', 'Marrón', 'Beige Oscuro']
+                },
+                en: { 
+                    name: 'Andean Sunrise Alpaca Wrist Warmer', eng: 'Muñequera Amanecer Andino', 
+                    desc: 'Handcrafted fingerless gloves made of 100% alpaca fiber. Fingerless design providing warmth and touchscreen mobility with a classic button detail.', 
+                    material: '100% Alpaca Fiber', colores: 'Light Gray, Dark Gray, White, Black, Brown, Dark Beige', 
+                    confeccion: 'Decorative alpaca fiber button', talla: 'Standard size', publico: 'Unisex',
+                    colorOptions: ['Light Gray', 'Dark Gray', 'White', 'Black', 'Brown', 'Dark Beige']
+                }
+            },
+            // 5. VINCHA "AMIGOS DEL BOSQUE" DE ALPACA
+            {
+                category: 'vinchas',
+                price: 20.00,
+                images: [
+                    'img/vincha-bosque-1.jpg', 
+                    'img/vincha-bosque-2.jpg',
+                    'img/vincha-bosque-3.jpg'
+                ],
+                es: { 
+                    name: 'Vincha "Amigos del Bosque" de Alpaca', eng: 'Alpaca Animal Ear & Flower Headband', 
+                    desc: 'Divertidas y abrigadoras vinchas tejidas a mano en fibra 100% de alpaca, diseñadas con encantadores apliques de animalitos y flores.', 
+                    material: '100% Fibra de Alpaca', colores: 'Natural, Pastel, Multicolor', 
+                    confeccion: 'Apliques a mano (Lechucita, Panda, Zorrito, Ovejita, Gatito, Perrito, Flores)', talla: 'Estándar', publico: 'Niños y jóvenes',
+                    colorOptions: ['Lechucita', 'Panda', 'Zorrito', 'Ovejita', 'Gatito', 'Perrito', 'Flores']
+                },
+                en: { 
+                    name: 'Alpaca Animal Ear & Flower Headband', eng: 'Vincha "Amigos del Bosque" de Alpaca', 
+                    desc: 'Fun and warm hand-knitted headbands made of 100% alpaca fiber with animal ear and flower appliques.', 
+                    material: '100% Alpaca Fiber', colores: 'Natural, Pastel, Multicolor', 
+                    confeccion: 'Hand-knitted appliques (Owl, Panda, Fox, Sheep, Kitten, Puppy, Flowers)', talla: 'Standard size', publico: 'Kids and youth',
+                    colorOptions: ['Owl', 'Panda', 'Fox', 'Sheep', 'Kitten', 'Puppy', 'Flowers']
+                }
+            },
+            // 6. VINCHAS MULTITONO ANDINAS
+            {
+                category: 'vinchas',
+                price: 15.00,
+                images: [
+                    'img/vincha-multitono-1.jpg', 
+                    'img/vincha-multitono-2.jpg',
+                    'img/vincha-multitono-3.jpg'
+                ],
+                es: { 
+                    name: 'Vinchas Multitono Andinas', eng: 'Andean Striped Alpaca Headband', 
+                    desc: 'Elegante y abrigadora vincha tejida a mano con un diseño de franjas multicolores en fibra de alpaca.', 
+                    material: '100% Fibra de Alpaca', colores: 'Multitono Cálido, Multitono Frío, Tonos Tierra', 
+                    confeccion: '100% tejido a mano', talla: 'Estándar', publico: 'Unisex',
+                    colorOptions: ['Multitono Cálido', 'Multitono Frío', 'Tonos Tierra']
+                },
+                en: { 
+                    name: 'Andean Striped Alpaca Headband', eng: 'Vinchas Multitono Andinas', 
+                    desc: 'Elegant and warm hand-knitted headband with a colorful striped design.', 
+                    material: '100% Alpaca Fiber', colores: 'Warm Multi, Cool Multi, Earth Tones', 
+                    confeccion: '100% hand-knitted', talla: 'Standard size', publico: 'Unisex',
+                    colorOptions: ['Warm Multi', 'Cool Multi', 'Earth Tones']
+                }
+            },
+            // 7. VINCHA BOTÁNICA ANDINA (BORDADO FLORAL)
+            {
+                category: 'vinchas',
+                price: 20.00,
+                images: [
+                    'img/vincha-botanica-1.jpg', 
+                    'img/vincha-botanica-2.jpg',
+                    'img/vincha-botanica-3.jpg'
+                ],
+                es: { 
+                    name: 'Vincha Botánica Andina (Bordado Floral)', eng: 'Alpaca Floral Embroidery Headband', 
+                    desc: 'Elegante vincha tejida y bordada a mano con un delicado diseño de flores y enredaderas.', 
+                    material: '100% Fibra de Alpaca', colores: 'Fondo Natural, Fondo Marrón, Fondo Gris', 
+                    confeccion: 'Bordado artesanal', talla: 'Estándar', publico: 'Mujeres',
+                    colorOptions: ['Fondo Natural', 'Fondo Marrón', 'Fondo Gris']
+                },
+                en: { 
+                    name: 'Alpaca Floral Embroidery Headband', eng: 'Vincha Botánica Andina (Bordado Floral)', 
+                    desc: 'Elegant headband hand-knitted and embroidered with a delicate flower design.', 
+                    material: '100% Alpaca Fiber', colores: 'Natural Base, Brown Base, Gray Base', 
+                    confeccion: 'Artisan embroidery', talla: 'Standard size', publico: 'Women',
+                    colorOptions: ['Natural Base', 'Brown Base', 'Gray Base']
+                }
+            },
+            // 8. VINCHA BURBUJAS ANDINAS
+            {
+                category: 'vinchas',
+                price: 15.00,
+                images: [
+                    'img/vincha-burbujas-1.jpg', 
+                    'img/vincha-burbujas-2.jpg',
+                    'img/vincha-burbujas-3.jpg'
+                ],
+                es: { 
+                    name: 'Vincha Burbujas Andinas', eng: 'Alpaca Textured Bobble Headband', 
+                    desc: 'Sofisticada vincha tejida a mano con un hermoso diseño de relieves y burbujas en fibra de alpaca.', 
+                    material: '100% Fibra de Alpaca', colores: 'Beige Natural, Gris Alpaca, Marrón Peruano, Blanco Marfil', 
+                    confeccion: 'Relieve en alto relieve', talla: 'Estándar', publico: 'Mujeres',
+                    colorOptions: ['Beige Natural', 'Gris Alpaca', 'Marrón Peruano', 'Blanco Marfil']
+                },
+                en: { 
+                    name: 'Alpaca Textured Bobble Headband', eng: 'Vincha Burbujas Andinas', 
+                    desc: 'Sophisticated hand-knitted headband with a beautiful bobble relief texture.', 
+                    material: '100% Alpaca Fiber', colores: 'Natural Beige, Alpaca Gray, Peruvian Brown, Ivory White', 
+                    confeccion: 'Bobble relief texture', talla: 'Standard size', publico: 'Women',
+                    colorOptions: ['Natural Beige', 'Alpaca Gray', 'Peruvian Brown', 'Ivory White']
+                }
+            },
+            // 9. CHULLO ANDINO TRADICIONAL
+            {
+                category: 'gorros',
+                price: 20.00,
+                images: [
+                    'img/chullo-tradicional-1.jpg', 
+                    'img/chullo-tradicional-2.jpg',
+                    'img/chullo-tradicional-3.jpg'
+                ],
+                es: { 
+                    name: 'Chullo Andino Tradicional', eng: 'Traditional Andean Alpaca Chullo', 
+                    desc: 'Auténtico chullo tejido a mano con patrones andinos tradicionales y orejeras.', 
+                    material: '100% Fibra de Alpaca', colores: 'Multicolor Natural', 
+                    confeccion: 'Orejeras con trenzas', talla: 'Estándar', publico: 'Unisex',
+                    colorOptions: ['Multicolor Natural']
+                },
+                en: { 
+                    name: 'Traditional Andean Alpaca Chullo', eng: 'Chullo Andino Tradicional', 
+                    desc: 'Authentic hand-knitted chullo hat with traditional Andean patterns and earflaps.', 
+                    material: '100% Alpaca Fiber', colores: 'Natural Multicolor', 
+                    confeccion: 'Braided earflaps', talla: 'Standard size', publico: 'Unisex',
+                    colorOptions: ['Natural Multicolor']
+                }
+            },
+            // 10. GORRO DOBLE CON CHISPA
+            {
+                category: 'gorros',
+                price: 20.00,
+                images: [
+                    'img/gorro-doble-1.jpg', 
+                    'img/gorro-doble-2.jpg',
+                    'img/gorro-doble-3.jpg'
+                ],
+                es: { 
+                    name: 'Gorro Doble con Chispa', eng: 'Double Layer Speckled Alpaca Beanie', 
+                    desc: 'Cálido y versátil gorro de diseño doble con acabado jaspado.', 
+                    material: '100% Fibra de Alpaca', colores: 'Gris Jaspado, Beige Jaspado, Marrón Jaspado', 
+                    confeccion: 'Doble capa de abrigo', talla: 'Estándar', publico: 'Unisex',
+                    colorOptions: ['Gris Jaspado', 'Beige Jaspado', 'Marrón Jaspado']
+                },
+                en: { 
+                    name: 'Double Layer Speckled Alpaca Beanie', eng: 'Gorro Doble con Chispa', 
+                    desc: 'Warm and versatile double-layer beanie with speckled natural finish.', 
+                    material: '100% Alpaca Fiber', colores: 'Speckled Gray, Speckled Beige, Speckled Brown', 
+                    confeccion: 'Double layer warmth', talla: 'Standard size', publico: 'Unisex',
+                    colorOptions: ['Speckled Gray', 'Speckled Beige', 'Speckled Brown']
+                }
+            },
+            // 11. GORRO COPOS DE ALPACA
+            {
+                category: 'gorros',
+                price: 20.00,
+                images: [
+                    'img/gorro-copos-1.jpg', 
+                    'img/gorro-copos-2.jpg',
+                    'img/gorro-copos-3.jpg'
+                ],
+                es: { 
+                    name: 'Gorro Copos de Alpaca', eng: 'Alpaca Textured Bobble Beanie', 
+                    desc: 'Elegante y abrigador gorro tejido a mano con hermoso diseño en relieve de copos, disponible en tonalidades naturales y vibrantes.', 
+                    material: '100% Fibra de Alpaca', colores: 'Blanco Marfil, Gris Oscuro, Marrón Claro, Negro Puro, Rojo (Tonalidades), Verde (Tonalidades)', 
+                    confeccion: 'Diseño texturizado en copos', talla: 'Estándar', publico: 'Unisex',
+                    colorOptions: ['Blanco Marfil', 'Gris Oscuro', 'Marrón Claro', 'Negro Puro', 'Rojo (Tonalidades)', 'Verde (Tonalidades)']
+                },
+                en: { 
+                    name: 'Alpaca Textured Bobble Beanie', eng: 'Gorro Copos de Alpaca', 
+                    desc: 'Elegant and warm hand-knitted beanie featuring a beautiful relief design, available in natural and vibrant shades.', 
+                    material: '100% Alpaca Fiber', colores: 'Ivory White, Dark Gray, Light Brown, Pure Black, Red (Shades), Green (Shades)', 
+                    confeccion: 'Textured bobble design', talla: 'Standard size', publico: 'Unisex',
+                    colorOptions: ['Ivory White', 'Dark Gray', 'Light Brown', 'Pure Black', 'Red (Shades)', 'Green (Shades)']
+                }
+            },
+            // 12. GORRO "OREJAS DE GATO" DE ALPACA
+            {
+                category: 'gorros',
+                price: 20.00,
+                images: [
+                    'img/gorro-gato-1.jpg', 
+                    'img/gorro-gato-2.jpg',
+                    'img/gorro-gato-3.jpg'
+                ],
+                es: { 
+                    name: 'Gorro "Orejas de Gato" de Alpaca', eng: 'Alpaca Cat Ear Beanie', 
+                    desc: 'Divertido y moderno gorro tejido a mano que forma sutiles orejitas de gato al usarlo.', 
+                    material: '100% Fibra de Alpaca', colores: 'Blanco, Verde, Gris Suave, Beige Cálido, Rosa Natural, Negro Elegante', 
+                    confeccion: 'Forma de orejas de gato', talla: 'Estándar', publico: 'Mujeres y jóvenes',
+                    colorOptions: ['Blanco', 'Verde', 'Gris Suave', 'Beige Cálido', 'Rosa Natural', 'Negro Elegante']
+                },
+                en: { 
+                    name: 'Alpaca Cat Ear Beanie', eng: 'Gorro "Orejas de Gato" de Alpaca', 
+                    desc: 'Fun and modern hand-knitted beanie that forms subtle cat ears when worn.', 
+                    material: '100% Alpaca Fiber', colores: 'White, Green, Soft Gray, Warm Beige, Natural Rose, Elegant Black', 
+                    confeccion: 'Cat ear shaped fit', talla: 'Standard size', publico: 'Women and youth',
+                    colorOptions: ['White', 'Green', 'Soft Gray', 'Warm Beige', 'Natural Rose', 'Elegant Black']
+                }
+            }
+        ];
+
+        const translations = {
+            es: {
+                topBar: '🌍 Envíos a todo el mundo | 100% Fibra de Alpaca y Tintes Naturales',
+                headerSub: 'Handcrafted in Peru | Artesanía Peruana',
+                locationText: 'Hualhuas, Perú',
+                bannerTitle: 'Colección Artesanal 100% Alpaca',
+                bannerDesc: 'Prendas únicas tejidas a mano con fibra pura de alpaca. Añade tus favoritas al carrito o haz clic en cualquier producto para ver sus especificaciones.',
+                tag1: '🌿 Tintes 100% Naturales',
+                tag2: '🧶 100% Hecho a Mano',
+                tag3: '🤎 Atención personalizada',
+                storeTitle: '¡Visita nuestra Tienda y Taller Presencial!',
+                storeAddress: '📍 Alfonso Ugarte 882, Hualhuas 12105, Huancayo - Perú',
+                storeSub: 'Ven a conocer el proceso de tejido tradicional de alpaca.',
+                storeBtn: 'Ver en Google Maps',
+                filterAll: 'Todos',
+                filterGorros: 'Gorros / Chullo',
+                filterMitones: 'Mitones / Muñequera',
+                filterVinchas: 'Vinchas',
+                shipping: 'Envío no incluido',
+                btnAdd: '<i class="fas fa-cart-plus"></i> Añadir',
+                footerDesc: 'Textiles auténticos hechos a mano en el valle andino.',
+                footerCopy: '© 2026 Artesanías Alpaquitay del Perú. Envíos internacionales directos desde Perú.',
+                specHeader: 'Especificaciones:',
+                labelMaterial: 'Material:',
+                labelColores: 'Colores y Tintes:',
+                labelConfeccion: 'Confección / Detalles:',
+                labelTalla: 'Talla:',
+                labelPublico: 'Público recomendado:',
+                colorLabel: 'Selecciona el Color / Tono:',
+                btnAddModal: 'Añadir al Carrito',
+                cartBtnText: 'Carrito',
+                cartTitle: 'Tu Carrito de Compras',
+                emptyCart: 'Tu carrito está vacío.',
+                totalLabel: 'Total estimado:',
+                shippingNote: '* El costo de envío se coordina por WhatsApp según tu país.',
+                paymentBoxTitle: 'Métodos de Pago Disponibles:',
+                payIntlLabel: 'Internacional:',
+                payLocLabel: 'En Perú:',
+                checkoutText: 'Completar Pedido por WhatsApp'
+            },
+            en: {
+                topBar: '🌍 Worldwide Shipping | 100% Alpaca Fiber & Natural Dyes',
+                headerSub: 'Handcrafted in Peru | Authentic Peruvian Craftsmanship',
+                locationText: 'Hualhuas, Peru',
+                bannerTitle: '100% Alpaca Handcrafted Collection',
+                bannerDesc: 'Unique hand-knitted garments made of pure alpaca fiber. Add your favorites to cart or click any product for specs.',
+                tag1: '🌿 100% Natural Dyes',
+                tag2: '🧶 100% Handmade',
+                tag3: '💳 Direct Secure Payments',
+                storeTitle: 'Visit our In-Person Store & Workshop!',
+                storeAddress: '📍 Alfonso Ugarte 882, Hualhuas 12105, Huancayo - Peru',
+                storeSub: 'Come discover the traditional alpaca knitting process.',
+                storeBtn: 'View on Google Maps',
+                filterAll: 'All',
+                filterGorros: 'Beanies / Chullo',
+                filterMitones: 'Mittens / Wrist Warmers',
+                filterVinchas: 'Headbands',
+                shipping: 'Shipping not included',
+                btnAdd: '<i class="fas fa-cart-plus"></i> Add',
+                footerDesc: 'Authentic textiles handcrafted in the Andean valley.',
+                footerCopy: '© 2026 Artesanías Alpaquitay del Perú. Direct international shipping from Peru.',
+                specHeader: 'Specifications:',
+                labelMaterial: 'Material:',
+                labelColores: 'Colors & Dyes:',
+                labelConfeccion: 'Craftsmanship / Details:',
+                labelTalla: 'Size:',
+                labelPublico: 'Recommended Public:',
+                colorLabel: 'Select Color / Shade:',
+                btnAddModal: 'Add to Cart',
+                cartBtnText: 'Cart',
+                cartTitle: 'Your Shopping Cart',
+                emptyCart: 'Your cart is empty.',
+                totalLabel: 'Estimated Total:',
+                shippingNote: '* Shipping cost will be coordinated via WhatsApp based on your country.',
+                paymentBoxTitle: 'Available Payment Methods:',
+                payIntlLabel: 'International:',
+                payLocLabel: 'In Peru:',
+                checkoutText: 'Complete Order via WhatsApp'
+            }
+        };
+
+        function renderProducts() {
+            const grid = document.getElementById('product-grid');
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const t = translations[currentLang];
+
+            grid.innerHTML = '';
+
+            productsData.forEach((p, idx) => {
+                const data = p[currentLang];
+                
+                if (currentCategory !== 'all' && p.category !== currentCategory) return;
+
+                if (query !== '') {
+                    const matchName = data.name.toLowerCase().includes(query);
+                    const matchDesc = data.desc.toLowerCase().includes(query);
+                    const matchMat = data.material.toLowerCase().includes(query);
+                    const matchCol = data.colores.toLowerCase().includes(query);
+                    if (!matchName && !matchDesc && !matchMat && !matchCol) return;
+                }
+
+                const card = document.createElement('div');
+                card.className = 'product-card bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden flex flex-col justify-between';
+                card.innerHTML = `
+                    <div class="relative overflow-hidden group cursor-pointer" onclick="openModal(${idx})">
+                        <img src="${p.images[0]}" alt="${data.name}" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-[#4A3B32]/90 text-white text-xs px-2.5 py-1 rounded-full font-medium shadow">100% Alpaca</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div class="cursor-pointer" onclick="openModal(${idx})">
+                            <h3 class="font-bold text-lg text-stone-900">${data.name}</h3>
+                            <p class="text-xs text-[#8C6D53] font-medium italic mb-2">${data.eng}</p>
+                            <p class="text-stone-600 text-xs leading-relaxed line-clamp-2">${data.desc}</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between">
+                            <div>
+                                <span class="text-lg font-extrabold text-[#4A3B32]">$${p.price.toFixed(2)} USD</span>
+                                <p class="text-[10px] text-stone-400 shipping-text">${t.shipping}</p>
+                            </div>
+                            <button onclick="openModal(${idx})" class="bg-[#5C7654] hover:bg-[#4E6346] text-white text-xs px-3 py-2.5 rounded-xl font-bold transition shadow flex items-center gap-1.5">
+                                ${t.btnAdd}
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            if (grid.children.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-stone-500 text-sm">No se encontraron productos que coincidan con la búsqueda.</div>`;
+            }
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            const t = translations[lang];
+
+            if (lang === 'es') {
+                document.getElementById('btn-es').className = 'font-bold underline text-white px-2 py-0.5 rounded bg-[#4A3B32]';
+                document.getElementById('btn-en').className = 'hover:text-white px-2 py-0.5 rounded';
+            } else {
+                document.getElementById('btn-en').className = 'font-bold underline text-white px-2 py-0.5 rounded bg-[#4A3B32]';
+                document.getElementById('btn-es').className = 'hover:text-white px-2 py-0.5 rounded';
+            }
+
+            document.getElementById('top-bar-text').innerText = t.topBar;
+            document.getElementById('header-subtitle').innerText = t.headerSub;
+            document.getElementById('nav-location-text').innerText = t.locationText;
+            document.getElementById('banner-title').innerText = t.bannerTitle;
+            document.getElementById('banner-desc').innerText = t.bannerDesc;
+            document.getElementById('tag-1').innerText = t.tag1;
+            document.getElementById('tag-2').innerText = t.tag2;
+            document.getElementById('tag-3').innerText = t.tag3;
+
+            document.getElementById('store-title').innerText = t.storeTitle;
+            document.getElementById('store-address').innerText = t.storeAddress;
+            document.getElementById('store-sub').innerText = t.storeSub;
+            document.getElementById('store-btn').innerText = t.storeBtn;
+
+            document.getElementById('filter-all').innerText = t.filterAll;
+            document.getElementById('filter-gorros').innerText = t.filterGorros;
+            document.getElementById('filter-mitones').innerText = t.filterMitones;
+            document.getElementById('filter-vinchas').innerText = t.filterVinchas;
+
+            document.getElementById('footer-desc').innerText = t.footerDesc;
+            document.getElementById('footer-copy').innerText = t.footerCopy;
+
+            document.getElementById('spec-header').innerText = t.specHeader;
+            document.getElementById('label-material').innerText = t.labelMaterial;
+            document.getElementById('label-colores').innerText = t.labelColores;
+            document.getElementById('label-confeccion').innerText = t.labelConfeccion;
+            document.getElementById('label-talla').innerText = t.labelTalla;
+            document.getElementById('label-publico').innerText = t.labelPublico;
+            document.getElementById('color-label').innerText = t.colorLabel;
+            document.getElementById('btn-add-modal-text').innerText = t.btnAddModal;
+
+            document.getElementById('cart-btn-text').innerText = t.cartBtnText;
+            document.getElementById('cart-title').innerText = t.cartTitle;
+            document.getElementById('total-label').innerText = t.totalLabel;
+            document.getElementById('cart-shipping-note').innerText = t.shippingNote;
+            document.getElementById('payment-box-title').innerText = t.paymentBoxTitle;
+            document.getElementById('pay-intl-label').innerText = t.payIntlLabel;
+            document.getElementById('pay-loc-label').innerText = t.payLocLabel;
+            document.getElementById('btn-checkout-text').innerText = t.checkoutText;
+
+            renderProducts();
+
+            if (!document.getElementById('orderModal').classList.contains('hidden')) {
+                openModal(currentModalIndex);
+            }
+            updateCartUI();
+        }
+
+        function setCategoryFilter(category) {
+            currentCategory = category;
+            const buttons = document.querySelectorAll('#filter-buttons button');
+
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-[#4A3B32]', 'text-white');
+                btn.classList.add('bg-white', 'text-stone-700');
+            });
+
+            event.target.classList.remove('bg-white', 'text-stone-700');
+            event.target.classList.add('bg-[#4A3B32]', 'text-white');
+
+            renderProducts();
+        }
+
+        function filterProducts() {
+            renderProducts();
+        }
+
+        function openModal(index) {
+            currentModalIndex = index;
+            const item = productsData[index];
+            const data = item[currentLang];
+
+            document.getElementById('modalProductName').innerText = data.name;
+            document.getElementById('modalProductEng').innerText = data.eng;
+            document.getElementById('modalProductPrice').innerText = '$' + item.price.toFixed(2) + ' USD';
+            document.getElementById('modalProductDesc').innerText = data.desc;
+            
+            document.getElementById('specMaterial').innerText = data.material;
+            document.getElementById('specColores').innerText = data.colores;
+            document.getElementById('specConfeccion').innerText = data.confeccion;
+            document.getElementById('specTalla').innerText = data.talla;
+            document.getElementById('specPublico').innerText = data.publico;
+
+            const colorContainer = document.getElementById('colorContainer');
+            const colorSelect = document.getElementById('modalColorSelect');
+            
+            if (data.colorOptions && data.colorOptions.length > 0) {
+                colorSelect.innerHTML = '';
+                data.colorOptions.forEach(color => {
+                    const opt = document.createElement('option');
+                    opt.value = color;
+                    opt.innerText = color;
+                    colorSelect.appendChild(opt);
+                });
+                colorContainer.classList.remove('hidden');
+            } else {
+                colorContainer.classList.add('hidden');
+            }
+
+            document.getElementById('modalMainImg').src = item.images[0];
+            const thumbsContainer = document.getElementById('modalThumbs');
+            thumbsContainer.innerHTML = '';
+            
+            item.images.forEach((imgUrl) => {
+                const thumb = document.createElement('img');
+                thumb.src = imgUrl;
+                thumb.className = 'thumb-img w-16 h-16 object-cover rounded-lg border-2 border-stone-300 shadow-sm';
+                thumb.onclick = function() {
+                    document.getElementById('modalMainImg').src = imgUrl;
+                };
+                thumbsContainer.appendChild(thumb);
+            });
+
+            document.getElementById('orderModal').classList.remove('hidden');
+            document.getElementById('orderModal').classList.add('flex');
+        }
+
+        function closeModal() {
+            document.getElementById('orderModal').classList.add('hidden');
+            document.getElementById('orderModal').classList.remove('flex');
+        }
+
+        function toggleCart() {
+            const drawer = document.getElementById('cartDrawer');
+            if (drawer.classList.contains('hidden')) {
+                drawer.classList.remove('hidden');
+                drawer.classList.add('flex');
+            } else {
+                drawer.classList.add('hidden');
+                drawer.classList.remove('flex');
+            }
+        }
+
+        function addCurrentFromModal() {
+            const index = currentModalIndex;
+            const item = productsData[index];
+            const data = item[currentLang];
+            const name = data.name;
+            if (Number.isFinite(Number(item.stock)) && Number(item.stock) <= 0) { alert('Este producto está agotado por el momento.'); return; }
+            
+            let selectedColor = 'Estándar / Único';
+            if (data.colorOptions && data.colorOptions.length > 0) {
+                selectedColor = document.getElementById('modalColorSelect').value;
+            }
+            
+            const existing = cart.find(p => p.index === index && p.color === selectedColor);
+            const alreadyInCart = existing ? existing.qty : 0;
+            if (Number.isFinite(Number(item.stock)) && alreadyInCart >= Number(item.stock)) { alert('No puedes agregar más unidades que las disponibles.'); return; }
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ index: index, name: name, price: item.price, color: selectedColor, qty: 1 });
+            }
+            
+            closeModal();
+            updateCartUI();
+        }
+
+        function changeQty(cartIndex, delta) {
+            cart[cartIndex].qty += delta;
+            if (cart[cartIndex].qty <= 0) {
+                cart.splice(cartIndex, 1);
+            }
+            updateCartUI();
+        }
+
+        function removeFromCart(cartIndex) {
+            cart.splice(cartIndex, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const list = document.getElementById('cartItemsList');
+            const countSpan = document.getElementById('cart-count');
+            const totalPriceSpan = document.getElementById('cartTotalPrice');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            const t = translations[currentLang];
+
+            let totalCount = 0;
+            let totalPrice = 0;
+
+            if (cart.length === 0) {
+                list.innerHTML = `<p class="text-xs text-stone-500 text-center py-8">${t.emptyCart}</p>`;
+                totalPriceSpan.innerText = '$0.00 USD';
+                countSpan.innerText = '0';
+                checkoutBtn.disabled = true;
+                checkoutBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                return;
+            }
+
+            list.innerHTML = '';
+            cart.forEach((item, i) => {
+                totalCount += item.qty;
+                totalPrice += item.price * item.qty;
+
+                const colorText = item.color !== 'Estándar / Único' ? `<p class="text-[10px] text-[#8C6D53] font-medium">Color: ${item.color}</p>` : '';
+
+                const row = document.createElement('div');
+                row.className = 'flex justify-between items-center bg-[#F7F4EF] p-3 rounded-xl border border-[#EBDDCF] text-xs';
+                row.innerHTML = `
+                    <div class="flex-1 pr-2 cursor-pointer group" onclick="toggleCart(); openModal(${item.index})" title="Ver detalles del producto">
+                        <p class="font-bold text-stone-900 leading-tight group-hover:text-[#5C7654] transition underline decoration-dotted">${item.name}</p>
+                        ${colorText}
+                        <p class="text-stone-500 text-[11px] mt-0.5">$${item.price.toFixed(2)} USD</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="flex items-center bg-white border border-stone-300 rounded-lg overflow-hidden shadow-sm">
+                            <button onclick="changeQty(${i}, -1)" class="px-2 py-1 text-stone-600 hover:bg-stone-100 font-bold transition">-</button>
+                            <span class="px-2.5 py-1 text-xs font-bold text-stone-900">${item.qty}</span>
+                            <button onclick="changeQty(${i}, 1)" class="px-2 py-1 text-stone-600 hover:bg-stone-100 font-bold transition">+</button>
+                        </div>
+                        <button onclick="removeFromCart(${i})" class="text-red-400 hover:text-red-600 p-1 transition" title="Eliminar"><i class="fas fa-trash"></i></button>
+                    </div>
+                `;
+                list.appendChild(row);
+            });
+
+            countSpan.innerText = totalCount;
+            totalPriceSpan.innerText = '$' + totalPrice.toFixed(2) + ' USD';
+            checkoutBtn.disabled = false;
+            checkoutBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) return;
+
+            let total = 0;
+            let itemsText = cart.map(i => {
+                let sub = i.price * i.qty;
+                total += sub;
+                let colorInfo = i.color !== 'Estándar / Único' ? ` [Color: ${i.color}]` : '';
+                return `- ${i.qty}x ${i.name}${colorInfo} ($${sub.toFixed(2)} USD)`;
+            }).join('\n');
+
+            let msg = currentLang === 'es'
+                ? `Hola! Quisiera realizar el siguiente pedido:\n\n${itemsText}\n\n*Total estimado:* $${total.toFixed(2)} USD\n\nQuisiera pagar mediante (indicar Wise, Remitly, BCP o Yape). ¿Me confirma los detalles del envío por favor?`
+                : `Hello! I would like to place the following order:\n\n${itemsText}\n\n*Estimated Total:* $${total.toFixed(2)} USD\n\nI would like to pay via (please indicate Wise, Remitly, etc.). Could you please confirm shipping details?`;
+
+            window.open(`https://wa.me/51940188831?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+        });
+    </script>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const save = (k,v) => localStorage.setItem(k, JSON.stringify(v));
+  const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  let favorites = JSON.parse(localStorage.getItem('alpaquitay_favorites') || '[]');
+  let favoritesOnly = false;
+  let editing = null;
+
+  // Restore local catalog overrides and saved cart.
+  const storedProducts = localStorage.getItem('alpaquitay_products');
+  if(storedProducts){ try { productsData = JSON.parse(storedProducts); } catch(e) { console.warn('No se pudo leer el catálogo local.'); } }
+  cart = JSON.parse(localStorage.getItem('alpaquitay_cart') || '[]');
+
+  function drawProducts(){
+    const grid=$('product-grid'); if(!grid) return;
+    const q=$('searchInput').value.trim().toLowerCase();
+    grid.innerHTML='';
+    productsData.forEach((p,i)=>{
+      const d=p[currentLang] || p.es || p.en || {};
+      const key=String(p.id || i);
+      if(currentCategory!=='all' && p.category!==currentCategory) return;
+      if(favoritesOnly && !favorites.includes(key)) return;
+      const hay=[d.name,d.desc,d.material,d.colores].join(' ').toLowerCase();
+      if(q && !hay.includes(q)) return;
+      const card=document.createElement('article');
+      card.className='product-card bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden flex flex-col justify-between relative';
+      const image=esc((p.images||[])[0]||'logo.png');
+      card.innerHTML=`<div class="relative overflow-hidden group cursor-pointer" onclick="openModal(${i})">
+        <img src="${image}" alt="${esc(d.name)}" loading="lazy" onerror="this.onerror=null;this.src='logo.png'" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
+        <span class="absolute top-3 left-3 bg-[#4A3B32]/90 text-white text-xs px-2.5 py-1 rounded-full">Artesanal</span></div>
+        <button class="favorite-btn ${favorites.includes(key)?'active':''}" onclick="toggleFavorite('${key}')" aria-label="Favorito"><i class="${favorites.includes(key)?'fas':'far'} fa-heart"></i></button>
+        <div class="p-6 flex-1 flex flex-col justify-between"><div class="cursor-pointer" onclick="openModal(${i})">
+        <h3 class="font-bold text-lg text-stone-900">${esc(d.name)}</h3><p class="text-xs text-[#8C6D53] italic mb-2">${esc(d.eng||'')}</p>
+        <p class="text-stone-600 text-xs leading-relaxed">${esc(d.desc)}</p></div>
+        <div class="mt-3 text-[11px] ${Number.isFinite(Number(p.stock))?'text-stone-500':'text-stone-400'}">${Number.isFinite(Number(p.stock))?(Number(p.stock)>0?`Disponibles: ${Math.max(0,Number(p.stock))}`:'Agotado'):'Consultar disponibilidad'}</div>
+        <div class="mt-4 pt-4 border-t border-stone-100 flex items-center justify-between gap-2"><div><span class="text-lg font-extrabold text-[#4A3B32]">$${Number(p.price||0).toFixed(2)} USD</span><p class="text-[10px] text-stone-400">Envío no incluido</p></div>
+        <button onclick="openModal(${i})" class="bg-[#5C7654] hover:bg-[#4E6346] text-white text-xs px-3 py-2.5 rounded-xl font-bold">Ver producto</button></div></div>`;
+      grid.appendChild(card);
+    });
+    if(!grid.children.length) grid.innerHTML=`<div class="col-span-full text-center py-12 text-stone-500 text-sm">${favoritesOnly?'Aún no tienes favoritos guardados.':'No se encontraron productos.'}</div>`;
+    if($('favorite-count')) $('favorite-count').textContent=`(${favorites.length})`;
+  }
+  window.renderProducts=drawProducts;
+  window.filterProducts=drawProducts;
+  window.setCategoryFilter=function(category){
+    currentCategory=category;
+    document.querySelectorAll('#filter-buttons button').forEach(b=>{b.classList.remove('bg-[#4A3B32]','text-white','active');b.classList.add('bg-white','text-stone-700');});
+    const active=document.querySelector(`#filter-buttons button[onclick="setCategoryFilter('${category}')"]`);
+    if(active){active.classList.remove('bg-white','text-stone-700');active.classList.add('bg-[#4A3B32]','text-white','active');}
+    drawProducts();
+  };
+  window.toggleFavorite=function(key){
+    key=String(key); favorites=favorites.includes(key)?favorites.filter(x=>x!==key):[...favorites,key];
+    save('alpaquitay_favorites',favorites);drawProducts();
+  };
+  window.showFavorites=function(){
+    favoritesOnly=!favoritesOnly; $('searchInput').value='';
+    const grid=$('product-grid');drawProducts();grid.scrollIntoView({behavior:'smooth'});
+  };
+
+  // Cart renderer with persistence.
+  window.updateCartUI=function(){
+    save('alpaquitay_cart',cart);
+    const list=$('cartItemsList'),count=$('cart-count'),totalEl=$('cartTotalPrice'),btn=$('checkoutBtn');
+    if(!list)return;
+    let total=0,qty=0;list.innerHTML='';
+    if(!cart.length){list.innerHTML='<p class="text-xs text-stone-500 text-center py-8">Tu carrito está vacío.</p>';totalEl.textContent='$0.00 USD';count.textContent='0';btn.disabled=true;btn.classList.add('opacity-50','cursor-not-allowed');return;}
+    cart.forEach((item,i)=>{
+      qty+=item.qty;total+=item.price*item.qty;
+      const row=document.createElement('div');row.className='flex justify-between items-center bg-[#F7F4EF] p-3 rounded-xl border border-[#EBDDCF] text-xs';
+      row.innerHTML=`<div class="flex-1 pr-2"><p class="font-bold text-stone-900">${esc(item.name)}</p><p class="text-[10px] text-[#8C6D53]">Color: ${esc(item.color)}</p><p class="text-stone-500">$${Number(item.price).toFixed(2)} USD</p></div>
+      <div class="flex items-center gap-2"><div class="flex items-center border rounded-lg bg-white"><button onclick="changeQty(${i},-1)" class="px-2 py-1">−</button><span class="px-2">${item.qty}</span><button onclick="changeQty(${i},1)" class="px-2 py-1">+</button></div><button onclick="removeFromCart(${i})" class="text-red-500 p-1" aria-label="Eliminar"><i class="fas fa-trash"></i></button></div>`;
+      list.appendChild(row);
+    });
+    count.textContent=qty;totalEl.textContent='$'+total.toFixed(2)+' USD';btn.disabled=false;btn.classList.remove('opacity-50','cursor-not-allowed');
+  };
+  const oldChangeQty=window.changeQty;
+  window.changeQty=function(i,delta){
+    const item=cart[i]; if(!item)return;
+    if(delta>0){const product=productsData[item.index];if(product && Number.isFinite(Number(product.stock)) && item.qty>=Number(product.stock)){alert('No hay más unidades disponibles de este producto.');return;}}
+    oldChangeQty(i,delta);save('alpaquitay_cart',cart);
+  };
+  const oldRemove=window.removeFromCart;
+  window.removeFromCart=function(i){oldRemove(i);save('alpaquitay_cart',cart);};
+
+  // Both order paths: direct WhatsApp and structured web form.
+  window.openCheckout=function(){if(!cart.length)return;$('checkoutModal').classList.remove('hidden');$('checkoutModal').classList.add('flex');};
+  window.closeCheckout=function(){$('checkoutModal').classList.add('hidden');$('checkoutModal').classList.remove('flex');};
+  window.submitWebOrder=function(e){
+    e.preventDefault();if(!cart.length)return;
+    const f=new FormData(e.target),lines=cart.map(x=>`- ${x.qty} x ${x.name} (${x.color}) — $${(x.qty*x.price).toFixed(2)} USD`).join('\n');
+    const total=cart.reduce((s,x)=>s+x.qty*x.price,0);
+    const msg=`Hola, deseo realizar este pedido:\n\n${lines}\n\nTotal estimado: $${total.toFixed(2)} USD (envío no incluido)\n\nNombre: ${f.get('customerName')}\nTeléfono: ${f.get('customerPhone')}\nDestino: ${f.get('destination')}\nDirección: ${f.get('address')||'No indicada'}\nComentario: ${f.get('notes')||'Ninguno'}\n\nPor favor, confirmen disponibilidad, envío y medios de pago.`;
+    window.open('https://wa.me/51940188831?text='+encodeURIComponent(msg),'_blank','noopener');closeCheckout();
+  };
+
+  // Customer reviews remain local to this browser; they are not presented as verified testimonials.
+  function getReviews(){return JSON.parse(localStorage.getItem('alpaquitay_reviews')||'[]');}
+  function drawReviews(){
+    const box=$('reviews-list');if(!box)return;const items=getReviews();box.innerHTML='';
+    if(!items.length){box.innerHTML='<div class="col-span-full text-center text-xs text-stone-500 bg-white border rounded-xl p-6">Todavía no hay opiniones. Puedes compartir tu experiencia.</div>';return;}
+    items.slice(-6).reverse().forEach(r=>{const el=document.createElement('article');el.className='bg-white border border-stone-200 rounded-xl p-5';
+      el.innerHTML=`<div class="text-amber-600 text-sm mb-2">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div><p class="text-sm text-stone-600">“${esc(r.text)}”</p><p class="text-xs font-bold text-[#4A3B32] mt-4">${esc(r.name)}</p><p class="text-[10px] text-stone-400">Guardada en este dispositivo</p>`;box.appendChild(el);});
+  }
+  window.openReviewForm=function(){$('reviewModal').classList.remove('hidden');$('reviewModal').classList.add('flex');};
+  window.closeReviewForm=function(){$('reviewModal').classList.add('hidden');$('reviewModal').classList.remove('flex');};
+  window.submitReview=function(e){e.preventDefault();const f=new FormData(e.target),a=getReviews();a.push({name:f.get('reviewName'),rating:Number(f.get('reviewRating')),text:f.get('reviewText')});save('alpaquitay_reviews',a);e.target.reset();closeReviewForm();drawReviews();};
+
+  // Admin catalog editor. This is intentionally local-only; GitHub Pages cannot secure client-side credentials.
+  window.openAdminLogin=function(){$('adminLoginModal').classList.remove('hidden');$('adminLoginModal').classList.add('flex');};
+  window.closeAdminLogin=function(){$('adminLoginModal').classList.add('hidden');$('adminLoginModal').classList.remove('flex');};
+  window.adminLogin=function(e){
+    e.preventDefault();const pass=$('adminPassword').value;let saved=localStorage.getItem('alpaquitay_admin_password');
+    if(!saved){if(pass.length<8){$('admin-login-error').textContent='Usa al menos 8 caracteres.';return;}localStorage.setItem('alpaquitay_admin_password',pass);alert('Contraseña local creada. Este acceso no es seguridad real para una web pública.');}
+    else if(pass!==saved){$('admin-login-error').textContent='Contraseña incorrecta.';return;}
+    closeAdminLogin();$('adminPassword').value='';$('adminPanel').classList.remove('hidden');drawAdmin();
+  };
+  window.closeAdminPanel=function(){$('adminPanel').classList.add('hidden');};
+  window.adminLogout=window.closeAdminPanel;
+  function drawAdmin(){
+    const totalUnits=productsData.reduce((n,p)=>n+(Number.isFinite(Number(p.stock))?Math.max(0,Number(p.stock)):0),0);
+    const low=productsData.filter(p=>Number.isFinite(Number(p.stock)) && Number(p.stock)>0 && Number(p.stock)<=3).length;
+    $('admin-product-count').textContent=`${productsData.length} productos · ${totalUnits} unidades · ${low} con stock bajo`;
+    const list=$('adminProductsList');list.innerHTML='';
+    productsData.forEach((p,i)=>{const d=p.es||{};const row=document.createElement('div');row.className='flex flex-wrap justify-between items-center gap-2 border rounded-xl p-3';
+      const known=Number.isFinite(Number(p.stock));const stock=known?Math.max(0,Number(p.stock)):null;
+      const stockText=!known?'Stock sin registrar':stock===0?'Agotado':stock<=3?`Stock bajo: ${stock}`:`Stock: ${stock}`;
+      const stockClass=!known||stock===0?'text-red-600':stock<=3?'text-amber-700':'text-green-700';
+      row.innerHTML=`<div class="min-w-[170px]"><p class="font-bold text-sm">${esc(d.name)}</p><p class="text-xs text-stone-500">$${Number(p.price).toFixed(2)} USD · ${esc(p.category||'')}</p><p class="text-xs font-bold ${stockClass}">${stockText}</p></div><div class="flex flex-wrap items-center gap-3"><button onclick="adjustStock(${i},-1)" title="Restar una unidad" class="w-8 h-8 rounded-lg border">−</button><button onclick="adjustStock(${i},1)" title="Sumar una unidad" class="w-8 h-8 rounded-lg border">+</button><button onclick="editAdminProduct(${i})" class="text-xs font-bold text-green-700">Editar</button><button onclick="deleteAdminProduct(${i})" class="text-xs font-bold text-red-600">Eliminar</button></div>`;list.appendChild(row);});
+  }
+  window.adjustStock=function(i,delta){const p=productsData[i];if(!p)return;p.stock=Math.max(0,(Number.isFinite(Number(p.stock))?Number(p.stock):0)+delta);save('alpaquitay_products',productsData);drawAdmin();drawProducts();};
+  let adminSelectedImages=[];
+  window.previewAdminImages=function(e){
+    const files=Array.from(e.target.files||[]).slice(0,3);
+    if((e.target.files||[]).length>3) alert('Puedes seleccionar como máximo 3 fotografías.');
+    adminSelectedImages=[];
+    const preview=$('adminImagePreview'); preview.innerHTML='';
+    if(!files.length)return;
+    let loaded=0;
+    files.forEach(file=>{
+      if(!file.type.startsWith('image/')){loaded++;return;}
+      const reader=new FileReader();
+      reader.onload=function(){
+        adminSelectedImages.push(reader.result);
+        const img=document.createElement('img');img.src=reader.result;
+        img.className='w-20 h-20 object-cover rounded-lg border';
+        img.alt='Vista previa de fotografía';
+        preview.appendChild(img);
+        loaded++;
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+  window.saveAdminProduct=function(e){
+    e.preventDefault();const name=$('adminName').value.trim(),price=Number($('adminPrice').value),category=$('adminCategory').value,desc=$('adminDesc').value.trim();
+    if(!name||!desc||!Number.isFinite(price)||price<0){alert('Revisa el nombre, descripción y precio.');return;}
+    const stock=Number($('adminStock').value);
+    if(!Number.isInteger(stock)||stock<0){alert('Ingresa una cantidad de stock válida.');return;}
+    const colors=$('adminColors').value.split(',').map(x=>x.trim()).filter(Boolean),old=editing!==null?productsData[editing]:null;
+    const product={id:old?.id||'local-'+Date.now(),category,price,stock,images:adminSelectedImages.length?adminSelectedImages:(old?.images||['logo.png']),
+      es:{name,eng:name,desc,material:$('adminMaterial').value||'100% Fibra de Alpaca',colores:colors.join(', ')||'Consultar',confeccion:old?.es?.confeccion||'Elaboración artesanal',talla:$('adminSize').value||'Estándar',publico:$('adminPublic').value||'Unisex',colorOptions:colors},
+      en:{name,eng:name,desc,material:$('adminMaterial').value||'Alpaca fiber',colores:colors.join(', ')||'Please ask',confeccion:'Handcrafted',talla:$('adminSize').value||'Standard',publico:$('adminPublic').value||'Unisex',colorOptions:colors}};
+    if(editing===null)productsData.push(product);else productsData[editing]=product;
+    save('alpaquitay_products',productsData);resetAdminForm();drawAdmin();drawProducts();alert('Catálogo guardado en este navegador.');
+  };
+  window.editAdminProduct=function(i){
+    const p=productsData[i],d=p.es||{};editing=i;$('admin-form-title').textContent='Editar producto';
+    $('adminName').value=d.name||'';$('adminPrice').value=p.price;$('adminStock').value=Number.isFinite(Number(p.stock))?Number(p.stock):0;$('adminCategory').value=p.category||'gorros';$('adminDesc').value=d.desc||'';
+    $('adminMaterial').value=d.material||'';$('adminColors').value=(d.colorOptions||[]).join(', ');$('adminSize').value=d.talla||'Estándar';$('adminPublic').value=d.publico||'Unisex';adminSelectedImages=[];$('adminImageFiles').value='';$('adminImagePreview').innerHTML='';(p.images||[]).forEach(src=>{const img=document.createElement('img');img.src=src;img.className='w-20 h-20 object-cover rounded-lg border';img.alt='Fotografía actual';$('adminImagePreview').appendChild(img);});
+    $('admin-form-title').scrollIntoView({behavior:'smooth'});
+  };
+  window.resetAdminForm=function(){editing=null;adminSelectedImages=[];$('adminProductForm').reset();$('adminImagePreview').innerHTML='';$('admin-form-title').textContent='Añadir producto';$('adminMaterial').value='100% Fibra de Alpaca';$('adminSize').value='Estándar';$('adminPublic').value='Unisex';$('adminStock').value=0;};
+  window.deleteAdminProduct=function(i){if(!confirm('¿Eliminar este producto del catálogo local?'))return;productsData.splice(i,1);save('alpaquitay_products',productsData);drawAdmin();drawProducts();};
+  window.exportCatalog=function(){const blob=new Blob([JSON.stringify(productsData,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='catalogo-alpaquitay.json';a.click();URL.revokeObjectURL(url);};
+  window.importCatalog=function(e){const file=e.target.files&&e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=function(){try{const data=JSON.parse(reader.result);if(!Array.isArray(data)||!data.every(p=>p&&p.es&&p.price!==undefined&&p.category)){throw new Error('Formato inválido');}if(!confirm(`Se reemplazará el catálogo actual por ${data.length} productos. ¿Continuar?`))return;productsData=data;save('alpaquitay_products',productsData);drawAdmin();drawProducts();alert('Catálogo importado correctamente.');}catch(err){alert('No se pudo importar. Verifica que sea una copia JSON de esta tienda.');}finally{e.target.value='';}};reader.readAsText(file);};
+
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeCheckout();closeReviewForm();closeAdminLogin();}});
+  document.addEventListener('DOMContentLoaded',()=>{drawProducts();updateCartUI();drawReviews();});
+  // Ensure the already-fired DOMContentLoaded case is covered when this script is parsed at body end.
+  drawProducts();updateCartUI();drawReviews();
+})();
+</script>
+
+
+<!-- MENÚ FLOTANTE DE CATEGORÍAS -->
+<div id="floatingCategoryNav">
+  <div id="floatingCategoryPanel" hidden>
+    <div class="px-3 pt-2 pb-2">
+      <p class="text-[10px] uppercase tracking-[.18em] font-extrabold text-[#9a7b63]">Ir directamente a</p>
+      <p class="text-sm font-bold text-[#4A3B32] mt-1">Explorar categorías</p>
+    </div>
+    <div id="floatingCategoryOptions" class="space-y-1"></div>
+  </div>
+  <button id="floatingCategoryToggle" type="button"
+          aria-expanded="false" aria-controls="floatingCategoryPanel"
+          onclick="toggleFloatingCategories()">
+    <i class="fas fa-layer-group"></i>
+    <span>Categorías</span>
+    <i id="floatingCategoryChevron" class="fas fa-chevron-up text-[10px]"></i>
+  </button>
+</div>
+
+<script>
+(function () {
+  const categoryNames = {
+    all: "Todos los productos",
+    gorros: "Gorros / Chullo",
+    mitones: "Mitones / Muñequera",
+    vinchas: "Vinchas",
+    otros: "Otros accesorios"
+  };
+  const categoryIcons = {
+    all: "fa-border-all",
+    gorros: "fa-hat-wizard",
+    mitones: "fa-mitten",
+    vinchas: "fa-ribbon",
+    otros: "fa-bag-shopping"
+  };
+
+  function getAvailableCategories() {
+    // Incluye las categorías actuales y "Otros accesorios" para productos nuevos del panel.
+    return ["all", "gorros", "mitones", "vinchas", "otros"];
+  }
+
+  function renderFloatingCategories() {
+    const container = document.getElementById("floatingCategoryOptions");
+    if (!container) return;
+    const current = window.activeFloatingCategory || "all";
+    container.innerHTML = "";
+
+    getAvailableCategories().forEach(category => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "floating-category-option";
+      button.setAttribute("aria-pressed", String(current === category));
+      button.innerHTML =
+        '<i class="fas ' + categoryIcons[category] + ' w-4 text-center"></i>' +
+        '<span>' + categoryNames[category] + '</span>' +
+        '<i class="fas fa-check category-check text-xs"></i>';
+      button.addEventListener("click", function () {
+        if (typeof window.setCategoryFilter === "function") {
+          window.setCategoryFilter(category);
+        }
+        closeFloatingCategories();
+        const catalog = document.getElementById("product-grid");
+        if (catalog) {
+          const y = catalog.getBoundingClientRect().top + window.scrollY - 115;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
+      });
+      container.appendChild(button);
+    });
+  }
+
+  window.toggleFloatingCategories = function () {
+    const panel = document.getElementById("floatingCategoryPanel");
+    const toggle = document.getElementById("floatingCategoryToggle");
+    const isOpen = toggle.getAttribute("aria-expanded") === "true";
+    if (isOpen) {
+      closeFloatingCategories();
+    } else {
+      renderFloatingCategories();
+      panel.hidden = false;
+      toggle.setAttribute("aria-expanded", "true");
+      document.getElementById("floatingCategoryChevron").className =
+        "fas fa-chevron-down text-[10px]";
+    }
+  };
+
+  function closeFloatingCategories() {
+    const panel = document.getElementById("floatingCategoryPanel");
+    const toggle = document.getElementById("floatingCategoryToggle");
+    if (!panel || !toggle) return;
+    panel.hidden = true;
+    toggle.setAttribute("aria-expanded", "false");
+    document.getElementById("floatingCategoryChevron").className =
+      "fas fa-chevron-up text-[10px]";
+  }
+
+  document.addEventListener("click", function (event) {
+    const nav = document.getElementById("floatingCategoryNav");
+    if (nav && !nav.contains(event.target)) closeFloatingCategories();
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") closeFloatingCategories();
+  });
+
+  // Sincroniza la categoría activa cuando se usan también los filtros originales.
+  const originalFilter = window.setCategoryFilter;
+  if (typeof originalFilter === "function") {
+    window.activeFloatingCategory = "all";
+    window.setCategoryFilter = function (category) {
+      originalFilter(category);
+      window.activeFloatingCategory = category;
+      renderFloatingCategories();
+    };
+  }
+  document.addEventListener("DOMContentLoaded", renderFloatingCategories);
+  renderFloatingCategories();
+})();
+</script>
+
+</body>
+</html>
