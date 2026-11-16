@@ -91,7 +91,7 @@
       $('summary').textContent=rows.length+' productos · '+units+' unidades en inventario';
       if(!rows.length){list.innerHTML='<p class="text-sm text-stone-500">Todavía no hay productos.</p>';return;}
       rows.forEach(r=>{
-        const p=r.data||{},d=p.es||{},img=(p.images||[])[0]||'../logo.png';
+        const p=r.data||{},d=p.es||{},rawImg=(p.images||[])[0]||'logo.png',img=/^(https?:|\\/)/i.test(rawImg)?rawImg:'../'+rawImg;
         const el=document.createElement('article');el.className='border rounded-xl p-3 flex gap-3 items-center';
         el.innerHTML='<img src="'+esc(img)+'" class="w-16 h-16 rounded-lg object-cover bg-stone-100" alt="">'+
           '<div class="min-w-0 flex-1"><p class="font-bold text-sm">'+esc(d.name||'Producto')+'</p><p class="text-xs text-stone-500">$'+Number(p.price||0).toFixed(2)+' · Stock: '+Math.max(0,Number(p.stock)||0)+'</p>'+
