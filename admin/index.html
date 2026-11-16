@@ -109,7 +109,7 @@
       $('descEs').value=d.desc||'';$('descEn').value=e.desc||'';$('materialEs').value=d.material||'';$('materialEn').value=e.material||'';
       $('colorsEs').value=d.colores||'';$('colorsEn').value=e.colores||'';$('sizeEs').value=d.talla||'';$('sizeEn').value=e.talla||'';
       $('finishEs').value=d.confeccion||'';$('finishEn').value=e.confeccion||'';$('publicEs').value=d.publico||'';$('publicEn').value=e.publico||'';
-      $('formTitle').textContent='Editar producto';$('imagePreview').innerHTML=currentImages.map(x=>'<img src="'+esc(x)+'" class="w-16 h-16 rounded-lg object-cover border" alt="Foto actual">').join('');
+      $('formTitle').textContent='Editar producto';$('imagePreview').innerHTML=currentImages.map(x=>{const src=/^(https?:|\\/)/i.test(x)?x:'../'+x;return '<img src="'+esc(src)+'" class="w-16 h-16 rounded-lg object-cover border" alt="Foto actual">';}).join('');
       $('images').value='';window.scrollTo({top:0,behavior:'smooth'});
     }
     async function uploadImages(files){
@@ -133,7 +133,7 @@
         const colorsEs=split($('colorsEs').value),colorsEn=split($('colorsEn').value);
         const es={...(old.es||{}),name:$('nameEs').value.trim(),eng:$('nameEn').value.trim(),desc:$('descEs').value.trim(),material:$('materialEs').value.trim(),colores:colorsEs.join(', '),confeccion:$('finishEs').value.trim(),talla:$('sizeEs').value.trim(),publico:$('publicEs').value.trim(),colorOptions:colorsEs};
         const en={...(old.en||{}),name:$('nameEn').value.trim()||$('nameEs').value.trim(),eng:$('nameEs').value.trim(),desc:$('descEn').value.trim()||$('descEs').value.trim(),material:$('materialEn').value.trim()||$('materialEs').value.trim(),colores:colorsEn.join(', '),confeccion:$('finishEn').value.trim()||$('finishEs').value.trim(),talla:$('sizeEn').value.trim()||$('sizeEs').value.trim(),publico:$('publicEn').value.trim()||$('publicEs').value.trim(),colorOptions:colorsEn.length?colorsEn:colorsEs};
-        const payload={...old,category:$('category').value,price:Number($('price').value),stock:Number($('stock').value),images:images.length?images:['../logo.png'],es,en};
+        const payload={...old,category:$('category').value,price:Number($('price').value),stock:Number($('stock').value),images:images.length?images:['logo.png'],es,en};
         let result;
         if(editingId)result=await db.from('products').update({data:payload,updated_at:new Date().toISOString()}).eq('id',editingId);
         else result=await db.from('products').insert({data:payload,sort_order:rows.length+1});
