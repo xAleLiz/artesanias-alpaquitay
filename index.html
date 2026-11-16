@@ -404,7 +404,10 @@
           <label class="admin-label">Colores separados por coma</label><input id="adminColors" class="admin-input">
           <label class="admin-label">Talla</label><input id="adminSize" class="admin-input" value="Estándar">
           <label class="admin-label">Público</label><input id="adminPublic" class="admin-input" value="Unisex">
-          <label class="admin-label">Ruta de imagen (ej. img/producto.jpg)</label><input id="adminImage" class="admin-input">
+          <label class="admin-label">Fotografías del producto</label>
+          <input id="adminImageFiles" class="admin-input" type="file" accept="image/*" multiple onchange="previewAdminImages(event)">
+          <p class="text-[10px] text-stone-500 mt-1">Puedes elegir hasta 3 fotos desde tu computadora. Si no eliges nuevas fotos al editar, se conservarán las anteriores.</p>
+          <div id="adminImagePreview" class="flex gap-2 flex-wrap mt-2"></div>
           <div class="flex gap-2 mt-4"><button class="flex-1 bg-[#5C7654] text-white rounded-xl py-3 text-xs font-bold">Guardar producto</button><button type="button" onclick="resetAdminForm()" class="border rounded-xl px-4 text-xs font-bold">Limpiar</button></div>
         </form></section>
         <section class="bg-white rounded-2xl p-5 border"><div class="flex justify-between mb-3"><h3 class="font-bold text-[#4A3B32]">Inventario</h3><span id="admin-product-count" class="text-xs text-stone-500"></span></div><div id="adminProductsList" class="space-y-2"></div><div class="flex flex-wrap gap-2 mt-4"><button onclick="exportCatalog()" class="border border-[#8C6D53] text-[#4A3B32] rounded-xl px-4 py-2.5 text-xs font-bold"><i class="fas fa-download mr-1"></i>Descargar copia</button><label class="border border-stone-300 text-stone-700 rounded-xl px-4 py-2.5 text-xs font-bold cursor-pointer"><i class="fas fa-upload mr-1"></i>Importar copia<input type="file" accept=".json,application/json" onchange="importCatalog(event)" class="hidden"></label></div><p class="text-[10px] text-stone-500 mt-2">La copia permite trasladar tu catálogo a otro navegador.</p></section>
@@ -1231,13 +1234,35 @@
       row.innerHTML=`<div class="min-w-[170px]"><p class="font-bold text-sm">${esc(d.name)}</p><p class="text-xs text-stone-500">$${Number(p.price).toFixed(2)} USD · ${esc(p.category||'')}</p><p class="text-xs font-bold ${stockClass}">${stockText}</p></div><div class="flex flex-wrap items-center gap-3"><button onclick="adjustStock(${i},-1)" title="Restar una unidad" class="w-8 h-8 rounded-lg border">−</button><button onclick="adjustStock(${i},1)" title="Sumar una unidad" class="w-8 h-8 rounded-lg border">+</button><button onclick="editAdminProduct(${i})" class="text-xs font-bold text-green-700">Editar</button><button onclick="deleteAdminProduct(${i})" class="text-xs font-bold text-red-600">Eliminar</button></div>`;list.appendChild(row);});
   }
   window.adjustStock=function(i,delta){const p=productsData[i];if(!p)return;p.stock=Math.max(0,(Number.isFinite(Number(p.stock))?Number(p.stock):0)+delta);save('alpaquitay_products',productsData);drawAdmin();drawProducts();};
+  let adminSelectedImages=[];
+  window.previewAdminImages=function(e){
+    const files=Array.from(e.target.files||[]).slice(0,3);
+    if((e.target.files||[]).length>3) alert('Puedes seleccionar como máximo 3 fotografías.');
+    adminSelectedImages=[];
+    const preview=$('adminImagePreview'); preview.innerHTML='';
+    if(!files.length)return;
+    let loaded=0;
+    files.forEach(file=>{
+      if(!file.type.startsWith('image/')){loaded++;return;}
+      const reader=new FileReader();
+      reader.onload=function(){
+        adminSelectedImages.push(reader.result);
+        const img=document.createElement('img');img.src=reader.result;
+        img.className='w-20 h-20 object-cover rounded-lg border';
+        img.alt='Vista previa de fotografía';
+        preview.appendChild(img);
+        loaded++;
+      };
+      reader.readAsDataURL(file);
+    });
+  };
   window.saveAdminProduct=function(e){
     e.preventDefault();const name=$('adminName').value.trim(),price=Number($('adminPrice').value),category=$('adminCategory').value,desc=$('adminDesc').value.trim();
     if(!name||!desc||!Number.isFinite(price)||price<0){alert('Revisa el nombre, descripción y precio.');return;}
     const stock=Number($('adminStock').value);
     if(!Number.isInteger(stock)||stock<0){alert('Ingresa una cantidad de stock válida.');return;}
     const colors=$('adminColors').value.split(',').map(x=>x.trim()).filter(Boolean),old=editing!==null?productsData[editing]:null;
-    const product={id:old?.id||'local-'+Date.now(),category,price,stock,images:$('adminImage').value.trim()?[$('adminImage').value.trim()]:(old?.images||['logo.png']),
+    const product={id:old?.id||'local-'+Date.now(),category,price,stock,images:adminSelectedImages.length?adminSelectedImages:(old?.images||['logo.png']),
       es:{name,eng:name,desc,material:$('adminMaterial').value||'100% Fibra de Alpaca',colores:colors.join(', ')||'Consultar',confeccion:old?.es?.confeccion||'Elaboración artesanal',talla:$('adminSize').value||'Estándar',publico:$('adminPublic').value||'Unisex',colorOptions:colors},
       en:{name,eng:name,desc,material:$('adminMaterial').value||'Alpaca fiber',colores:colors.join(', ')||'Please ask',confeccion:'Handcrafted',talla:$('adminSize').value||'Standard',publico:$('adminPublic').value||'Unisex',colorOptions:colors}};
     if(editing===null)productsData.push(product);else productsData[editing]=product;
@@ -1246,10 +1271,10 @@
   window.editAdminProduct=function(i){
     const p=productsData[i],d=p.es||{};editing=i;$('admin-form-title').textContent='Editar producto';
     $('adminName').value=d.name||'';$('adminPrice').value=p.price;$('adminStock').value=Number.isFinite(Number(p.stock))?Number(p.stock):0;$('adminCategory').value=p.category||'gorros';$('adminDesc').value=d.desc||'';
-    $('adminMaterial').value=d.material||'';$('adminColors').value=(d.colorOptions||[]).join(', ');$('adminSize').value=d.talla||'Estándar';$('adminPublic').value=d.publico||'Unisex';$('adminImage').value=(p.images||[])[0]||'';
+    $('adminMaterial').value=d.material||'';$('adminColors').value=(d.colorOptions||[]).join(', ');$('adminSize').value=d.talla||'Estándar';$('adminPublic').value=d.publico||'Unisex';adminSelectedImages=[];$('adminImageFiles').value='';$('adminImagePreview').innerHTML='';(p.images||[]).forEach(src=>{const img=document.createElement('img');img.src=src;img.className='w-20 h-20 object-cover rounded-lg border';img.alt='Fotografía actual';$('adminImagePreview').appendChild(img);});
     $('admin-form-title').scrollIntoView({behavior:'smooth'});
   };
-  window.resetAdminForm=function(){editing=null;$('adminProductForm').reset();$('admin-form-title').textContent='Añadir producto';$('adminMaterial').value='100% Fibra de Alpaca';$('adminSize').value='Estándar';$('adminPublic').value='Unisex';$('adminStock').value=0;};
+  window.resetAdminForm=function(){editing=null;adminSelectedImages=[];$('adminProductForm').reset();$('adminImagePreview').innerHTML='';$('admin-form-title').textContent='Añadir producto';$('adminMaterial').value='100% Fibra de Alpaca';$('adminSize').value='Estándar';$('adminPublic').value='Unisex';$('adminStock').value=0;};
   window.deleteAdminProduct=function(i){if(!confirm('¿Eliminar este producto del catálogo local?'))return;productsData.splice(i,1);save('alpaquitay_products',productsData);drawAdmin();drawProducts();};
   window.exportCatalog=function(){const blob=new Blob([JSON.stringify(productsData,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='catalogo-alpaquitay.json';a.click();URL.revokeObjectURL(url);};
   window.importCatalog=function(e){const file=e.target.files&&e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=function(){try{const data=JSON.parse(reader.result);if(!Array.isArray(data)||!data.every(p=>p&&p.es&&p.price!==undefined&&p.category)){throw new Error('Formato inválido');}if(!confirm(`Se reemplazará el catálogo actual por ${data.length} productos. ¿Continuar?`))return;productsData=data;save('alpaquitay_products',productsData);drawAdmin();drawProducts();alert('Catálogo importado correctamente.');}catch(err){alert('No se pudo importar. Verifica que sea una copia JSON de esta tienda.');}finally{e.target.value='';}};reader.readAsText(file);};
