@@ -391,11 +391,13 @@
     <div id="adminLoginModal" class="fixed inset-0 modal-backdrop hidden items-center justify-center p-4 z-[80]"><div class="bg-white rounded-2xl p-6 w-full max-w-sm relative"><button onclick="closeAdminLogin()" class="absolute right-5 top-5 text-stone-400"><i class="fas fa-times"></i></button><p class="section-kicker">Zona de administración local</p><h2 class="text-xl font-bold text-[#4A3B32] mt-1 mb-2">Acceso administrativo</h2><p class="text-xs text-stone-500 mb-4">Crea una contraseña local la primera vez (mínimo 8 caracteres).</p><form onsubmit="adminLogin(event)"><input id="adminPassword" type="password" class="admin-input mb-3" required placeholder="Contraseña"><button class="w-full bg-[#4A3B32] text-white rounded-xl py-3 text-sm font-bold">Ingresar</button></form><p id="admin-login-error" class="text-xs text-red-600 mt-3"></p></div></div>
     <div id="adminPanel" class="fixed inset-0 bg-[#f7f4ef] hidden z-[90] overflow-y-auto"><div class="max-w-6xl mx-auto p-4 md:p-8">
       <div class="flex flex-wrap justify-between items-center gap-3 mb-6"><div><p class="section-kicker">Gestión de tienda</p><h2 class="text-2xl font-bold text-[#4A3B32]">Panel administrativo</h2></div><div class="flex gap-2"><button onclick="closeAdminPanel()" class="border border-stone-300 rounded-xl px-4 py-2 text-xs font-bold">Volver a la tienda</button><button onclick="adminLogout()" class="bg-[#4A3B32] text-white rounded-xl px-4 py-2 text-xs font-bold">Cerrar sesión</button></div></div>
-      <div class="bg-amber-50 border border-amber-200 text-amber-900 rounded-xl p-4 text-xs leading-5 mb-6"><strong>Limitación importante:</strong> GitHub Pages es estático. Los cambios y la contraseña de este panel se guardan solo en este navegador y no son seguridad real frente a usuarios técnicos. Para un panel privado compartido entre dispositivos se requiere backend y autenticación de servidor.</div>
+      <div class="bg-amber-50 border border-amber-200 text-amber-900 rounded-xl p-4 text-xs leading-5 mb-6"><strong>Importante:</strong> Esta versión guarda los cambios en el navegador donde administras la tienda. GitHub Pages no ofrece una base de datos ni protege una contraseña escrita en el HTML. Para que solo tú puedas entrar de forma segura y que el inventario se sincronice con todos los clientes y dispositivos, luego debemos conectarlo a una base de datos y autenticación (backend). Descarga copias de seguridad con frecuencia.</div>
       <div class="grid lg:grid-cols-[1fr_1.4fr] gap-6">
         <section class="bg-white rounded-2xl p-5 border"><h3 id="admin-form-title" class="font-bold text-[#4A3B32] mb-3">Añadir producto</h3><form id="adminProductForm" onsubmit="saveAdminProduct(event)">
           <label class="admin-label">Nombre</label><input id="adminName" class="admin-input" required maxlength="100">
           <label class="admin-label">Precio USD</label><input id="adminPrice" class="admin-input" type="number" min="0" step=".01" required>
+          <label class="admin-label">Cantidad disponible (stock)</label><input id="adminStock" class="admin-input" type="number" min="0" step="1" value="0" required>
+          <p class="text-[10px] text-stone-500 mt-1">Coloca cuántas unidades tienes disponibles. Usa 0 si está agotado.</p>
           <label class="admin-label">Categoría</label><select id="adminCategory" class="admin-input"><option value="gorros">Gorros / Chullo</option><option value="mitones">Mitones / Muñequera</option><option value="vinchas">Vinchas</option><option value="otros">Otros</option></select>
           <label class="admin-label">Descripción</label><textarea id="adminDesc" class="admin-input" rows="3" required></textarea>
           <label class="admin-label">Material</label><input id="adminMaterial" class="admin-input" value="100% Fibra de Alpaca">
@@ -405,7 +407,7 @@
           <label class="admin-label">Ruta de imagen (ej. img/producto.jpg)</label><input id="adminImage" class="admin-input">
           <div class="flex gap-2 mt-4"><button class="flex-1 bg-[#5C7654] text-white rounded-xl py-3 text-xs font-bold">Guardar producto</button><button type="button" onclick="resetAdminForm()" class="border rounded-xl px-4 text-xs font-bold">Limpiar</button></div>
         </form></section>
-        <section class="bg-white rounded-2xl p-5 border"><div class="flex justify-between mb-3"><h3 class="font-bold text-[#4A3B32]">Inventario</h3><span id="admin-product-count" class="text-xs text-stone-500"></span></div><div id="adminProductsList" class="space-y-2"></div><button onclick="exportCatalog()" class="mt-4 border border-[#8C6D53] text-[#4A3B32] rounded-xl px-4 py-2.5 text-xs font-bold"><i class="fas fa-download mr-1"></i>Exportar catálogo JSON</button></section>
+        <section class="bg-white rounded-2xl p-5 border"><div class="flex justify-between mb-3"><h3 class="font-bold text-[#4A3B32]">Inventario</h3><span id="admin-product-count" class="text-xs text-stone-500"></span></div><div id="adminProductsList" class="space-y-2"></div><div class="flex flex-wrap gap-2 mt-4"><button onclick="exportCatalog()" class="border border-[#8C6D53] text-[#4A3B32] rounded-xl px-4 py-2.5 text-xs font-bold"><i class="fas fa-download mr-1"></i>Descargar copia</button><label class="border border-stone-300 text-stone-700 rounded-xl px-4 py-2.5 text-xs font-bold cursor-pointer"><i class="fas fa-upload mr-1"></i>Importar copia<input type="file" accept=".json,application/json" onchange="importCatalog(event)" class="hidden"></label></div><p class="text-[10px] text-stone-500 mt-2">La copia permite trasladar tu catálogo a otro navegador.</p></section>
       </div></div></div>
     <!-- JAVASCRIPT -->
     <script>
@@ -989,6 +991,7 @@
             const item = productsData[index];
             const data = item[currentLang];
             const name = data.name;
+            if (Number.isFinite(Number(item.stock)) && Number(item.stock) <= 0) { alert('Este producto está agotado por el momento.'); return; }
             
             let selectedColor = 'Estándar / Único';
             if (data.colorOptions && data.colorOptions.length > 0) {
@@ -996,6 +999,8 @@
             }
             
             const existing = cart.find(p => p.index === index && p.color === selectedColor);
+            const alreadyInCart = existing ? existing.qty : 0;
+            if (Number.isFinite(Number(item.stock)) && alreadyInCart >= Number(item.stock)) { alert('No puedes agregar más unidades que las disponibles.'); return; }
             if (existing) {
                 existing.qty++;
             } else {
@@ -1129,7 +1134,8 @@
         <div class="p-6 flex-1 flex flex-col justify-between"><div class="cursor-pointer" onclick="openModal(${i})">
         <h3 class="font-bold text-lg text-stone-900">${esc(d.name)}</h3><p class="text-xs text-[#8C6D53] italic mb-2">${esc(d.eng||'')}</p>
         <p class="text-stone-600 text-xs leading-relaxed">${esc(d.desc)}</p></div>
-        <div class="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between gap-2"><div><span class="text-lg font-extrabold text-[#4A3B32]">$${Number(p.price||0).toFixed(2)} USD</span><p class="text-[10px] text-stone-400">Envío no incluido</p></div>
+        <div class="mt-3 text-[11px] ${Number.isFinite(Number(p.stock))?'text-stone-500':'text-stone-400'}">${Number.isFinite(Number(p.stock))?(Number(p.stock)>0?`Disponibles: ${Math.max(0,Number(p.stock))}`:'Agotado'):'Consultar disponibilidad'}</div>
+        <div class="mt-4 pt-4 border-t border-stone-100 flex items-center justify-between gap-2"><div><span class="text-lg font-extrabold text-[#4A3B32]">$${Number(p.price||0).toFixed(2)} USD</span><p class="text-[10px] text-stone-400">Envío no incluido</p></div>
         <button onclick="openModal(${i})" class="bg-[#5C7654] hover:bg-[#4E6346] text-white text-xs px-3 py-2.5 rounded-xl font-bold">Ver producto</button></div></div>`;
       grid.appendChild(card);
     });
@@ -1171,7 +1177,11 @@
     count.textContent=qty;totalEl.textContent='$'+total.toFixed(2)+' USD';btn.disabled=false;btn.classList.remove('opacity-50','cursor-not-allowed');
   };
   const oldChangeQty=window.changeQty;
-  window.changeQty=function(i,delta){oldChangeQty(i,delta);save('alpaquitay_cart',cart);};
+  window.changeQty=function(i,delta){
+    const item=cart[i]; if(!item)return;
+    if(delta>0){const product=productsData[item.index];if(product && Number.isFinite(Number(product.stock)) && item.qty>=Number(product.stock)){alert('No hay más unidades disponibles de este producto.');return;}}
+    oldChangeQty(i,delta);save('alpaquitay_cart',cart);
+  };
   const oldRemove=window.removeFromCart;
   window.removeFromCart=function(i){oldRemove(i);save('alpaquitay_cart',cart);};
 
@@ -1210,15 +1220,24 @@
   window.closeAdminPanel=function(){$('adminPanel').classList.add('hidden');};
   window.adminLogout=window.closeAdminPanel;
   function drawAdmin(){
-    $('admin-product-count').textContent=productsData.length+' productos';const list=$('adminProductsList');list.innerHTML='';
+    const totalUnits=productsData.reduce((n,p)=>n+(Number.isFinite(Number(p.stock))?Math.max(0,Number(p.stock)):0),0);
+    const low=productsData.filter(p=>Number.isFinite(Number(p.stock)) && Number(p.stock)>0 && Number(p.stock)<=3).length;
+    $('admin-product-count').textContent=`${productsData.length} productos · ${totalUnits} unidades · ${low} con stock bajo`;
+    const list=$('adminProductsList');list.innerHTML='';
     productsData.forEach((p,i)=>{const d=p.es||{};const row=document.createElement('div');row.className='flex flex-wrap justify-between items-center gap-2 border rounded-xl p-3';
-      row.innerHTML=`<div><p class="font-bold text-sm">${esc(d.name)}</p><p class="text-xs text-stone-500">$${Number(p.price).toFixed(2)} USD · ${esc(p.category)}</p></div><div class="flex gap-3"><button onclick="editAdminProduct(${i})" class="text-xs font-bold text-green-700">Editar</button><button onclick="deleteAdminProduct(${i})" class="text-xs font-bold text-red-600">Eliminar</button></div>`;list.appendChild(row);});
+      const known=Number.isFinite(Number(p.stock));const stock=known?Math.max(0,Number(p.stock)):null;
+      const stockText=!known?'Stock sin registrar':stock===0?'Agotado':stock<=3?`Stock bajo: ${stock}`:`Stock: ${stock}`;
+      const stockClass=!known||stock===0?'text-red-600':stock<=3?'text-amber-700':'text-green-700';
+      row.innerHTML=`<div class="min-w-[170px]"><p class="font-bold text-sm">${esc(d.name)}</p><p class="text-xs text-stone-500">$${Number(p.price).toFixed(2)} USD · ${esc(p.category||'')}</p><p class="text-xs font-bold ${stockClass}">${stockText}</p></div><div class="flex flex-wrap items-center gap-3"><button onclick="adjustStock(${i},-1)" title="Restar una unidad" class="w-8 h-8 rounded-lg border">−</button><button onclick="adjustStock(${i},1)" title="Sumar una unidad" class="w-8 h-8 rounded-lg border">+</button><button onclick="editAdminProduct(${i})" class="text-xs font-bold text-green-700">Editar</button><button onclick="deleteAdminProduct(${i})" class="text-xs font-bold text-red-600">Eliminar</button></div>`;list.appendChild(row);});
   }
+  window.adjustStock=function(i,delta){const p=productsData[i];if(!p)return;p.stock=Math.max(0,(Number.isFinite(Number(p.stock))?Number(p.stock):0)+delta);save('alpaquitay_products',productsData);drawAdmin();drawProducts();};
   window.saveAdminProduct=function(e){
     e.preventDefault();const name=$('adminName').value.trim(),price=Number($('adminPrice').value),category=$('adminCategory').value,desc=$('adminDesc').value.trim();
     if(!name||!desc||!Number.isFinite(price)||price<0){alert('Revisa el nombre, descripción y precio.');return;}
+    const stock=Number($('adminStock').value);
+    if(!Number.isInteger(stock)||stock<0){alert('Ingresa una cantidad de stock válida.');return;}
     const colors=$('adminColors').value.split(',').map(x=>x.trim()).filter(Boolean),old=editing!==null?productsData[editing]:null;
-    const product={id:old?.id||'local-'+Date.now(),category,price,images:$('adminImage').value.trim()?[$('adminImage').value.trim()]:(old?.images||['logo.png']),
+    const product={id:old?.id||'local-'+Date.now(),category,price,stock,images:$('adminImage').value.trim()?[$('adminImage').value.trim()]:(old?.images||['logo.png']),
       es:{name,eng:name,desc,material:$('adminMaterial').value||'100% Fibra de Alpaca',colores:colors.join(', ')||'Consultar',confeccion:old?.es?.confeccion||'Elaboración artesanal',talla:$('adminSize').value||'Estándar',publico:$('adminPublic').value||'Unisex',colorOptions:colors},
       en:{name,eng:name,desc,material:$('adminMaterial').value||'Alpaca fiber',colores:colors.join(', ')||'Please ask',confeccion:'Handcrafted',talla:$('adminSize').value||'Standard',publico:$('adminPublic').value||'Unisex',colorOptions:colors}};
     if(editing===null)productsData.push(product);else productsData[editing]=product;
@@ -1226,13 +1245,14 @@
   };
   window.editAdminProduct=function(i){
     const p=productsData[i],d=p.es||{};editing=i;$('admin-form-title').textContent='Editar producto';
-    $('adminName').value=d.name||'';$('adminPrice').value=p.price;$('adminCategory').value=p.category||'gorros';$('adminDesc').value=d.desc||'';
+    $('adminName').value=d.name||'';$('adminPrice').value=p.price;$('adminStock').value=Number.isFinite(Number(p.stock))?Number(p.stock):0;$('adminCategory').value=p.category||'gorros';$('adminDesc').value=d.desc||'';
     $('adminMaterial').value=d.material||'';$('adminColors').value=(d.colorOptions||[]).join(', ');$('adminSize').value=d.talla||'Estándar';$('adminPublic').value=d.publico||'Unisex';$('adminImage').value=(p.images||[])[0]||'';
     $('admin-form-title').scrollIntoView({behavior:'smooth'});
   };
-  window.resetAdminForm=function(){editing=null;$('adminProductForm').reset();$('admin-form-title').textContent='Añadir producto';$('adminMaterial').value='100% Fibra de Alpaca';$('adminSize').value='Estándar';$('adminPublic').value='Unisex';};
+  window.resetAdminForm=function(){editing=null;$('adminProductForm').reset();$('admin-form-title').textContent='Añadir producto';$('adminMaterial').value='100% Fibra de Alpaca';$('adminSize').value='Estándar';$('adminPublic').value='Unisex';$('adminStock').value=0;};
   window.deleteAdminProduct=function(i){if(!confirm('¿Eliminar este producto del catálogo local?'))return;productsData.splice(i,1);save('alpaquitay_products',productsData);drawAdmin();drawProducts();};
   window.exportCatalog=function(){const blob=new Blob([JSON.stringify(productsData,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='catalogo-alpaquitay.json';a.click();URL.revokeObjectURL(url);};
+  window.importCatalog=function(e){const file=e.target.files&&e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=function(){try{const data=JSON.parse(reader.result);if(!Array.isArray(data)||!data.every(p=>p&&p.es&&p.price!==undefined&&p.category)){throw new Error('Formato inválido');}if(!confirm(`Se reemplazará el catálogo actual por ${data.length} productos. ¿Continuar?`))return;productsData=data;save('alpaquitay_products',productsData);drawAdmin();drawProducts();alert('Catálogo importado correctamente.');}catch(err){alert('No se pudo importar. Verifica que sea una copia JSON de esta tienda.');}finally{e.target.value='';}};reader.readAsText(file);};
 
   document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeCheckout();closeReviewForm();closeAdminLogin();}});
   document.addEventListener('DOMContentLoaded',()=>{drawProducts();updateCartUI();drawReviews();});
