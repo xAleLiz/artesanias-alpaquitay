@@ -1024,55 +1024,94 @@
 </script>
 
 
-<!-- Navegación interna: Atrás cierra ventanas y recupera la categoría sin salir de la tienda. -->
+<!-- Navegación móvil y escritorio: el botón Atrás vuelve a la vista anterior. -->
 <script>
 (function () {
-  const root = location.pathname;
-  const isOpen = id => { const el=document.getElementById(id); return !!el && !el.classList.contains('hidden'); };
-  const closeAll = () => {
-    if(isOpen('orderModal')) closeModal();
-    if(isOpen('cartDrawer')) toggleCart();
-    if(isOpen('checkoutModal')) closeCheckout();
-    if(isOpen('reviewModal')) closeReviewForm();
-    const floating=document.getElementById('floatingCategoryPanel');
-    if(floating && !floating.hidden && typeof toggleFloatingCategories==='function') toggleFloatingCategories();
+  const ids=['orderModal','cartDrawer','checkoutModal','reviewModal'];
+  const visible=id=>{const e=document.getElementById(id);return e&&!e.classList.contains('hidden');};
+  const base=location.pathname+location.search;
+  const category=()=>currentCategory;
+  const original={
+    openModal:window.openModal, closeModal:window.closeModal,
+    toggleCart:window.toggleCart, openCheckout:window.openCheckout,
+    closeCheckout:window.closeCheckout, openReviewForm:window.openReviewForm,
+    closeReviewForm:window.closeReviewForm, setCategoryFilter:window.setCategoryFilter
   };
-  const current = () => ({category:window.currentCategory || currentCategory || 'all', favorites:!!document.querySelector('.favorite-btn.active')});
-  const push = (view, extra={}) => history.pushState({alpaquitay:true,view,...extra},'',location.pathname+location.search+'#'+view);
-  const previous = history.state;
-  if(!previous || !previous.alpaquitay) history.replaceState({alpaquitay:true,view:'catalog',category:currentCategory},'',location.href);
-  const originalModal=window.openModal;
-  window.openModal=function(index){ originalModal(index);push('producto',{index}); };
-  const originalCart=window.toggleCart;
-  window.toggleCart=function(){const opening=!isOpen('cartDrawer');originalCart();if(opening)push('carrito');};
-  const originalCheckout=window.openCheckout;
-  window.openCheckout=function(){const opening=!isOpen('checkoutModal');originalCheckout();if(opening && isOpen('checkoutModal'))push('pedido');};
-  const originalReview=window.openReviewForm;
-  window.openReviewForm=function(){originalReview();push('opinion');};
-  const originalCategory=window.setCategoryFilter;
-  window.setCategoryFilter=function(category){originalCategory(category);push('categoria',{category});};
-  window.addEventListener('popstate',function(event){
+  let restoring=false;
+  const state=(view,extras={})=>({alpaquitay:true,view,category:category(),...extras});
+  if(!history.state?.alpaquitay)history.replaceState(state('catalog'),'',base);
+  const navigate=(view,extras={})=>{
+    if(restoring)return;
+    history.pushState(state(view,extras),'',base+'#'+view);
+  };
+  const hide=id=>{const e=document.getElementById(id);if(e){e.classList.add('hidden');e.classList.remove('flex');}};
+  const closeAll=()=>ids.forEach(hide);
+  const syncScroll=()=>{document.body.style.overflow=ids.some(visible)?'hidden':'';};
+  const closeView=id=>{
+    if(!visible(id))return;
+    if(!restoring && history.state?.alpaquitay && history.state.view!=='catalog')history.back();
+    else{hide(id);syncScroll();}
+  };
+  window.openModal=function(index){
+    if(!productsData[index])return;
+    const already=visible('orderModal')&&currentModalIndex===index;
+    original.openModal(index);
+    if(!already)navigate('producto',{index});
+    syncScroll();
+  };
+  window.closeModal=()=>closeView('orderModal');
+  window.toggleCart=function(){
+    if(visible('cartDrawer'))closeView('cartDrawer');
+    else{original.toggleCart();navigate('carrito');syncScroll();}
+  };
+  window.openCheckout=function(){
+    if(visible('checkoutModal'))return;
+    original.openCheckout();
+    if(visible('checkoutModal'))navigate('pedido');
+    syncScroll();
+  };
+  window.closeCheckout=()=>closeView('checkoutModal');
+  window.openReviewForm=function(){
+    if(visible('reviewModal'))return;
+    original.openReviewForm();navigate('opinion');syncScroll();
+  };
+  window.closeReviewForm=()=>closeView('reviewModal');
+  window.setCategoryFilter=function(cat){
+    if(!['all','gorros','mitones','vinchas','otros'].includes(cat))return;
+    original.setCategoryFilter(cat);
+    if(history.state?.category!==cat)navigate('categoria',{category:cat});
+  };
+  window.addEventListener('popstate',e=>{
+    restoring=true;
     closeAll();
-    const state=event.state;
-    if(!state || !state.alpaquitay)return;
-    if(state.category && typeof originalCategory==='function')originalCategory(state.category);
-    if(state.view==='producto' && Number.isInteger(state.index))originalModal(state.index);
-    if(state.view==='carrito')originalCart();
-    if(state.view==='pedido')originalCheckout();
-    if(state.view==='opinion')originalReview();
-  });
-  document.addEventListener('keydown',function(e){
-    if(e.key==='Escape'){
-      if(isOpen('orderModal')||isOpen('cartDrawer')||isOpen('checkoutModal')||isOpen('reviewModal')){
-        e.preventDefault();history.back();
-      }
+    const s=e.state;
+    if(s?.alpaquitay){
+      if(s.category && s.category!==category())original.setCategoryFilter(s.category);
+      if(s.view==='producto' && Number.isInteger(s.index) && productsData[s.index])original.openModal(s.index);
+      if(s.view==='carrito')original.toggleCart();
+      if(s.view==='pedido')original.openCheckout();
+      if(s.view==='opinion')original.openReviewForm();
     }
+    restoring=false;syncScroll();
   });
-  document.querySelectorAll('#orderModal, #cartDrawer, #checkoutModal, #reviewModal').forEach(el=>{
-    if(el)el.addEventListener('click',e=>{if(e.target===el)history.back();});
+  // Cierra con Escape, tocando el fondo o el botón de cierre.
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&ids.some(visible)){e.preventDefault();history.back();}
   });
+  ids.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.addEventListener('click',e=>{if(e.target===el)closeView(id);});
+  });
+  // El logotipo regresa al inicio sin recargar ni perder el carrito.
   const logo=document.querySelector('header a[href="index.html"]');
-  if(logo)logo.addEventListener('click',e=>{e.preventDefault();closeAll();if(typeof window.setCategoryFilter==='function')window.setCategoryFilter('all');window.scrollTo({top:0,behavior:'smooth'});});
+  if(logo)logo.addEventListener('click',e=>{
+    e.preventDefault();
+    closeAll();
+    if(category()!=='all')window.setCategoryFilter('all');
+    window.scrollTo({top:0,behavior:'smooth'});syncScroll();
+  });
+  // Al volver a una pestaña o regresar desde WhatsApp, se conserva el carrito.
+  window.addEventListener('pageshow',()=>{if(typeof updateCartUI==='function')updateCartUI();});
 })();
 </script>
 
