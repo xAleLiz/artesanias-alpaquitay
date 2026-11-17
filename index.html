@@ -1023,5 +1023,58 @@
 })();
 </script>
 
+
+<!-- Navegación interna: Atrás cierra ventanas y recupera la categoría sin salir de la tienda. -->
+<script>
+(function () {
+  const root = location.pathname;
+  const isOpen = id => { const el=document.getElementById(id); return !!el && !el.classList.contains('hidden'); };
+  const closeAll = () => {
+    if(isOpen('orderModal')) closeModal();
+    if(isOpen('cartDrawer')) toggleCart();
+    if(isOpen('checkoutModal')) closeCheckout();
+    if(isOpen('reviewModal')) closeReviewForm();
+    const floating=document.getElementById('floatingCategoryPanel');
+    if(floating && !floating.hidden && typeof toggleFloatingCategories==='function') toggleFloatingCategories();
+  };
+  const current = () => ({category:window.currentCategory || currentCategory || 'all', favorites:!!document.querySelector('.favorite-btn.active')});
+  const push = (view, extra={}) => history.pushState({alpaquitay:true,view,...extra},'',location.pathname+location.search+'#'+view);
+  const previous = history.state;
+  if(!previous || !previous.alpaquitay) history.replaceState({alpaquitay:true,view:'catalog',category:currentCategory},'',location.href);
+  const originalModal=window.openModal;
+  window.openModal=function(index){ originalModal(index);push('producto',{index}); };
+  const originalCart=window.toggleCart;
+  window.toggleCart=function(){const opening=!isOpen('cartDrawer');originalCart();if(opening)push('carrito');};
+  const originalCheckout=window.openCheckout;
+  window.openCheckout=function(){const opening=!isOpen('checkoutModal');originalCheckout();if(opening && isOpen('checkoutModal'))push('pedido');};
+  const originalReview=window.openReviewForm;
+  window.openReviewForm=function(){originalReview();push('opinion');};
+  const originalCategory=window.setCategoryFilter;
+  window.setCategoryFilter=function(category){originalCategory(category);push('categoria',{category});};
+  window.addEventListener('popstate',function(event){
+    closeAll();
+    const state=event.state;
+    if(!state || !state.alpaquitay)return;
+    if(state.category && typeof originalCategory==='function')originalCategory(state.category);
+    if(state.view==='producto' && Number.isInteger(state.index))originalModal(state.index);
+    if(state.view==='carrito')originalCart();
+    if(state.view==='pedido')originalCheckout();
+    if(state.view==='opinion')originalReview();
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){
+      if(isOpen('orderModal')||isOpen('cartDrawer')||isOpen('checkoutModal')||isOpen('reviewModal')){
+        e.preventDefault();history.back();
+      }
+    }
+  });
+  document.querySelectorAll('#orderModal, #cartDrawer, #checkoutModal, #reviewModal').forEach(el=>{
+    if(el)el.addEventListener('click',e=>{if(e.target===el)history.back();});
+  });
+  const logo=document.querySelector('header a[href="index.html"]');
+  if(logo)logo.addEventListener('click',e=>{e.preventDefault();closeAll();if(typeof window.setCategoryFilter==='function')window.setCategoryFilter('all');window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+
 </body>
 </html>
