@@ -403,6 +403,29 @@ body[data-alpa-page="inicio"] .alpa-fashion-visual img{object-fit:cover}
  body[data-alpa-page="inicio"] .alpa-fashion-visual{grid-column:1;grid-row:1;min-height:460px!important}
  body[data-alpa-page="inicio"] .alpa-fashion-copy{grid-column:1;grid-row:2;padding:40px 24px!important}
 }
+</style><style id="alpa-alternating-home-2026">
+/* Dos nuevos bloques editoriales: texto/foto, foto/texto */
+.alpa-home-editorials{display:grid;gap:26px;margin:38px 0 75px}
+.alpa-home-editorial{display:grid;grid-template-columns:1fr 1fr;min-height:480px;background:#f6eee6;overflow:hidden}
+.alpa-home-editorial__copy{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:clamp(34px,5vw,88px)}
+.alpa-home-eyebrow{font-size:11px!important;font-weight:700;letter-spacing:.18em;color:#823949;margin-bottom:20px}
+.alpa-home-editorial__copy h2{font:400 clamp(2.4rem,4.5vw,4.6rem)/1.08 Georgia,'Times New Roman',serif;letter-spacing:-.045em;color:#411b26;margin:0 0 25px;text-wrap:balance}
+.alpa-home-editorial__copy>p:not(.alpa-home-eyebrow){font-size:clamp(.92rem,1.25vw,1.05rem);line-height:1.85;color:#755e56;max-width:460px}
+.alpa-home-editorial__copy>a{display:inline-flex;gap:20px;align-items:center;background:#6D1B2A;color:#fff;padding:16px 23px;font-size:11px;font-weight:800;letter-spacing:.12em;margin-top:30px;min-height:48px}
+.alpa-home-editorial__copy>a:hover{background:#4f1421}
+.alpa-home-editorial__image{position:relative;min-height:480px;background:#c7ad99}
+.alpa-home-editorial__image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.alpa-home-editorial--text-first .alpa-home-editorial__copy{grid-column:1;grid-row:1}
+.alpa-home-editorial--text-first .alpa-home-editorial__image{grid-column:2;grid-row:1}
+.alpa-home-editorial--photo-first .alpa-home-editorial__image{grid-column:1;grid-row:1}
+.alpa-home-editorial--photo-first .alpa-home-editorial__copy{grid-column:2;grid-row:1}
+@media(max-width:720px){
+.alpa-home-editorials{gap:20px;margin:22px -14px 50px}
+.alpa-home-editorial{grid-template-columns:1fr;min-height:0}
+.alpa-home-editorial__image{grid-column:1!important;grid-row:1!important;min-height:380px}
+.alpa-home-editorial__copy{grid-column:1!important;grid-row:2!important;padding:38px 25px 43px}
+.alpa-home-editorial__copy h2{font-size:clamp(2.5rem,10vw,3.6rem)}
+}
 </style></head>
 <body class="bg-[#F7F4EF] text-stone-900 font-sans antialiased min-h-screen flex flex-col justify-between">
 
@@ -1428,10 +1451,26 @@ body[data-alpa-page="inicio"] .alpa-fashion-visual img{object-fit:cover}
  const main=document.querySelector('main');
  if(!main)return;
  if(current==='inicio'){
-   const block=document.createElement('section');block.className='alpa-home-discover';
-   block.innerHTML='<p>ARTESANÍAS ALPAQUITAY DEL PERÚ</p><h2>Una tradición que se lleva puesta</h2><p>Descubre nuestras prendas y accesorios artesanales, creados en Hualhuas, Perú.</p><a href="?page=tienda">EXPLORAR LA TIENDA</a>';
+   const block=document.createElement('div');
+   block.className='alpa-home-editorials';
+   block.innerHTML=`
+     <section class="alpa-home-editorial alpa-home-editorial--text-first" aria-label="Nuestra esencia">
+       <div class="alpa-home-editorial__copy"><p class="alpa-home-eyebrow">ALPAQUITAY · HUALHUAS, PERÚ</p><h2>Una tradición que se lleva puesta</h2><p>Textiles y accesorios artesanales que combinan dedicación, tradición y calidez. Descubre piezas creadas en el corazón del valle del Mantaro.</p><a href="?page=historia">CONOCE NUESTRA HISTORIA <span aria-hidden="true">→</span></a></div>
+       <div class="alpa-home-editorial__image"><img class="alpa-editorial-product-image" alt="Detalle de una prenda artesanal de Alpaquitay" loading="lazy"></div>
+     </section>
+     <section class="alpa-home-editorial alpa-home-editorial--photo-first" aria-label="Explora la colección">
+       <div class="alpa-home-editorial__image"><img class="alpa-editorial-product-image" alt="Accesorio de la colección artesanal Alpaquitay" loading="lazy"></div>
+       <div class="alpa-home-editorial__copy"><p class="alpa-home-eyebrow">COLECCIÓN ARTESANAL</p><h2>Hecho para acompañarte</h2><p>Conoce nuestros gorros, vinchas y accesorios de alpaca. Encuentra detalles únicos para cada ocasión.</p><a href="?page=tienda">DESCUBRIR COLECCIÓN <span aria-hidden="true">→</span></a></div>
+     </section>`;
    const hero=main.querySelector('.alpa-fashion-hero');
    if(hero)hero.insertAdjacentElement('afterend',block);
+   // Reutiliza fotografías reales del catálogo, sin incorporar imágenes ajenas a la marca.
+   const products=Array.isArray(window.ALPAQUITAY_PRODUCTS)?window.ALPAQUITAY_PRODUCTS:[];
+   const images=products.flatMap(p=>Array.isArray(p.images)?p.images:[]).filter(Boolean);
+   block.querySelectorAll('.alpa-editorial-product-image').forEach((img,i)=>{
+     img.src=images[i]||'img/chullo-rizo-1.jpg';
+     img.onerror=function(){if(!this.src.endsWith('chullo-rizo-1.jpg'))this.src='img/chullo-rizo-1.jpg';};
+   });
  }
  if(['historia','envios','opiniones','faq'].includes(current)){
    const heading=document.createElement('div');heading.className='alpa-page-title';
