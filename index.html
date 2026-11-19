@@ -109,6 +109,35 @@
   }
 </style>
 
+
+<style id="alpa-premium-2026">
+/* Identidad visual Alpaquitay: presentación únicamente, sin cambiar lógica de compra */
+:root{--alpa-vino:#6D1B2A;--alpa-crema:#F5E9D9;--alpa-oro:#c7a77e}
+html{scroll-padding-top:130px}
+body{background:#fcf8f2!important;color:#342b28}
+header{background:var(--alpa-vino)!important;border-bottom-color:#95535c!important;box-shadow:0 10px 30px #35151a23!important}
+header h1{font-family:Georgia,'Times New Roman',serif;letter-spacing:.045em!important;font-weight:600!important}
+header img[alt="Logo Artesanías Alpaquitay"]{background:#fff9ef;padding:3px;border:1px solid #e2c8ad}
+.section-kicker{color:var(--alpa-vino)!important;letter-spacing:.19em}
+.editorial-card{background:linear-gradient(130deg,#fffdf8,#f6e9db)!important;border-color:#e9d5c0!important}
+.product-card{border-color:#eadccf!important;border-radius:20px!important;background:#fffdfa!important;box-shadow:0 6px 22px #3b23220b!important;transition:transform .25s ease,box-shadow .25s ease!important}
+.product-card:hover{transform:translateY(-4px)!important;box-shadow:0 17px 38px #3b232224!important}
+#floatingCategoryToggle{background:var(--alpa-vino)!important;border-color:#86404c!important}
+.floating-category-option[aria-pressed="true"]{background:var(--alpa-vino)!important}
+.alpa-premium-hero{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(120deg,#4e1321 0%,#6D1B2A 65%,#853d4b 100%)!important;border:1px solid #a0656b!important;border-radius:25px!important;padding:clamp(38px,6vw,72px) 24px!important;box-shadow:0 18px 48px #4c1c2630!important}
+.alpa-premium-hero:before{content:"";position:absolute;inset:11px;border:1px solid #f5e9d95a;border-radius:17px;pointer-events:none}
+.alpa-premium-hero:after{content:"";position:absolute;width:230px;height:230px;right:-100px;top:-110px;border:20px double #e5c5a128;transform:rotate(45deg);pointer-events:none}
+.alpa-premium-hero h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(2rem,5vw,3.7rem)!important;font-weight:500!important;line-height:1.1;letter-spacing:-.02em}
+.alpa-premium-hero #banner-desc{font-size:clamp(.9rem,1.8vw,1.04rem);line-height:1.85;color:#f4e5d8!important}
+.alpa-premium-hero .alpa-origin{color:#f1d7b9;letter-spacing:.24em;font-size:.72rem;font-weight:700;text-transform:uppercase;margin-bottom:19px}
+.alpa-premium-hero .alpa-divider{height:1px;width:74px;background:#e0b48d;margin:23px auto}
+.alpa-premium-hero .alpa-cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--alpa-crema);color:var(--alpa-vino);padding:13px 24px;border-radius:999px;font-size:.86rem;font-weight:800;margin-bottom:8px;text-decoration:none}
+.alpa-premium-hero .alpa-cta:hover{background:#fff8ec}
+.alpa-premium-hero #tag-1,.alpa-premium-hero #tag-2,.alpa-premium-hero #tag-3{background:#ffffff12;border-color:#e6c4a46b}
+#historia h2,#envios h2,#opiniones h2,#faq h2{font-family:Georgia,'Times New Roman',serif;letter-spacing:-.015em}
+@media(max-width:640px){header h1{font-size:1.06rem!important}.alpa-premium-hero{padding:40px 19px!important;border-radius:18px!important}.alpa-premium-hero .alpa-cta{width:100%}.alpa-premium-hero:after{width:125px;height:125px;right:-65px;top:-55px}}
+@media(prefers-reduced-motion:reduce){.product-card{transition:none!important}}
+</style>
 </head>
 <body class="bg-[#F7F4EF] text-stone-900 font-sans antialiased min-h-screen flex flex-col justify-between">
 
@@ -175,12 +204,12 @@
     <main class="max-w-6xl mx-auto px-6 py-8 flex-grow w-full">
 
         <!-- PRESENTACIÓN -->
-        <div class="bg-[#4A3B32] text-[#F3EFEA] rounded-2xl p-8 mb-8 text-center shadow-md border border-[#6B5547]">
-            <h2 class="text-3xl font-extrabold mb-3" id="banner-title">Colección Artesanal 100% Alpaca</h2>
+        <div class="alpa-premium-hero text-[#F3EFEA] rounded-2xl p-8 mb-8 text-center shadow-md border border-[#6B5547]">
+            <p class="alpa-origin">Hualhuas · Perú · Tradición textil andina</p><h2 class="text-3xl font-extrabold mb-3" id="banner-title">Colección Artesanal 100% Alpaca</h2>
             <p class="text-[#D4C3B3] max-w-2xl mx-auto text-sm leading-relaxed" id="banner-desc">
                 Prendas únicas tejidas a mano con fibra pura de alpaca. Añade tus favoritas al carrito o haz clic en cualquier producto para ver sus especificaciones.
             </p>
-            <div class="mt-4 flex flex-wrap justify-center gap-3 text-xs">
+            <div class="alpa-divider" aria-hidden="true"></div><a class="alpa-cta" href="#historia">Conoce nuestra esencia <i class="fas fa-arrow-right" aria-hidden="true"></i></a><div class="mt-4 flex flex-wrap justify-center gap-3 text-xs">
                 <span class="bg-[#2D231E]/65 px-3 py-1.5 rounded-full border border-[#6B5547]" id="tag-1">🌿 Tintes 100% Naturales</span>
                 <span class="bg-[#2D231E]/65 px-3 py-1.5 rounded-full border border-[#6B5547]" id="tag-2">🧶 100% Hecho a Mano</span>
                 <span class="bg-[#2D231E]/65 px-3 py-1.5 rounded-full border border-[#6B5547]" id="tag-3">🤎 Atención personalizada</span>
