@@ -270,28 +270,221 @@ body>div:has(> #top-bar-text) #top-bar-text{max-width:55%;font-size:9px!importan
 }
 @media(min-width:721px) and (max-width:1024px){body>div:has(> #top-bar-text){padding:9px 18px!important;gap:12px}}
 </style>
-</head>
+<style id="alpa-unified-header-style">
+/* One shared brand header; utility text, cart and language live inside it */
+.alpa-unified-header{top:0!important;background:#6D1B2A!important}
+.alpa-unified-header>div:first-child{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;grid-template-areas:"brand tools" "social social";gap:12px 20px!important;align-items:center!important;padding-top:17px!important;padding-bottom:15px!important}
+.alpa-unified-header>div:first-child>a[href="index.html"]{grid-area:brand;min-width:0}
+.alpa-unified-header>div:first-child>div:not(.alpa-unified-utility):not(.alpa-mobile-actions){grid-area:social;justify-content:center}
+.alpa-unified-utility{grid-area:tools;display:flex;align-items:center;justify-content:flex-end;gap:18px;min-width:0}
+.alpa-unified-utility #top-bar-text{font-size:10px;letter-spacing:.02em;line-height:1.45;color:#f4e5da;max-width:270px}
+.alpa-unified-tools{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.alpa-unified-cart{display:flex;align-items:center;gap:7px;padding:8px 11px;border:1px solid #ffffff50;border-radius:99px;font-size:11px;font-weight:700;color:#fff}
+.alpa-unified-cart:hover{background:#ffffff20}
+.alpa-unified-header .alpa-mobile-actions{display:none}
+.alpa-unified-header .alpa-fashion-nav{background:#581624}
+@media(min-width:1150px){.alpa-unified-header>div:first-child{grid-template-columns:minmax(0,1fr) auto auto!important;grid-template-areas:"brand social tools"!important}.alpa-unified-header>div:first-child>div:not(.alpa-unified-utility):not(.alpa-mobile-actions){justify-content:flex-end}}
+@media(min-width:721px) and (max-width:1149px){.alpa-unified-utility #top-bar-text{max-width:180px}.alpa-unified-header>div:first-child{gap:10px!important}}
+@media(max-width:720px){
+.alpa-unified-header>div:first-child{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;grid-template-areas:"brand tools"!important;gap:8px!important;padding:10px 12px!important}
+.alpa-unified-header>div:first-child>a[href="index.html"]{min-width:0;gap:8px!important}
+.alpa-unified-header>div:first-child>a[href="index.html"] h1{font-size:12px!important;overflow-wrap:anywhere;line-height:1.15!important}
+.alpa-unified-header>div:first-child>a[href="index.html"] img{width:40px!important;height:40px!important}
+.alpa-unified-header>div:first-child>div:not(.alpa-unified-utility):not(.alpa-mobile-actions){display:none!important}
+.alpa-unified-utility{display:flex!important;flex-direction:column-reverse;align-items:flex-end;gap:3px}
+.alpa-unified-utility #top-bar-text{display:none}
+.alpa-unified-tools{gap:5px}
+.alpa-unified-cart{padding:7px 9px;font-size:11px}
+.alpa-unified-cart #cart-btn-text{display:none}
+.alpa-unified-header .alpa-mobile-actions{display:none!important}
+.alpa-unified-header .alpa-fashion-nav{border-top:1px solid #ffffff20!important}
+}
+</style>
+<style id="alpa-header-breathing-room">
+/* Header with clearer visual hierarchy and generous responsive spacing */
+.alpa-unified-header>div:first-child{max-width:1380px!important;padding:24px 30px!important;gap:22px 36px!important}
+.alpa-unified-header>div:first-child>a[href="index.html"]{gap:14px!important}
+.alpa-unified-header>div:first-child>a[href="index.html"] img{width:58px!important;height:58px!important}
+.alpa-unified-header>div:first-child>a[href="index.html"] h1{font-size:clamp(16px,1.7vw,24px)!important;line-height:1.15!important;letter-spacing:.045em!important}
+.alpa-unified-header .alpa-unified-utility{gap:22px!important}
+.alpa-unified-header .alpa-unified-tools{gap:12px!important}
+.alpa-unified-header .alpa-unified-cart{padding:11px 15px!important}
+.alpa-unified-header .alpa-lang-wrap{padding:10px 12px!important}
+.alpa-unified-header .alpa-fashion-nav{padding:16px 18px!important;gap:clamp(20px,3.2vw,48px)!important}
+@media(min-width:721px) and (max-width:1149px){
+.alpa-unified-header>div:first-child{grid-template-columns:1fr auto!important;grid-template-areas:"brand tools" "social social"!important;padding:18px 24px!important;gap:18px!important}
+.alpa-unified-header>div:first-child>div:not(.alpa-unified-utility):not(.alpa-mobile-actions){justify-content:center!important;padding-top:5px}
+.alpa-unified-header .alpa-unified-utility #top-bar-text{max-width:220px!important}
+}
+@media(max-width:720px){
+.alpa-unified-header>div:first-child{grid-template-columns:minmax(0,1fr) auto!important;grid-template-areas:"brand tools"!important;padding:14px 13px!important;gap:12px!important}
+.alpa-unified-header>div:first-child>a[href="index.html"]{gap:9px!important}
+.alpa-unified-header>div:first-child>a[href="index.html"] img{width:43px!important;height:43px!important}
+.alpa-unified-header>div:first-child>a[href="index.html"] h1{font-size:clamp(11px,3.3vw,15px)!important;letter-spacing:0!important;overflow-wrap:normal!important}
+.alpa-unified-header .alpa-unified-utility{gap:5px!important}
+.alpa-unified-header .alpa-unified-tools{gap:6px!important}
+.alpa-unified-header .alpa-unified-cart{padding:8px 10px!important}
+.alpa-unified-header .alpa-lang-wrap{padding:7px 8px!important}
+.alpa-unified-header .alpa-fashion-nav{padding:14px 17px!important;gap:28px!important}
+}
+</style>
+
+<style id="alpa-editorial-polish-nov2026">
+/* Refinamiento visual no destructivo: boutique contemporánea Alpaquitay */
+:root{--alpa-wine:#6D1B2A;--alpa-cream:#F5E9D9;--alpa-ink:#30272a}
+body{background:#faf8f5;color:var(--alpa-ink);-webkit-font-smoothing:antialiased}
+.alpa-fashion-copy{background:#f8f1e9}
+.alpa-fashion-copy h2{font-family:Georgia,'Times New Roman',serif;font-weight:400;letter-spacing:-.045em;text-wrap:balance}
+.alpa-fashion-button{transition:background .2s ease,transform .2s ease;min-height:48px}
+.alpa-fashion-button:hover{transform:translateY(-2px)}
+.alpa-fashion-visual img{transition:transform .7s ease}
+@media(hover:hover){.alpa-fashion-visual:hover img{transform:scale(1.025)}}
+#coleccion .alpa-collection-heading h2{letter-spacing:-.035em}
+#product-grid{align-items:stretch}
+#product-grid .product-card{background:transparent!important;border:0!important;box-shadow:none!important;overflow:visible!important;transition:none}
+#product-grid .product-card:hover{box-shadow:none!important;transform:none!important}
+#product-grid .product-card>div:first-child{background:#eee7e0;overflow:hidden;border-radius:2px}
+#product-grid .product-card>div:first-child>img{aspect-ratio:3/4;height:auto!important;min-height:0;object-fit:cover;transition:transform .45s ease}
+@media(hover:hover){#product-grid .product-card:hover>div:first-child>img{transform:scale(1.045)}}
+#product-grid .product-card>.p-6{padding:15px 1px 24px!important}
+#product-grid .product-card h3{font-weight:600!important;line-height:1.45;letter-spacing:.005em}
+#product-grid .product-card .favorite-btn{border:1px solid #e9dfd7;box-shadow:0 2px 10px #00000010}
+#historia{border-radius:3px!important;box-shadow:none!important}
+#envios,#opiniones,#faq{box-shadow:none!important}
+#floatingCategoryToggle{box-shadow:0 7px 20px #30151c23}
+#product-grid button:focus-visible,.alpa-fashion-button:focus-visible{outline:3px solid #9b795e;outline-offset:3px}
+@media(max-width:720px){
+ .alpa-fashion-copy{padding:37px 23px 34px!important}
+ .alpa-fashion-copy h2{font-size:clamp(2.65rem,11vw,4rem)!important}
+ .alpa-fashion-visual{min-height:420px!important}
+ #product-grid{gap:14px 12px!important}
+ #product-grid .product-card>.p-6{padding:11px 1px 20px!important}
+ #product-grid .product-card>div:first-child>img{aspect-ratio:3/4}
+}
+@media(prefers-reduced-motion:reduce){.alpa-fashion-visual img,#product-grid .product-card>div:first-child>img,.alpa-fashion-button{transition:none!important}}
+</style>
+<style id="alpa-pages-2026">
+/* Páginas visuales independientes mediante rutas ?page=, compatibles con GitHub Pages */
+body[data-alpa-page="inicio"] #coleccion,
+body[data-alpa-page="inicio"] #historia,
+body[data-alpa-page="inicio"] #envios,
+body[data-alpa-page="inicio"] #opiniones,
+body[data-alpa-page="inicio"] #faq{display:none!important}
+body[data-alpa-page="tienda"] .alpa-fashion-hero,
+body[data-alpa-page="tienda"] #historia,
+body[data-alpa-page="tienda"] #envios,
+body[data-alpa-page="tienda"] #opiniones,
+body[data-alpa-page="tienda"] #faq{display:none!important}
+body[data-alpa-page="historia"] main > :not(#historia),
+body[data-alpa-page="envios"] main > :not(#envios),
+body[data-alpa-page="opiniones"] main > :not(#opiniones),
+body[data-alpa-page="faq"] main > :not(#faq){display:none!important}
+body[data-alpa-page="historia"] #historia,
+body[data-alpa-page="envios"] #envios,
+body[data-alpa-page="opiniones"] #opiniones,
+body[data-alpa-page="faq"] #faq{margin-top:36px!important;min-height:45vh}
+.alpa-fashion-nav a[aria-current="page"]{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px}
+.alpa-home-discover{max-width:1080px;margin:0 auto 70px;padding:0 18px;text-align:center}
+.alpa-home-discover h2{font:400 clamp(2rem,4vw,3.4rem)/1.15 Georgia,serif;color:#411b26;margin:14px 0}
+.alpa-home-discover p{color:#78685e;line-height:1.8}
+.alpa-home-discover a{display:inline-flex;margin-top:22px;padding:15px 30px;background:#6D1B2A;color:white;font-size:12px;letter-spacing:.12em;font-weight:700}
+.alpa-page-title{text-align:center;margin:32px auto 24px;padding:0 18px}
+.alpa-page-title p{font-size:11px;letter-spacing:.22em;color:#8c6d53}
+.alpa-page-title h2{font:400 clamp(2.4rem,5vw,4rem)/1.1 Georgia,serif;color:#411b26;margin:12px 0}
+.alpa-fashion-nav{scroll-behavior:smooth}
+</style><style id="alpa-hero-photo-first-2026">
+/* Portada editorial: fotografía primero, texto después */
+body[data-alpa-page="inicio"] .alpa-fashion-hero{grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);direction:ltr}
+body[data-alpa-page="inicio"] .alpa-fashion-visual{grid-column:1;grid-row:1;min-height:610px}
+body[data-alpa-page="inicio"] .alpa-fashion-copy{grid-column:2;grid-row:1;min-width:0;padding:clamp(32px,5vw,76px)}
+body[data-alpa-page="inicio"] .alpa-fashion-visual img{object-fit:cover}
+@media(max-width:720px){
+ body[data-alpa-page="inicio"] .alpa-fashion-hero{grid-template-columns:minmax(0,1fr)}
+ body[data-alpa-page="inicio"] .alpa-fashion-visual{grid-column:1;grid-row:1;min-height:460px!important}
+ body[data-alpa-page="inicio"] .alpa-fashion-copy{grid-column:1;grid-row:2;padding:40px 24px!important}
+}
+</style><style id="alpa-alternating-home-2026">
+/* Dos nuevos bloques editoriales: texto/foto, foto/texto */
+.alpa-home-editorials{display:grid;gap:26px;margin:38px 0 75px}
+.alpa-home-editorial{display:grid;grid-template-columns:1fr 1fr;min-height:480px;background:#f6eee6;overflow:hidden}
+.alpa-home-editorial__copy{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:clamp(34px,5vw,88px)}
+.alpa-home-eyebrow{font-size:11px!important;font-weight:700;letter-spacing:.18em;color:#823949;margin-bottom:20px}
+.alpa-home-editorial__copy h2{font:400 clamp(2.4rem,4.5vw,4.6rem)/1.08 Georgia,'Times New Roman',serif;letter-spacing:-.045em;color:#411b26;margin:0 0 25px;text-wrap:balance}
+.alpa-home-editorial__copy>p:not(.alpa-home-eyebrow){font-size:clamp(.92rem,1.25vw,1.05rem);line-height:1.85;color:#755e56;max-width:460px}
+.alpa-home-editorial__copy>a{display:inline-flex;gap:20px;align-items:center;background:#6D1B2A;color:#fff;padding:16px 23px;font-size:11px;font-weight:800;letter-spacing:.12em;margin-top:30px;min-height:48px}
+.alpa-home-editorial__copy>a:hover{background:#4f1421}
+.alpa-home-editorial__image{position:relative;min-height:480px;background:#c7ad99}
+.alpa-home-editorial__image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.alpa-home-editorial--text-first .alpa-home-editorial__copy{grid-column:1;grid-row:1}
+.alpa-home-editorial--text-first .alpa-home-editorial__image{grid-column:2;grid-row:1}
+.alpa-home-editorial--photo-first .alpa-home-editorial__image{grid-column:1;grid-row:1}
+.alpa-home-editorial--photo-first .alpa-home-editorial__copy{grid-column:2;grid-row:1}
+@media(max-width:720px){
+.alpa-home-editorials{gap:20px;margin:22px -14px 50px}
+.alpa-home-editorial{grid-template-columns:1fr;min-height:0}
+.alpa-home-editorial__image{grid-column:1!important;grid-row:1!important;min-height:380px}
+.alpa-home-editorial__copy{grid-column:1!important;grid-row:2!important;padding:38px 25px 43px}
+.alpa-home-editorial__copy h2{font-size:clamp(2.5rem,10vw,3.6rem)}
+}
+</style><style id="alpa-workshop-anchor-2026">#taller{scroll-margin-top:180px}body[data-alpa-page="inicio"] #taller{max-width:1080px;margin:0 auto 38px!important}</style><style id="alpa-two-banner-only-2026">body[data-alpa-page="inicio"] #taller{display:none!important}body[data-alpa-page="inicio"] .alpa-home-editorials{margin-bottom:70px}body[data-alpa-page="inicio"] .alpa-home-editorial--photo-first{display:none!important}</style><style id="alpa-second-banner-zoom-2026">
+/* Mismo zoom suave del banner principal, también en el segundo */
+.alpa-home-editorial__image{overflow:hidden;isolation:isolate}
+.alpa-home-editorial__image img{transform:scale(1);transition:transform .75s cubic-bezier(.2,.65,.2,1),filter .75s ease;will-change:transform}
+@media(hover:hover) and (pointer:fine){
+ .alpa-home-editorial:hover .alpa-home-editorial__image img,
+ .alpa-home-editorial__image:hover img{transform:scale(1.055)}
+ .alpa-home-editorial__copy>a{transition:background .25s ease,transform .25s ease}
+ .alpa-home-editorial__copy>a:hover{transform:translateY(-2px)}
+}
+@media(prefers-reduced-motion:reduce){.alpa-home-editorial__image img,.alpa-home-editorial__copy>a{transition:none!important;transform:none!important}}
+</style><style id="alpa-story-editorial-2026">
+body[data-alpa-page="historia"] #historia.alpa-story{display:block!important;width:min(1200px,calc(100% - 36px));margin:36px auto 100px!important;padding:0!important;background:transparent!important;box-shadow:none!important;border:0!important;min-height:0}
+.alpa-story-intro{text-align:center;max-width:810px;margin:0 auto clamp(45px,7vw,92px);padding:30px 10px}
+.alpa-story-kicker{display:block;color:#8a645a;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase}
+.alpa-story-intro h2{font:400 clamp(2.65rem,6vw,5.6rem)/1.09 Georgia,serif;color:#481e2b;margin:22px auto 24px;letter-spacing:-.035em}
+.alpa-story-intro>p:last-child{color:#665b55;font-size:clamp(15px,1.5vw,19px);line-height:1.9;max-width:680px;margin:auto}
+.alpa-story-chapters{display:grid;gap:clamp(62px,9vw,132px)}
+.alpa-story-chapter{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:center;gap:clamp(28px,6vw,100px)}
+.alpa-story-chapter:nth-child(even) .alpa-story-photo{order:2}
+.alpa-story-photo{margin:0;min-width:0}
+.alpa-story-photo img{width:100%;height:clamp(340px,47vw,610px);display:block;object-fit:cover;background:#e8ddd0;transition:transform .65s ease;transform:scale(1)}
+.alpa-story-photo{overflow:hidden}
+@media(hover:hover) and (pointer:fine){.alpa-story-photo:hover img{transform:scale(1.045)}}
+.alpa-story-photo figcaption{position:relative;background:#f7f0e8;padding:13px 0 0;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#876e61}
+.alpa-story-copy{padding:10px 0}
+.alpa-story-copy h3{font:400 clamp(2rem,3.6vw,3.5rem)/1.16 Georgia,serif;color:#481e2b;margin:17px 0 25px}
+.alpa-story-copy p{color:#625950;font-size:clamp(14px,1.3vw,17px);line-height:1.95;margin:0 0 19px}
+.alpa-story-end{text-align:center;border-top:1px solid #dfd3c8;margin-top:100px;padding:62px 12px 0}
+.alpa-story-end p{font-size:11px;letter-spacing:.17em;color:#886c60}
+.alpa-story-end a{display:inline-flex;margin-top:26px;background:#6d1b2a;color:white;padding:16px 26px;font-size:11px;font-weight:700;letter-spacing:.13em;text-decoration:none;transition:background .2s}
+.alpa-story-end a:hover{background:#4a1220}
+@media(max-width:760px){.alpa-story-chapter{grid-template-columns:1fr;gap:22px}.alpa-story-chapter:nth-child(even) .alpa-story-photo{order:0}.alpa-story-photo img{height:clamp(310px,85vw,530px)}.alpa-story-copy{padding:4px 5px}.alpa-story-intro{padding-top:15px}.alpa-story-end{margin-top:60px}}
+@media(prefers-reduced-motion:reduce){.alpa-story-photo img{transition:none!important}}
+</style><style id="alpa-story-header-fix-2026">
+/* La cabecera de la historia no es la cabecera fija de navegación */
+body[data-alpa-page="historia"] #historia .alpa-story-intro{
+ position:static!important;top:auto!important;z-index:auto!important;
+ display:block!important;width:100%!important;max-width:810px!important;
+ margin:0 auto clamp(45px,7vw,92px)!important;padding:30px 10px!important;
+ background:transparent!important;background-color:transparent!important;
+ color:#481e2b!important;box-shadow:none!important;transform:none!important;
+}
+body[data-alpa-page="historia"] #historia .alpa-story-intro h2{color:#481e2b!important}
+body[data-alpa-page="historia"] #historia .alpa-story-intro>p:last-child{color:#665b55!important}
+</style></head>
 <body class="bg-[#F7F4EF] text-stone-900 font-sans antialiased min-h-screen flex flex-col justify-between">
 
-    <!-- BARRA SUPERIOR CON IDIOMA Y ACCESO AL CARRITO -->
-    <div class="bg-[#2D231E] text-[#E6D5C3] text-xs py-2 px-6 flex justify-between items-center tracking-wide font-medium sticky top-0 z-50">
-        <span id="top-bar-text">🌍 Envíos a todo el mundo | 100% Fibra de Alpaca y Tintes Naturales</span>
-        
-        <div class="flex items-center gap-4">
-            <!-- BOTÓN CARRITO -->
-            <button onclick="toggleCart()" class="bg-[#5C7654] hover:bg-[#4E6346] text-white px-3 py-1.5 rounded-full flex items-center gap-2 shadow font-bold text-xs transition">
-                <i class="fas fa-shopping-bag"></i> <span id="cart-btn-text">Carrito</span> (<span id="cart-count">0</span>)
-            </button>
-
-            <!-- Selector compacto de idioma: un único control -->
-            <label class="alpa-lang-wrap" aria-label="Idioma de la tienda"><i class="fas fa-globe" aria-hidden="true"></i><select id="alpa-language-select" aria-label="Idioma" onchange="setLanguage(this.value)"><option value="es">ES</option><option value="en">EN</option></select></label>
-        </div>
-    </div>
-
     <!-- ENCABEZADO -->
-    <header class="bg-[#4A3B32] text-white shadow-lg border-b border-[#6B5547] sticky top-[33px] z-40">
+    <header class="alpa-unified-header bg-[#4A3B32] text-white shadow-lg border-b border-[#6B5547] sticky top-0 z-40">
         <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
             
+            <div class="alpa-unified-utility" aria-label="Información y opciones de compra">
+                <span id="top-bar-text">🌍 Envíos a todo el mundo | 100% Fibra de Alpaca y Tintes Naturales</span>
+                <div class="alpa-unified-tools">
+                    <button onclick="toggleCart()" class="alpa-unified-cart" aria-label="Abrir carrito"><i class="fas fa-shopping-bag" aria-hidden="true"></i><span id="cart-btn-text">Carrito</span> <span id="cart-count">0</span></button>
+                    <label class="alpa-lang-wrap" aria-label="Idioma de la tienda"><i class="fas fa-globe" aria-hidden="true"></i><select id="alpa-language-select" aria-label="Idioma" onchange="setLanguage(this.value)"><option value="es">ES</option><option value="en">EN</option></select></label>
+                </div>
+            </div>
             <!-- LOGO Y NOMBRE CON ENLACE AL INICIO -->
             <a href="index.html" class="flex items-center gap-3 hover:opacity-90 transition-opacity">
                 <img src="logo.png" alt="Logo Artesanías Alpaquitay" class="w-14 h-14 rounded-full object-cover">
@@ -319,9 +512,9 @@ body>div:has(> #top-bar-text) #top-bar-text{max-width:55%;font-size:9px!importan
                     <i class="fab fa-whatsapp text-sm"></i> WhatsApp
                 </a>
             </div>
-          <div class="alpa-mobile-actions" aria-label="Accesos rápidos"><a href="#coleccion" aria-label="Buscar productos" title="Buscar productos"><i class="fas fa-search" aria-hidden="true"></i></a><button type="button" onclick="showFavorites()" aria-label="Ver favoritos" title="Favoritos"><i class="far fa-heart" aria-hidden="true"></i></button><a href="https://wa.me/51981037981" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp" title="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></div>
+          <div class="alpa-mobile-actions" aria-label="Accesos rápidos"><a href="?page=tienda" aria-label="Buscar productos" title="Buscar productos"><i class="fas fa-search" aria-hidden="true"></i></a><button type="button" onclick="showFavorites()" aria-label="Ver favoritos" title="Favoritos"><i class="far fa-heart" aria-hidden="true"></i></button><a href="https://wa.me/51981037981" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp" title="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></div>
         </div>
-      <nav class="alpa-fashion-nav" aria-label="Navegación principal"><a href="#coleccion">COLECCIÓN</a><a href="#historia">NUESTRA HISTORIA</a><a href="#envios">ENVÍOS</a><a href="#opiniones">OPINIONES</a><a href="#faq">AYUDA</a></nav>
+      <nav class="alpa-fashion-nav" aria-label="Navegación principal"><a href="./">INICIO</a><a href="?page=tienda">TIENDA</a><a href="?page=historia">NUESTRA HISTORIA</a><a href="?page=envios">ENVÍOS</a><a href="?page=opiniones">OPINIONES</a><a href="?page=faq">AYUDA</a></nav>
     </header>
 
     <div class="bg-[#eee7df] border-b border-[#e2d6ca]">
@@ -340,16 +533,16 @@ body>div:has(> #top-bar-text) #top-bar-text{max-width:55%;font-size:9px!importan
             <p class="alpa-season">ALPAQUITAY / COLECCIÓN ARTESANAL</p>
             <h2 id="banner-title">La calidez de lo auténtico</h2>
             <p id="banner-desc">Prendas y accesorios artesanales de alpaca, hechos con dedicación en el corazón del valle del Mantaro.</p>
-            <div class="alpa-fashion-actions"><a href="#coleccion" class="alpa-fashion-button">VER COLECCIÓN <i class="fas fa-arrow-right" aria-hidden="true"></i></a><a href="#historia" class="alpa-fashion-textlink">NUESTRA HISTORIA</a></div>
+            <div class="alpa-fashion-actions"><a href="?page=tienda" class="alpa-fashion-button">COLECCIÓN <i class="fas fa-arrow-right" aria-hidden="true"></i></a><a href="?page=historia" class="alpa-fashion-textlink">HISTORIA</a></div>
             <div class="alpa-fashion-values"><span id="tag-1">🌿 Tintes naturales</span><span id="tag-2">🧶 Trabajo artesanal</span><span id="tag-3">🤎 Atención personalizada</span></div>
           </div>
           <div class="alpa-fashion-visual" role="img" aria-label="Imagen de producto artesanal de la colección Alpaquitay">
-            <img src="img/chullo-rizo-1.jpg" alt="Chullo artesanal de la colección Alpaquitay" loading="eager" decoding="async" onerror="this.style.display='none'">
+            <img src="img/banner-coleccion.jpg" alt="Fotografía de la colección Alpaquitay" loading="eager" decoding="async" onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='img/chullo-rizo-1.jpg';}else{this.style.display='none';}">
             <span class="alpa-visual-caption">HECHO A MANO EN PERÚ <span>01 / ALPAQUITAY</span></span>
           </div>
         </section>
                 <!-- SECCIÓN DE TIENDA FÍSICA / PRESENCIAL -->
-        <div class="bg-white rounded-2xl p-6 mb-8 shadow-sm border border-stone-200 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div id="taller" class="bg-white rounded-2xl p-6 mb-8 shadow-sm border border-stone-200 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div class="flex items-center gap-4">
                 <div class="bg-[#F7F4EF] p-4 rounded-xl text-[#4A3B32] text-2xl border border-[#EBDDCF]">
                     <i class="fas fa-store"></i>
@@ -391,11 +584,17 @@ body>div:has(> #top-bar-text) #top-bar-text{max-width:55%;font-size:9px!importan
             <!-- Los productos se renderizan aquí -->
         </div>
         </section>
-        <section id="historia" class="editorial-card rounded-2xl p-7 md:p-10 mb-8 grid md:grid-cols-[1.2fr_.8fr] gap-8 items-center shadow-sm">
-          <div><p class="section-kicker mb-2">Nuestra esencia</p><h2 class="text-2xl md:text-3xl font-bold text-[#4A3B32] mb-3">Tradición que se siente, arte que se lleva</h2>
-          <p class="text-sm leading-7 text-stone-600">Desde Hualhuas, en el corazón del valle del Mantaro, compartimos piezas textiles inspiradas en la tradición andina. Cada diseño busca poner en valor el trabajo artesanal y la calidez de la fibra de alpaca.</p>
-          <p class="text-sm leading-7 text-stone-600 mt-3">Te invitamos a conocer nuestras prendas, elegir tus favoritas y escribirnos para recibir atención personalizada.</p></div>
-          <div class="rounded-xl bg-[#4A3B32] text-[#F3EFEA] p-7"><p class="text-xs tracking-widest uppercase text-[#D4C3B3] mb-3">Artesanías Alpaquitay</p><p class="text-xl font-semibold leading-relaxed">Cada pieza cuenta una historia de creatividad, dedicación y herencia andina.</p><p class="text-xs text-[#D4C3B3] mt-5"><i class="fas fa-map-marker-alt mr-1"></i> Hualhuas · Huancayo · Perú</p></div>
+        <section id="historia" class="alpa-story" aria-label="Nuestra historia">
+          <header class="alpa-story-intro"><p class="alpa-story-kicker">HUALHUAS · JUNÍN · PERÚ · DESDE 2010</p><h2>Una historia tejida con nuestras manos</h2><p>De una pequeña tienda y unos pocos hilos nació un sueño familiar que hoy lleva la artesanía de Hualhuas más allá de nuestras fronteras.</p></header>
+          <div class="alpa-story-chapters">
+            <article class="alpa-story-chapter"><figure class="alpa-story-photo"><img src="img/historia-01-tenido.jpg" alt="Proceso artesanal de teñido de hilos de alpaca en Hualhuas" loading="eager"><figcaption>01 / Nuestros orígenes</figcaption></figure><div class="alpa-story-copy"><span class="alpa-story-kicker">2010 · EL COMIENZO</span><h3>Todo comenzó con unos pocos hilos</h3><p>Artesanías Alpaquitay nació en 2010, en el pueblo de Hualhuas, como el sueño de nuestros fundadores: una pareja que decidió transformar su pasión por los textiles en un emprendimiento familiar.</p><p>En una pequeña tienda, ella imaginaba y diseñaba las prendas, mientras él se dedicaba al teñido artesanal. Trabajaban con fibra de alpaca y colores obtenidos de plantas, dando vida a piezas creadas con paciencia, dedicación y respeto por la tradición.</p></div></article>
+            <article class="alpa-story-chapter"><figure class="alpa-story-photo"><img src="img/historia-02-artesanos.jpg" alt="Personas de la comunidad de Hualhuas, parte de la historia de Alpaquitay" loading="lazy"><figcaption>02 / Nuestra comunidad</figcaption></figure><div class="alpa-story-copy"><span class="alpa-story-kicker">MANOS QUE CREAN</span><h3>El valor de lo hecho a mano</h3><p>Con el tiempo, el proyecto creció junto a personas de nuestra comunidad. Cada prenda refleja el trabajo artesanal, la creatividad y el cuidado de quienes la elaboran.</p><p>Creemos que la belleza de una pieza está en sus detalles: en las manos que la hacen, en los colores que la distinguen y en la historia que lleva consigo.</p></div></article>
+            <article class="alpa-story-chapter"><figure class="alpa-story-photo"><img src="img/historia-03-encuentros.jpg" alt="Encuentro de Alpaquitay con visitantes extranjeros y una bandera suiza" loading="lazy"><figcaption>03 / Nuevos horizontes</figcaption></figure><div class="alpa-story-copy"><span class="alpa-story-kicker">DE HUALHUAS AL MUNDO</span><h3>Encuentros que abrieron caminos</h3><p>Un día, personas llegadas del extranjero conocieron nuestras creaciones y se interesaron por el trabajo que realizábamos. Esos encuentros nos animaron a mirar más lejos y dieron paso a nuevas oportunidades de exportación hacia países europeos.</p><p>Así, el sueño que comenzó en una pequeña tienda empezó a cruzar fronteras, sin perder sus raíces.</p></div></article>
+            <article class="alpa-story-chapter"><figure class="alpa-story-photo"><img src="img/historia-04-pasarela.jpg" alt="Presentación de diseños de Alpaquitay en una pasarela" loading="lazy"><figcaption>04 / Moda con identidad</figcaption></figure><div class="alpa-story-copy"><span class="alpa-story-kicker">CRECIMIENTO Y EXPERIENCIAS</span><h3>Nuestra artesanía también llegó a las pasarelas</h3><p>El camino nos permitió participar en espacios de moda y mostrar nuestras creaciones a nuevos públicos. Cada experiencia nos impulsó a seguir aprendiendo, diseñando y compartiendo la riqueza de nuestro trabajo textil.</p><p>En 2019, Alpaquitay participó en una capacitación sobre gestión en moda y producto exportable vinculada a PROMPERÚ y la Universidad Nacional Mayor de San Marcos.</p></div></article>
+            <article class="alpa-story-chapter"><figure class="alpa-story-photo"><img src="img/historia-05-reconocimiento.jpg" alt="Fotografía de Alpaquitay durante un evento de reconocimiento" loading="lazy"><figcaption>05 / Un camino de aprendizaje</figcaption></figure><div class="alpa-story-copy"><span class="alpa-story-kicker">NUESTRA ESENCIA</span><h3>Seguimos tejiendo nuestra historia</h3><p>Nuestro nombre y nuestro logotipo están inspirados en la alpaca, cuya fibra forma parte de nuestra identidad desde el inicio. Hoy seguimos valorando los saberes textiles de Hualhuas y el trabajo de nuestra comunidad.</p><p>Porque detrás de cada creación hay mucho más que una prenda: hay una familia, unas manos y un sueño que continúa creciendo.</p></div></article>
+            <article class="alpa-story-chapter"><figure class="alpa-story-photo"><img src="img/historia-06-familia.jpg" alt="Recuerdo familiar en los Andes, parte del camino de Alpaquitay" loading="lazy"><figcaption>06 / Nuestras raíces</figcaption></figure><div class="alpa-story-copy"><span class="alpa-story-kicker">UN SUEÑO FAMILIAR</span><h3>Una historia que sigue creciendo</h3><p>Desde aquella pequeña tienda en Hualhuas, nuestra familia ha acompañado cada etapa de Alpaquitay. Los recuerdos, las personas y las experiencias compartidas nos recuerdan por qué comenzamos.</p><p>Seguimos mirando hacia el futuro con el mismo cariño por la artesanía, la fibra de alpaca y nuestra tierra.</p></div></article>
+          </div>
+          <footer class="alpa-story-end"><p>HECHO A MANO · HECHO CON HISTORIA · HECHO EN HUALHUAS</p><a href="?page=tienda">DESCUBRE NUESTRA COLECCIÓN <span aria-hidden="true">→</span></a></footer>
         </section>
         <section id="envios" class="bg-white rounded-2xl p-6 md:p-8 mb-8 border border-stone-200 shadow-sm">
           <div class="grid md:grid-cols-3 gap-6 items-center"><div><p class="section-kicker mb-2">Compra con tranquilidad</p><h2 class="text-2xl font-bold text-[#4A3B32]">Envíos coordinados contigo</h2></div>
@@ -427,7 +626,7 @@ body>div:has(> #top-bar-text) #top-bar-text{max-width:55%;font-size:9px!importan
                 <p class="text-xs text-stone-400 mt-1" id="footer-desc">Textiles auténticos hechos a mano en el valle andino.</p>
             </div>
             
-            <div class="flex flex-wrap justify-center gap-4 text-xs text-stone-400"><a href="#historia">Historia</a><a href="#envios">Envíos</a><a href="#opiniones">Opiniones</a><a href="#faq">FAQ</a></div>
+            <div class="flex flex-wrap justify-center gap-4 text-xs text-stone-400"><a href="?page=historia">Historia</a><a href="?page=envios">Envíos</a><a href="?page=opiniones">Opiniones</a><a href="?page=faq">FAQ</a></div>
             <div class="flex items-center gap-6 text-xl">
                 <a href="https://www.instagram.com/artesaniasalpaquitaydelperu/" target="_blank" class="hover:text-[#D4C3B3] transition" title="Instagram"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.facebook.com/profile.php?id=100054454091170&locale=es_LA" target="_blank" class="hover:text-[#D4C3B3] transition" title="Facebook"><i class="fab fa-facebook"></i></a>
@@ -1126,10 +1325,16 @@ body>div:has(> #top-bar-text) #top-bar-text{max-width:55%;font-size:9px!importan
         '<span>' + categoryNames[category] + '</span>' +
         '<i class="fas fa-check category-check text-xs"></i>';
       button.addEventListener("click", function () {
+        closeFloatingCategories();
+        const onShop = new URLSearchParams(window.location.search).get("page") === "tienda";
+        if (!onShop) {
+          // En cualquier sección, las categorías llevan a la tienda con el filtro solicitado.
+          window.location.href = "?page=tienda&categoria=" + encodeURIComponent(category);
+          return;
+        }
         if (typeof window.setCategoryFilter === "function") {
           window.setCategoryFilter(category);
         }
-        closeFloatingCategories();
         const catalog = document.getElementById("product-grid");
         if (catalog) {
           const y = catalog.getBoundingClientRect().top + window.scrollY - 115;
@@ -1281,5 +1486,61 @@ body>div:has(> #top-bar-text) #top-bar-text{max-width:55%;font-size:9px!importan
 })();
 </script>
 
-</body>
+<script id="alpa-pages-router">
+(function(){
+ const allowed=['inicio','tienda','historia','envios','opiniones','faq'];
+ const page=new URLSearchParams(location.search).get('page')||'inicio';
+ const current=allowed.includes(page)?page:'inicio';
+ document.body.dataset.alpaPage=current;
+ const names={inicio:'Inicio',tienda:'Tienda',historia:'Nuestra historia',envios:'Envíos',opiniones:'Opiniones',faq:'Preguntas frecuentes'};
+ document.title=names[current]+' | Artesanías Alpaquitay del Perú';
+ document.querySelectorAll('.alpa-fashion-nav a').forEach(a=>{
+   const url=new URL(a.href,location.href);
+   const target=url.searchParams.get('page')||'inicio';
+   if(target===current)a.setAttribute('aria-current','page');
+ });
+ const main=document.querySelector('main');
+ if(!main)return;
+ if(current==='inicio'){
+   const block=document.createElement('div');
+   block.className='alpa-home-editorials';
+   block.innerHTML=`
+     <section class="alpa-home-editorial alpa-home-editorial--text-first" aria-label="Nuestra tienda y taller">
+       <div class="alpa-home-editorial__copy"><p class="alpa-home-eyebrow">VISÍTANOS EN HUALHUAS, PERÚ</p><h2>Conoce nuestra tienda y taller</h2><p>Acércate al lugar donde compartimos nuestras prendas y accesorios artesanales. Descubre Alpaquitay en Hualhuas, en el valle del Mantaro.</p><a href="https://www.google.com/maps/search/?api=1&query=Artesan%C3%ADas%20Alpaquitay%20del%20Per%C3%BA%20Alfonso%20Ugarte%20882%20Hualhuas" target="_blank" rel="noopener noreferrer">CONOCE NUESTRA TIENDA <span aria-hidden="true">→</span></a></div>
+       <div class="alpa-home-editorial__image"><img class="alpa-editorial-product-image" alt="Detalle de una prenda artesanal de Alpaquitay" loading="lazy"></div>
+     </section>
+`;
+   const hero=main.querySelector('.alpa-fashion-hero');
+   if(hero)hero.insertAdjacentElement('afterend',block);
+   // Reutiliza fotografías reales del catálogo, sin incorporar imágenes ajenas a la marca.
+   const products=Array.isArray(window.ALPAQUITAY_PRODUCTS)?window.ALPAQUITAY_PRODUCTS:[];
+   const images=products.flatMap(p=>Array.isArray(p.images)?p.images:[]).filter(Boolean);
+   block.querySelectorAll('.alpa-editorial-product-image').forEach(img=>{
+     img.src='img/banner-tienda.jpg';
+     img.onerror=function(){
+       if(!this.dataset.fallback){this.dataset.fallback='1';this.src=images[0]||'img/chullo-rizo-1.jpg';}
+       else if(!this.dataset.lastFallback){this.dataset.lastFallback='1';this.src='img/chullo-rizo-1.jpg';}
+       else this.style.display='none';
+     };
+   });
+ }
+ if(['historia','envios','opiniones','faq'].includes(current)){
+   const heading=document.createElement('div');heading.className='alpa-page-title';
+   heading.innerHTML='<p>ALPAQUITAY / PERÚ</p><h2>'+names[current]+'</h2>';
+   main.prepend(heading);
+ }
+ if(current==='tienda'){
+   const heading=document.createElement('div');heading.className='alpa-page-title';
+   heading.innerHTML='<p>COLECCIÓN ARTESANAL</p><h2>La tienda Alpaquitay</h2>';
+   main.prepend(heading);
+ }
+})();
+</script><script id="alpa-category-deeplink-2026">
+(function(){
+  const category=new URLSearchParams(location.search).get('categoria');
+  if(!['all','gorros','mitones','vinchas','otros'].includes(category))return;
+  function apply(){if(typeof window.setCategoryFilter==='function'){window.setCategoryFilter(category);window.activeFloatingCategory=category;}}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply,{once:true});else apply();
+})();
+</script></body>
 </html>

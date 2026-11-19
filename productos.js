@@ -61,16 +61,16 @@ window.ALPAQUITAY_PRODUCTS = [
                 es: { 
                     name: 'Muñequera Botánica Andina', eng: 'Andean Botanical Alpaca Wrist Warmer', 
                     desc: 'Muñequeras artesanales elaboradas en 100% fibra de alpaca para mujer. Destacan por su refinado bordado floral hecho a mano que rinde homenaje a la flora andina.', 
-                    material: '100% Fibra de Alpaca', colores: 'Guindo, Gris, Beige', 
+                    material: '100% Fibra de Alpaca', colores: 'Guindo', 
                     confeccion: 'Bordado artesanal a mano con motivos botánicos/florales', talla: 'Estándar', publico: 'Mujer',
-                    colorOptions: ['Guindo', 'Gris', 'Beige']
+                    colorOptions: ['Guindo']
                 },
                 en: { 
                     name: 'Andean Botanical Alpaca Wrist Warmer', eng: 'Muñequera Botánica Andina', 
                     desc: 'Handcrafted wrist warmers made of 100% alpaca fiber for women. Highlighted by delicate hand-embroidered floral motifs inspired by Andean flora.', 
-                    material: '100% Alpaca Fiber', colores: 'Burgundy, Gray, Beige', 
+                    material: '100% Alpaca Fiber', colores: 'Burgundy', 
                     confeccion: 'Hand-embroidered botanical floral designs', talla: 'Standard size', publico: 'Women',
-                    colorOptions: ['Burgundy', 'Gray', 'Beige']
+                    colorOptions: ['Burgundy']
                 }
             },
             // 4. MUÑEQUERA AMANECER ANDINO
@@ -85,22 +85,22 @@ window.ALPAQUITAY_PRODUCTS = [
                 es: { 
                     name: 'Muñequera Amanecer Andino', eng: 'Andean Sunrise Alpaca Wrist Warmer', 
                     desc: 'Mitones tejidos artesanalmente en fibra 100% alpaca. Su diseño sin dedos brinda calidez y total libertad de movimiento, acentuado con un botón clásico.', 
-                    material: '100% Fibra de Alpaca', colores: 'Gris Claro, Gris Oscuro, Blanco, Negro, Marrón, Beige Oscuro', 
+                    material: '100% Fibra de Alpaca', colores: 'Gris, Beige, Negro, Blanco', 
                     confeccion: 'Botón decorativo en fibra de alpaca', talla: 'Estándar', publico: 'Unisex',
-                    colorOptions: ['Gris Claro', 'Gris Oscuro', 'Blanco', 'Negro', 'Marrón', 'Beige Oscuro']
+                    colorOptions: ['Gris', 'Beige', 'Negro', 'Blanco']
                 },
                 en: { 
                     name: 'Andean Sunrise Alpaca Wrist Warmer', eng: 'Muñequera Amanecer Andino', 
                     desc: 'Handcrafted fingerless gloves made of 100% alpaca fiber. Fingerless design providing warmth and touchscreen mobility with a classic button detail.', 
-                    material: '100% Alpaca Fiber', colores: 'Light Gray, Dark Gray, White, Black, Brown, Dark Beige', 
+                    material: '100% Alpaca Fiber', colores: 'Gray, Beige, Black, White', 
                     confeccion: 'Decorative alpaca fiber button', talla: 'Standard size', publico: 'Unisex',
-                    colorOptions: ['Light Gray', 'Dark Gray', 'White', 'Black', 'Brown', 'Dark Beige']
+                    colorOptions: ['Gray', 'Beige', 'Black', 'White']
                 }
             },
             // 5. VINCHA "AMIGOS DEL BOSQUE" DE ALPACA
             {
                 category: 'vinchas',
-                price: 20.00,
+                price: 18.00,
                 images: [
                     'img/vincha-bosque-1.jpg', 
                     'img/vincha-bosque-2.jpg',
@@ -109,14 +109,14 @@ window.ALPAQUITAY_PRODUCTS = [
                 es: { 
                     name: 'Vincha "Amigos del Bosque" de Alpaca', eng: 'Alpaca Animal Ear & Flower Headband', 
                     desc: 'Divertidas y abrigadoras vinchas tejidas a mano en fibra 100% de alpaca, diseñadas con encantadores apliques de animalitos y flores.', 
-                    material: '100% Fibra de Alpaca', colores: 'Natural, Pastel, Multicolor', 
+                    material: '100% Fibra de Alpaca', colores: 'Diseños: lechucita, pandita, zorrito, ovejita, gatito, perrito y flores', 
                     confeccion: 'Apliques a mano (Lechucita, Panda, Zorrito, Ovejita, Gatito, Perrito, Flores)', talla: 'Estándar', publico: 'Niños y jóvenes',
                     colorOptions: ['Lechucita', 'Panda', 'Zorrito', 'Ovejita', 'Gatito', 'Perrito', 'Flores']
                 },
                 en: { 
                     name: 'Alpaca Animal Ear & Flower Headband', eng: 'Vincha "Amigos del Bosque" de Alpaca', 
                     desc: 'Fun and warm hand-knitted headbands made of 100% alpaca fiber with animal ear and flower appliques.', 
-                    material: '100% Alpaca Fiber', colores: 'Natural, Pastel, Multicolor', 
+                    material: '100% Alpaca Fiber', colores: 'Designs: owl, panda, fox, sheep, kitten, puppy and flowers', 
                     confeccion: 'Hand-knitted appliques (Owl, Panda, Fox, Sheep, Kitten, Puppy, Flowers)', talla: 'Standard size', publico: 'Kids and youth',
                     colorOptions: ['Owl', 'Panda', 'Fox', 'Sheep', 'Kitten', 'Puppy', 'Flowers']
                 }
@@ -181,16 +181,16 @@ window.ALPAQUITAY_PRODUCTS = [
                 es: { 
                     name: 'Vincha Burbujas Andinas', eng: 'Alpaca Textured Bobble Headband', 
                     desc: 'Sofisticada vincha tejida a mano con un hermoso diseño de relieves y burbujas en fibra de alpaca.', 
-                    material: '100% Fibra de Alpaca', colores: 'Beige Natural, Gris Alpaca, Marrón Peruano, Blanco Marfil', 
+                    material: '100% Fibra de Alpaca', colores: 'Beige, Marrón, Rojo, Blanco', 
                     confeccion: 'Relieve en alto relieve', talla: 'Estándar', publico: 'Mujeres',
-                    colorOptions: ['Beige Natural', 'Gris Alpaca', 'Marrón Peruano', 'Blanco Marfil']
+                    colorOptions: ['Beige', 'Marrón', 'Rojo', 'Blanco']
                 },
                 en: { 
                     name: 'Alpaca Textured Bobble Headband', eng: 'Vincha Burbujas Andinas', 
                     desc: 'Sophisticated hand-knitted headband with a beautiful bobble relief texture.', 
-                    material: '100% Alpaca Fiber', colores: 'Natural Beige, Alpaca Gray, Peruvian Brown, Ivory White', 
+                    material: '100% Alpaca Fiber', colores: 'Beige, Brown, Red, White', 
                     confeccion: 'Bobble relief texture', talla: 'Standard size', publico: 'Women',
-                    colorOptions: ['Natural Beige', 'Alpaca Gray', 'Peruvian Brown', 'Ivory White']
+                    colorOptions: ['Beige', 'Brown', 'Red', 'White']
                 }
             },
             // 9. CHULLO ANDINO TRADICIONAL
@@ -229,16 +229,16 @@ window.ALPAQUITAY_PRODUCTS = [
                 es: { 
                     name: 'Gorro Doble con Chispa', eng: 'Double Layer Speckled Alpaca Beanie', 
                     desc: 'Cálido y versátil gorro de diseño doble con acabado jaspado.', 
-                    material: '100% Fibra de Alpaca', colores: 'Gris Jaspado, Beige Jaspado, Marrón Jaspado', 
+                    material: '100% Fibra de Alpaca', colores: 'Fondo blanco con jaspeado negro, verde, rojo y marrón', 
                     confeccion: 'Doble capa de abrigo', talla: 'Estándar', publico: 'Unisex',
-                    colorOptions: ['Gris Jaspado', 'Beige Jaspado', 'Marrón Jaspado']
+                    colorOptions: ['Blanco jaspeado con negro', 'Blanco jaspeado con verde', 'Blanco jaspeado con rojo', 'Blanco jaspeado con marrón']
                 },
                 en: { 
                     name: 'Double Layer Speckled Alpaca Beanie', eng: 'Gorro Doble con Chispa', 
                     desc: 'Warm and versatile double-layer beanie with speckled natural finish.', 
-                    material: '100% Alpaca Fiber', colores: 'Speckled Gray, Speckled Beige, Speckled Brown', 
+                    material: '100% Alpaca Fiber', colores: 'White base speckled with black, green, red and brown', 
                     confeccion: 'Double layer warmth', talla: 'Standard size', publico: 'Unisex',
-                    colorOptions: ['Speckled Gray', 'Speckled Beige', 'Speckled Brown']
+                    colorOptions: ['White with black flecks', 'White with green flecks', 'White with red flecks', 'White with brown flecks']
                 }
             },
             // 11. GORRO COPOS DE ALPACA
@@ -253,16 +253,16 @@ window.ALPAQUITAY_PRODUCTS = [
                 es: { 
                     name: 'Gorro Copos de Alpaca', eng: 'Alpaca Textured Bobble Beanie', 
                     desc: 'Elegante y abrigador gorro tejido a mano con hermoso diseño en relieve de copos, disponible en tonalidades naturales y vibrantes.', 
-                    material: '100% Fibra de Alpaca', colores: 'Blanco Marfil, Gris Oscuro, Marrón Claro, Negro Puro, Rojo (Tonalidades), Verde (Tonalidades)', 
+                    material: '100% Fibra de Alpaca', colores: 'Blanco, Gris, Marrón, Tonalidades de rojo y verde', 
                     confeccion: 'Diseño texturizado en copos', talla: 'Estándar', publico: 'Unisex',
-                    colorOptions: ['Blanco Marfil', 'Gris Oscuro', 'Marrón Claro', 'Negro Puro', 'Rojo (Tonalidades)', 'Verde (Tonalidades)']
+                    colorOptions: ['Blanco', 'Gris', 'Marrón', 'Rojo (tonalidades)', 'Verde (tonalidades)']
                 },
                 en: { 
                     name: 'Alpaca Textured Bobble Beanie', eng: 'Gorro Copos de Alpaca', 
                     desc: 'Elegant and warm hand-knitted beanie featuring a beautiful relief design, available in natural and vibrant shades.', 
-                    material: '100% Alpaca Fiber', colores: 'Ivory White, Dark Gray, Light Brown, Pure Black, Red (Shades), Green (Shades)', 
+                    material: '100% Alpaca Fiber', colores: 'White, Gray, Brown, Shades of red and green', 
                     confeccion: 'Textured bobble design', talla: 'Standard size', publico: 'Unisex',
-                    colorOptions: ['Ivory White', 'Dark Gray', 'Light Brown', 'Pure Black', 'Red (Shades)', 'Green (Shades)']
+                    colorOptions: ['White', 'Gray', 'Brown', 'Red (shades)', 'Green (shades)']
                 }
             },
             // 12. GORRO "OREJAS DE GATO" DE ALPACA
@@ -277,16 +277,16 @@ window.ALPAQUITAY_PRODUCTS = [
                 es: { 
                     name: 'Gorro "Orejas de Gato" de Alpaca', eng: 'Alpaca Cat Ear Beanie', 
                     desc: 'Divertido y moderno gorro tejido a mano que forma sutiles orejitas de gato al usarlo.', 
-                    material: '100% Fibra de Alpaca', colores: 'Blanco, Verde, Gris Suave, Beige Cálido, Rosa Natural, Negro Elegante', 
+                    material: '100% Fibra de Alpaca', colores: 'Rojo natural, Blanco, Verde, Gris suave, Beige cálido, Negro', 
                     confeccion: 'Forma de orejas de gato', talla: 'Estándar', publico: 'Mujeres y jóvenes',
-                    colorOptions: ['Blanco', 'Verde', 'Gris Suave', 'Beige Cálido', 'Rosa Natural', 'Negro Elegante']
+                    colorOptions: ['Rojo natural', 'Blanco', 'Verde', 'Gris suave', 'Beige cálido', 'Negro']
                 },
                 en: { 
                     name: 'Alpaca Cat Ear Beanie', eng: 'Gorro "Orejas de Gato" de Alpaca', 
                     desc: 'Fun and modern hand-knitted beanie that forms subtle cat ears when worn.', 
-                    material: '100% Alpaca Fiber', colores: 'White, Green, Soft Gray, Warm Beige, Natural Rose, Elegant Black', 
+                    material: '100% Alpaca Fiber', colores: 'Natural Red, White, Green, Soft Gray, Warm Beige, Black', 
                     confeccion: 'Cat ear shaped fit', talla: 'Standard size', publico: 'Women and youth',
-                    colorOptions: ['White', 'Green', 'Soft Gray', 'Warm Beige', 'Natural Rose', 'Elegant Black']
+                    colorOptions: ['Natural Red', 'White', 'Green', 'Soft Gray', 'Warm Beige', 'Black']
                 }
             }
         ];
