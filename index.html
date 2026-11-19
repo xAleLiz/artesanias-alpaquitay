@@ -171,6 +171,42 @@ header img[alt="Logo Artesanías Alpaquitay"]{background:#fff9ef;padding:3px;bor
 @media(min-width:1024px){#product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:420px){main{padding-left:14px!important;padding-right:14px!important}#product-grid{gap:16px!important}.product-card .p-6{padding:17px!important}}
 </style>
+<style id="alpa-fashion-rebuild">
+/* Nueva arquitectura editorial: portada dividida, navegación y tienda primero */
+header{position:sticky!important;top:0!important}
+.alpa-fashion-nav{display:flex;align-items:center;justify-content:center;gap:clamp(15px,3vw,42px);padding:12px 14px;border-top:1px solid #ffffff2c;background:#551521;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+.alpa-fashion-nav a{color:#f8e9da;font-size:10px;letter-spacing:.16em;font-weight:700;text-decoration:none}
+.alpa-fashion-nav a:hover{text-decoration:underline;text-underline-offset:5px}
+main{max-width:1440px!important;padding-top:0!important}
+.alpa-fashion-hero{display:grid;grid-template-columns:1fr 1fr;min-height:560px;background:#f3e9dd;margin:0 -24px 45px;overflow:hidden}
+.alpa-fashion-copy{padding:clamp(34px,5.5vw,92px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.alpa-fashion-copy .alpa-origin{font-size:10px;letter-spacing:.2em;color:#783748;font-weight:800;margin-bottom:26px}
+.alpa-season{font-size:11px;letter-spacing:.17em;color:#846b63;margin-bottom:15px}
+.alpa-fashion-copy h2{font:400 clamp(3rem,5.4vw,5.6rem)/1.02 Georgia,'Times New Roman',serif;letter-spacing:-.055em;color:#411b26;margin:0 0 23px;max-width:660px}
+.alpa-fashion-copy #banner-desc{font-size:clamp(.95rem,1.3vw,1.1rem);line-height:1.8;color:#6d5750;max-width:450px}
+.alpa-fashion-actions{display:flex;align-items:center;gap:25px;flex-wrap:wrap;margin-top:32px}
+.alpa-fashion-button{background:#6D1B2A;color:white;padding:16px 23px;font-size:11px;letter-spacing:.13em;font-weight:800;display:inline-flex;align-items:center;gap:17px}
+.alpa-fashion-button:hover{background:#4f1421}
+.alpa-fashion-textlink{color:#4b2730;font-size:11px;font-weight:800;letter-spacing:.11em;border-bottom:1px solid #4b2730;padding-bottom:5px}
+.alpa-fashion-values{display:flex;gap:12px;flex-wrap:wrap;margin-top:36px;color:#7d645b;font-size:10px}
+.alpa-fashion-values span{border-top:1px solid #d4bcb0;padding-top:10px}
+.alpa-fashion-visual{position:relative;min-height:550px;background:linear-gradient(140deg,#d8c2ad,#a98b78);overflow:hidden}
+.alpa-fashion-visual img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:center}
+.alpa-visual-caption{position:absolute;bottom:24px;left:24px;right:24px;color:#fff;background:#291e1a7d;backdrop-filter:blur(7px);padding:13px 16px;display:flex;justify-content:space-between;gap:12px;font-size:10px;letter-spacing:.15em}
+#coleccion{padding-top:12px}
+#coleccion .alpa-collection-heading{margin-top:16px}
+#product-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:19px!important}
+#product-grid .product-card{border-radius:2px!important;box-shadow:none!important;border-color:#eee6de!important}
+#product-grid .product-card:hover{box-shadow:0 9px 28px #26181a17!important}
+#product-grid .product-card .p-6{padding:17px!important}
+#product-grid .product-card h3{font-size:15px!important}
+#product-grid .product-card .text-lg.font-extrabold{font-size:16px!important}
+#historia{margin-top:85px}
+#historia,#envios,#opiniones,#faq{scroll-margin-top:170px}
+@media(max-width:1100px){#product-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}.alpa-fashion-hero{min-height:490px}.alpa-fashion-visual{min-height:490px}}
+@media(max-width:720px){header{top:0!important}.alpa-fashion-nav{justify-content:flex-start;padding:12px 18px;gap:22px}.alpa-fashion-hero{grid-template-columns:1fr;margin:0 -14px 30px}.alpa-fashion-copy{padding:43px 24px 38px}.alpa-fashion-copy h2{font-size:clamp(2.9rem,12vw,4.3rem)}.alpa-fashion-visual{min-height:370px}.alpa-fashion-values{margin-top:24px}#product-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}#product-grid .product-card .p-6{padding:12px!important}#product-grid .product-card h3{font-size:13px!important}#product-grid .product-card .text-lg.font-extrabold{font-size:14px!important}}
+@media(max-width:350px){#product-grid{grid-template-columns:1fr!important}}
+</style>
 </head>
 <body class="bg-[#F7F4EF] text-stone-900 font-sans antialiased min-h-screen flex flex-col justify-between">
 
@@ -225,6 +261,7 @@ header img[alt="Logo Artesanías Alpaquitay"]{background:#fff9ef;padding:3px;bor
                 </a>
             </div>
         </div>
+      <nav class="alpa-fashion-nav" aria-label="Navegación principal"><a href="#coleccion">COLECCIÓN</a><a href="#historia">NUESTRA HISTORIA</a><a href="#envios">ENVÍOS</a><a href="#opiniones">OPINIONES</a><a href="#faq">AYUDA</a></nav>
     </header>
 
     <div class="bg-[#eee7df] border-b border-[#e2d6ca]">
@@ -237,19 +274,21 @@ header img[alt="Logo Artesanías Alpaquitay"]{background:#fff9ef;padding:3px;bor
     <main class="max-w-6xl mx-auto px-6 py-8 flex-grow w-full">
 
         <!-- PRESENTACIÓN -->
-        <div class="alpa-premium-hero text-[#F3EFEA] rounded-2xl p-8 mb-8 text-center shadow-md border border-[#6B5547]">
-            <p class="alpa-origin">Hualhuas · Perú · Tradición textil andina</p><h2 class="text-3xl font-extrabold mb-3" id="banner-title">Colección Artesanal 100% Alpaca</h2>
-            <p class="text-[#D4C3B3] max-w-2xl mx-auto text-sm leading-relaxed" id="banner-desc">
-                Prendas únicas tejidas a mano con fibra pura de alpaca. Añade tus favoritas al carrito o haz clic en cualquier producto para ver sus especificaciones.
-            </p>
-            <div class="alpa-divider" aria-hidden="true"></div><a class="alpa-cta" href="#coleccion">Explorar colección <i class="fas fa-arrow-right" aria-hidden="true"></i></a><div class="mt-4 flex flex-wrap justify-center gap-3 text-xs">
-                <span class="bg-[#2D231E]/65 px-3 py-1.5 rounded-full border border-[#6B5547]" id="tag-1">🌿 Tintes 100% Naturales</span>
-                <span class="bg-[#2D231E]/65 px-3 py-1.5 rounded-full border border-[#6B5547]" id="tag-2">🧶 100% Hecho a Mano</span>
-                <span class="bg-[#2D231E]/65 px-3 py-1.5 rounded-full border border-[#6B5547]" id="tag-3">🤎 Atención personalizada</span>
-            </div>
-        </div>
-
-        <!-- SECCIÓN DE TIENDA FÍSICA / PRESENCIAL -->
+        <section class="alpa-fashion-hero" aria-label="Colección Alpaquitay">
+          <div class="alpa-fashion-copy">
+            <p class="alpa-origin">HUALHUAS, PERÚ · ARTESANÍA CONTEMPORÁNEA</p>
+            <p class="alpa-season">ALPAQUITAY / COLECCIÓN ARTESANAL</p>
+            <h2 id="banner-title">La calidez de lo auténtico</h2>
+            <p id="banner-desc">Prendas y accesorios artesanales de alpaca, hechos con dedicación en el corazón del valle del Mantaro.</p>
+            <div class="alpa-fashion-actions"><a href="#coleccion" class="alpa-fashion-button">VER COLECCIÓN <i class="fas fa-arrow-right" aria-hidden="true"></i></a><a href="#historia" class="alpa-fashion-textlink">NUESTRA HISTORIA</a></div>
+            <div class="alpa-fashion-values"><span id="tag-1">🌿 Tintes naturales</span><span id="tag-2">🧶 Trabajo artesanal</span><span id="tag-3">🤎 Atención personalizada</span></div>
+          </div>
+          <div class="alpa-fashion-visual" role="img" aria-label="Imagen de producto artesanal de la colección Alpaquitay">
+            <img src="img/chullo-rizo-1.jpg" alt="Chullo artesanal de la colección Alpaquitay" loading="eager" decoding="async" onerror="this.style.display='none'">
+            <span class="alpa-visual-caption">HECHO A MANO EN PERÚ <span>01 / ALPAQUITAY</span></span>
+          </div>
+        </section>
+                <!-- SECCIÓN DE TIENDA FÍSICA / PRESENCIAL -->
         <div class="bg-white rounded-2xl p-6 mb-8 shadow-sm border border-stone-200 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div class="flex items-center gap-4">
                 <div class="bg-[#F7F4EF] p-4 rounded-xl text-[#4A3B32] text-2xl border border-[#EBDDCF]">
@@ -266,31 +305,6 @@ header img[alt="Logo Artesanías Alpaquitay"]{background:#fff9ef;padding:3px;bor
             </a>
         </div>
 
-        <section id="historia" class="editorial-card rounded-2xl p-7 md:p-10 mb-8 grid md:grid-cols-[1.2fr_.8fr] gap-8 items-center shadow-sm">
-          <div><p class="section-kicker mb-2">Nuestra esencia</p><h2 class="text-2xl md:text-3xl font-bold text-[#4A3B32] mb-3">Tradición que se siente, arte que se lleva</h2>
-          <p class="text-sm leading-7 text-stone-600">Desde Hualhuas, en el corazón del valle del Mantaro, compartimos piezas textiles inspiradas en la tradición andina. Cada diseño busca poner en valor el trabajo artesanal y la calidez de la fibra de alpaca.</p>
-          <p class="text-sm leading-7 text-stone-600 mt-3">Te invitamos a conocer nuestras prendas, elegir tus favoritas y escribirnos para recibir atención personalizada.</p></div>
-          <div class="rounded-xl bg-[#4A3B32] text-[#F3EFEA] p-7"><p class="text-xs tracking-widest uppercase text-[#D4C3B3] mb-3">Artesanías Alpaquitay</p><p class="text-xl font-semibold leading-relaxed">Cada pieza cuenta una historia de creatividad, dedicación y herencia andina.</p><p class="text-xs text-[#D4C3B3] mt-5"><i class="fas fa-map-marker-alt mr-1"></i> Hualhuas · Huancayo · Perú</p></div>
-        </section>
-        <section id="envios" class="bg-white rounded-2xl p-6 md:p-8 mb-8 border border-stone-200 shadow-sm">
-          <div class="grid md:grid-cols-3 gap-6 items-center"><div><p class="section-kicker mb-2">Compra con tranquilidad</p><h2 class="text-2xl font-bold text-[#4A3B32]">Envíos coordinados contigo</h2></div>
-          <div class="md:col-span-2 grid sm:grid-cols-2 gap-4 text-sm text-stone-600">
-            <p><i class="fas fa-box-open text-[#8C6D53] mr-2"></i><strong>Preparación:</strong> confirmamos disponibilidad antes del despacho.</p>
-            <p><i class="fas fa-truck text-[#8C6D53] mr-2"></i><strong>Destino y tarifa:</strong> se confirma según ciudad o país.</p>
-            <p><i class="fas fa-comments text-[#8C6D53] mr-2"></i><strong>Atención directa:</strong> resolvemos tus dudas por WhatsApp.</p>
-            <p><i class="fas fa-receipt text-[#8C6D53] mr-2"></i><strong>Total transparente:</strong> los precios del catálogo no incluyen envío.</p>
-          </div></div>
-        </section>
-        <section id="opiniones" class="mb-8"><div class="text-center mb-5"><p class="section-kicker mb-2">Experiencias</p><h2 class="text-2xl font-bold text-[#4A3B32]">Opiniones de nuestros clientes</h2><p class="text-xs text-stone-500 mt-2">Comparte tu experiencia con nuestra atención y productos.</p></div>
-          <div id="reviews-list" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div><div class="text-center mt-4"><button onclick="openReviewForm()" class="border border-[#8C6D53] text-[#4A3B32] rounded-full px-5 py-2.5 text-xs font-bold">Escribir una opinión</button></div>
-        </section>
-        <section id="faq" class="bg-white rounded-2xl border border-stone-200 p-6 md:p-8 mb-10"><div class="text-center mb-6"><p class="section-kicker mb-2">Ayuda</p><h2 class="text-2xl font-bold text-[#4A3B32]">Preguntas frecuentes</h2></div><div class="max-w-3xl mx-auto divide-y divide-stone-200">
-          <details class="py-4"><summary class="font-bold text-sm cursor-pointer">¿De qué material están elaborados?</summary><p class="text-sm text-stone-600 mt-3">Revisa la ficha de cada producto para conocer su material y características.</p></details>
-          <details class="py-4"><summary class="font-bold text-sm cursor-pointer">¿Cómo puedo hacer un pedido?</summary><p class="text-sm text-stone-600 mt-3">Agrega productos al carrito y elige el formulario de pedido o WhatsApp directo.</p></details>
-          <details class="py-4"><summary class="font-bold text-sm cursor-pointer">¿El precio incluye el envío?</summary><p class="text-sm text-stone-600 mt-3">No. El envío se cotiza según destino y se confirma antes de cerrar el pedido.</p></details>
-          <details class="py-4"><summary class="font-bold text-sm cursor-pointer">¿Qué medios de pago puedo utilizar?</summary><p class="text-sm text-stone-600 mt-3">Los medios vigentes se coordinan directamente al confirmar el pedido.</p></details>
-          <details class="py-4"><summary class="font-bold text-sm cursor-pointer">¿Puedo visitar la tienda?</summary><p class="text-sm text-stone-600 mt-3">Sí, estamos en Alfonso Ugarte 882, Hualhuas, Huancayo. Recomendamos escribir antes para coordinar.</p></details>
-        </div></section>
         <section id="coleccion" aria-labelledby="alpa-collection-title">
         <div class="alpa-collection-heading"><div><div class="eyebrow">Descubre Alpaquitay</div><h2 id="alpa-collection-title">Nuestra colección</h2><p>Accesorios y prendas artesanales de alpaca, creados con dedicación en el valle del Mantaro.</p></div><span class="alpa-handmade"><i class="fas fa-heart mr-2" aria-hidden="true"></i>Hecho con dedicación</span></div>
         <!-- BARRA DE BÚSQUEDA Y FILTROS POR CATEGORÍA -->
@@ -317,6 +331,32 @@ header img[alt="Logo Artesanías Alpaquitay"]{background:#fff9ef;padding:3px;bor
             <!-- Los productos se renderizan aquí -->
         </div>
         </section>
+        <section id="historia" class="editorial-card rounded-2xl p-7 md:p-10 mb-8 grid md:grid-cols-[1.2fr_.8fr] gap-8 items-center shadow-sm">
+          <div><p class="section-kicker mb-2">Nuestra esencia</p><h2 class="text-2xl md:text-3xl font-bold text-[#4A3B32] mb-3">Tradición que se siente, arte que se lleva</h2>
+          <p class="text-sm leading-7 text-stone-600">Desde Hualhuas, en el corazón del valle del Mantaro, compartimos piezas textiles inspiradas en la tradición andina. Cada diseño busca poner en valor el trabajo artesanal y la calidez de la fibra de alpaca.</p>
+          <p class="text-sm leading-7 text-stone-600 mt-3">Te invitamos a conocer nuestras prendas, elegir tus favoritas y escribirnos para recibir atención personalizada.</p></div>
+          <div class="rounded-xl bg-[#4A3B32] text-[#F3EFEA] p-7"><p class="text-xs tracking-widest uppercase text-[#D4C3B3] mb-3">Artesanías Alpaquitay</p><p class="text-xl font-semibold leading-relaxed">Cada pieza cuenta una historia de creatividad, dedicación y herencia andina.</p><p class="text-xs text-[#D4C3B3] mt-5"><i class="fas fa-map-marker-alt mr-1"></i> Hualhuas · Huancayo · Perú</p></div>
+        </section>
+        <section id="envios" class="bg-white rounded-2xl p-6 md:p-8 mb-8 border border-stone-200 shadow-sm">
+          <div class="grid md:grid-cols-3 gap-6 items-center"><div><p class="section-kicker mb-2">Compra con tranquilidad</p><h2 class="text-2xl font-bold text-[#4A3B32]">Envíos coordinados contigo</h2></div>
+          <div class="md:col-span-2 grid sm:grid-cols-2 gap-4 text-sm text-stone-600">
+            <p><i class="fas fa-box-open text-[#8C6D53] mr-2"></i><strong>Preparación:</strong> confirmamos disponibilidad antes del despacho.</p>
+            <p><i class="fas fa-truck text-[#8C6D53] mr-2"></i><strong>Destino y tarifa:</strong> se confirma según ciudad o país.</p>
+            <p><i class="fas fa-comments text-[#8C6D53] mr-2"></i><strong>Atención directa:</strong> resolvemos tus dudas por WhatsApp.</p>
+            <p><i class="fas fa-receipt text-[#8C6D53] mr-2"></i><strong>Total transparente:</strong> los precios del catálogo no incluyen envío.</p>
+          </div></div>
+        </section>
+        <section id="opiniones" class="mb-8"><div class="text-center mb-5"><p class="section-kicker mb-2">Experiencias</p><h2 class="text-2xl font-bold text-[#4A3B32]">Opiniones de nuestros clientes</h2><p class="text-xs text-stone-500 mt-2">Comparte tu experiencia con nuestra atención y productos.</p></div>
+          <div id="reviews-list" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div><div class="text-center mt-4"><button onclick="openReviewForm()" class="border border-[#8C6D53] text-[#4A3B32] rounded-full px-5 py-2.5 text-xs font-bold">Escribir una opinión</button></div>
+        </section>
+        <section id="faq" class="bg-white rounded-2xl border border-stone-200 p-6 md:p-8 mb-10"><div class="text-center mb-6"><p class="section-kicker mb-2">Ayuda</p><h2 class="text-2xl font-bold text-[#4A3B32]">Preguntas frecuentes</h2></div><div class="max-w-3xl mx-auto divide-y divide-stone-200">
+          <details class="py-4"><summary class="font-bold text-sm cursor-pointer">¿De qué material están elaborados?</summary><p class="text-sm text-stone-600 mt-3">Revisa la ficha de cada producto para conocer su material y características.</p></details>
+          <details class="py-4"><summary class="font-bold text-sm cursor-pointer">¿Cómo puedo hacer un pedido?</summary><p class="text-sm text-stone-600 mt-3">Agrega productos al carrito y elige el formulario de pedido o WhatsApp directo.</p></details>
+          <details class="py-4"><summary class="font-bold text-sm cursor-pointer">¿El precio incluye el envío?</summary><p class="text-sm text-stone-600 mt-3">No. El envío se cotiza según destino y se confirma antes de cerrar el pedido.</p></details>
+          <details class="py-4"><summary class="font-bold text-sm cursor-pointer">¿Qué medios de pago puedo utilizar?</summary><p class="text-sm text-stone-600 mt-3">Los medios vigentes se coordinan directamente al confirmar el pedido.</p></details>
+          <details class="py-4"><summary class="font-bold text-sm cursor-pointer">¿Puedo visitar la tienda?</summary><p class="text-sm text-stone-600 mt-3">Sí, estamos en Alfonso Ugarte 882, Hualhuas, Huancayo. Recomendamos escribir antes para coordinar.</p></details>
+        </div></section>
+
     </main>
 
     <!-- PIE DE PÁGINA -->
