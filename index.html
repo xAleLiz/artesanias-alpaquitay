@@ -138,6 +138,27 @@ header img[alt="Logo Artesanías Alpaquitay"]{background:#fff9ef;padding:3px;bor
 @media(max-width:640px){header h1{font-size:1.06rem!important}.alpa-premium-hero{padding:40px 19px!important;border-radius:18px!important}.alpa-premium-hero .alpa-cta{width:100%}.alpa-premium-hero:after{width:125px;height:125px;right:-65px;top:-55px}}
 @media(prefers-reduced-motion:reduce){.product-card{transition:none!important}}
 </style>
+
+<style id="alpa-shop-polish">
+/* Colección editorial: mejoras de navegación, jerarquía y adaptación */
+#coleccion{scroll-margin-top:145px}
+.alpa-collection-heading{display:flex;align-items:end;justify-content:space-between;gap:18px;margin:44px 0 23px;padding-bottom:20px;border-bottom:1px solid #e8d9c9}
+.alpa-collection-heading .eyebrow{font-size:.7rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#8b5260;margin-bottom:8px}
+.alpa-collection-heading h2{font:500 clamp(1.9rem,3.5vw,2.9rem)/1.13 Georgia,'Times New Roman',serif;color:#51202c;letter-spacing:-.025em}
+.alpa-collection-heading p{font-size:.84rem;color:#786961;line-height:1.65;margin-top:9px}
+.alpa-collection-heading .alpa-handmade{white-space:nowrap;font-size:.74rem;letter-spacing:.04em;color:#704451;border:1px solid #e2cbbb;border-radius:999px;padding:10px 15px;background:#fffaf4}
+#coleccion .alpa-filter-panel{background:#fffdf9;border:1px solid #ebded0;border-radius:20px;padding:22px;box-shadow:0 8px 25px #3c25220a}
+#searchInput{font-size:.9rem!important;padding-top:14px!important;padding-bottom:14px!important;border-color:#ddcbbc!important}
+#searchInput:focus{border-color:#6D1B2A!important;box-shadow:0 0 0 3px #6D1B2A15}
+#filter-buttons{gap:10px!important}
+#filter-buttons button{font-size:.8rem!important;padding:11px 17px!important;border:1px solid #e5d5c5!important}
+#filter-buttons button.bg-\\[\\#4A3B32\\]{background:#6D1B2A!important;color:white!important}
+#product-grid{gap:clamp(18px,2.8vw,34px)!important}
+#product-grid .product-card img{transition:transform .4s ease}
+#product-grid .product-card:hover img{transform:scale(1.025)}
+#opiniones,#faq,#envios,#historia{scroll-margin-top:135px}
+@media(max-width:640px){.alpa-collection-heading{margin-top:28px;align-items:start;flex-direction:column}.alpa-collection-heading .alpa-handmade{font-size:.69rem}#coleccion .alpa-filter-panel{padding:15px}#filter-buttons{flex-wrap:nowrap!important;overflow-x:auto;justify-content:flex-start!important;padding-bottom:6px;scrollbar-width:thin}#filter-buttons button{white-space:nowrap;flex-shrink:0}}
+</style>
 </head>
 <body class="bg-[#F7F4EF] text-stone-900 font-sans antialiased min-h-screen flex flex-col justify-between">
 
@@ -209,7 +230,7 @@ header img[alt="Logo Artesanías Alpaquitay"]{background:#fff9ef;padding:3px;bor
             <p class="text-[#D4C3B3] max-w-2xl mx-auto text-sm leading-relaxed" id="banner-desc">
                 Prendas únicas tejidas a mano con fibra pura de alpaca. Añade tus favoritas al carrito o haz clic en cualquier producto para ver sus especificaciones.
             </p>
-            <div class="alpa-divider" aria-hidden="true"></div><a class="alpa-cta" href="#historia">Conoce nuestra esencia <i class="fas fa-arrow-right" aria-hidden="true"></i></a><div class="mt-4 flex flex-wrap justify-center gap-3 text-xs">
+            <div class="alpa-divider" aria-hidden="true"></div><a class="alpa-cta" href="#coleccion">Explorar colección <i class="fas fa-arrow-right" aria-hidden="true"></i></a><div class="mt-4 flex flex-wrap justify-center gap-3 text-xs">
                 <span class="bg-[#2D231E]/65 px-3 py-1.5 rounded-full border border-[#6B5547]" id="tag-1">🌿 Tintes 100% Naturales</span>
                 <span class="bg-[#2D231E]/65 px-3 py-1.5 rounded-full border border-[#6B5547]" id="tag-2">🧶 100% Hecho a Mano</span>
                 <span class="bg-[#2D231E]/65 px-3 py-1.5 rounded-full border border-[#6B5547]" id="tag-3">🤎 Atención personalizada</span>
@@ -258,8 +279,10 @@ header img[alt="Logo Artesanías Alpaquitay"]{background:#fff9ef;padding:3px;bor
           <details class="py-4"><summary class="font-bold text-sm cursor-pointer">¿Qué medios de pago puedo utilizar?</summary><p class="text-sm text-stone-600 mt-3">Los medios vigentes se coordinan directamente al confirmar el pedido.</p></details>
           <details class="py-4"><summary class="font-bold text-sm cursor-pointer">¿Puedo visitar la tienda?</summary><p class="text-sm text-stone-600 mt-3">Sí, estamos en Alfonso Ugarte 882, Hualhuas, Huancayo. Recomendamos escribir antes para coordinar.</p></details>
         </div></section>
+        <section id="coleccion" aria-labelledby="alpa-collection-title">
+        <div class="alpa-collection-heading"><div><div class="eyebrow">Descubre Alpaquitay</div><h2 id="alpa-collection-title">Nuestra colección</h2><p>Accesorios y prendas artesanales de alpaca, creados con dedicación en el valle del Mantaro.</p></div><span class="alpa-handmade"><i class="fas fa-heart mr-2" aria-hidden="true"></i>Hecho con dedicación</span></div>
         <!-- BARRA DE BÚSQUEDA Y FILTROS POR CATEGORÍA -->
-        <div class="mb-8 space-y-4">
+        <div class="mb-8 space-y-4 alpa-filter-panel">
             <!-- BARRA DE BÚSQUEDA -->
             <div class="relative max-w-md mx-auto">
                 <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-stone-400"></i>
@@ -277,8 +300,9 @@ header img[alt="Logo Artesanías Alpaquitay"]{background:#fff9ef;padding:3px;bor
 
         <!-- REJILLA DINÁMICA DE PRODUCTOS -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="product-grid">
-            <!-- Los 12 productos se renderizan aquí -->
+            <!-- Los productos se renderizan aquí -->
         </div>
+        </section>
     </main>
 
     <!-- PIE DE PÁGINA -->
@@ -631,8 +655,11 @@ header img[alt="Logo Artesanías Alpaquitay"]{background:#fff9ef;padding:3px;bor
                 btn.classList.add('bg-white', 'text-stone-700');
             });
 
-            event.target.classList.remove('bg-white', 'text-stone-700');
-            event.target.classList.add('bg-[#4A3B32]', 'text-white');
+            const selectedButton = document.getElementById('filter-' + category);
+            if (selectedButton) {
+                selectedButton.classList.remove('bg-white', 'text-stone-700');
+                selectedButton.classList.add('bg-[#4A3B32]', 'text-white');
+            }
 
             renderProducts();
         }
