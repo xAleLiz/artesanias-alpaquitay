@@ -392,6 +392,17 @@ body[data-alpa-page="faq"] #faq{margin-top:36px!important;min-height:45vh}
 .alpa-page-title p{font-size:11px;letter-spacing:.22em;color:#8c6d53}
 .alpa-page-title h2{font:400 clamp(2.4rem,5vw,4rem)/1.1 Georgia,serif;color:#411b26;margin:12px 0}
 .alpa-fashion-nav{scroll-behavior:smooth}
+</style><style id="alpa-hero-photo-first-2026">
+/* Portada editorial: fotografía primero, texto después */
+body[data-alpa-page="inicio"] .alpa-fashion-hero{grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);direction:ltr}
+body[data-alpa-page="inicio"] .alpa-fashion-visual{grid-column:1;grid-row:1;min-height:610px}
+body[data-alpa-page="inicio"] .alpa-fashion-copy{grid-column:2;grid-row:1;min-width:0;padding:clamp(32px,5vw,76px)}
+body[data-alpa-page="inicio"] .alpa-fashion-visual img{object-fit:cover}
+@media(max-width:720px){
+ body[data-alpa-page="inicio"] .alpa-fashion-hero{grid-template-columns:minmax(0,1fr)}
+ body[data-alpa-page="inicio"] .alpa-fashion-visual{grid-column:1;grid-row:1;min-height:460px!important}
+ body[data-alpa-page="inicio"] .alpa-fashion-copy{grid-column:1;grid-row:2;padding:40px 24px!important}
+}
 </style></head>
 <body class="bg-[#F7F4EF] text-stone-900 font-sans antialiased min-h-screen flex flex-col justify-between">
 
@@ -1240,10 +1251,16 @@ body[data-alpa-page="faq"] #faq{margin-top:36px!important;min-height:45vh}
         '<span>' + categoryNames[category] + '</span>' +
         '<i class="fas fa-check category-check text-xs"></i>';
       button.addEventListener("click", function () {
+        closeFloatingCategories();
+        const onShop = new URLSearchParams(window.location.search).get("page") === "tienda";
+        if (!onShop) {
+          // En cualquier sección, las categorías llevan a la tienda con el filtro solicitado.
+          window.location.href = "?page=tienda&categoria=" + encodeURIComponent(category);
+          return;
+        }
         if (typeof window.setCategoryFilter === "function") {
           window.setCategoryFilter(category);
         }
-        closeFloatingCategories();
         const catalog = document.getElementById("product-grid");
         if (catalog) {
           const y = catalog.getBoundingClientRect().top + window.scrollY - 115;
@@ -1426,6 +1443,13 @@ body[data-alpa-page="faq"] #faq{margin-top:36px!important;min-height:45vh}
    heading.innerHTML='<p>COLECCIÓN ARTESANAL</p><h2>La tienda Alpaquitay</h2>';
    main.prepend(heading);
  }
+})();
+</script><script id="alpa-category-deeplink-2026">
+(function(){
+  const category=new URLSearchParams(location.search).get('categoria');
+  if(!['all','gorros','mitones','vinchas','otros'].includes(category))return;
+  function apply(){if(typeof window.setCategoryFilter==='function'){window.setCategoryFilter(category);window.activeFloatingCategory=category;}}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply,{once:true});else apply();
 })();
 </script></body>
 </html>
