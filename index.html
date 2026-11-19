@@ -363,7 +363,36 @@ body{background:#faf8f5;color:var(--alpa-ink);-webkit-font-smoothing:antialiased
 }
 @media(prefers-reduced-motion:reduce){.alpa-fashion-visual img,#product-grid .product-card>div:first-child>img,.alpa-fashion-button{transition:none!important}}
 </style>
-</head>
+<style id="alpa-pages-2026">
+/* Páginas visuales independientes mediante rutas ?page=, compatibles con GitHub Pages */
+body[data-alpa-page="inicio"] #coleccion,
+body[data-alpa-page="inicio"] #historia,
+body[data-alpa-page="inicio"] #envios,
+body[data-alpa-page="inicio"] #opiniones,
+body[data-alpa-page="inicio"] #faq{display:none!important}
+body[data-alpa-page="tienda"] .alpa-fashion-hero,
+body[data-alpa-page="tienda"] #historia,
+body[data-alpa-page="tienda"] #envios,
+body[data-alpa-page="tienda"] #opiniones,
+body[data-alpa-page="tienda"] #faq{display:none!important}
+body[data-alpa-page="historia"] main > :not(#historia),
+body[data-alpa-page="envios"] main > :not(#envios),
+body[data-alpa-page="opiniones"] main > :not(#opiniones),
+body[data-alpa-page="faq"] main > :not(#faq){display:none!important}
+body[data-alpa-page="historia"] #historia,
+body[data-alpa-page="envios"] #envios,
+body[data-alpa-page="opiniones"] #opiniones,
+body[data-alpa-page="faq"] #faq{margin-top:36px!important;min-height:45vh}
+.alpa-fashion-nav a[aria-current="page"]{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px}
+.alpa-home-discover{max-width:1080px;margin:0 auto 70px;padding:0 18px;text-align:center}
+.alpa-home-discover h2{font:400 clamp(2rem,4vw,3.4rem)/1.15 Georgia,serif;color:#411b26;margin:14px 0}
+.alpa-home-discover p{color:#78685e;line-height:1.8}
+.alpa-home-discover a{display:inline-flex;margin-top:22px;padding:15px 30px;background:#6D1B2A;color:white;font-size:12px;letter-spacing:.12em;font-weight:700}
+.alpa-page-title{text-align:center;margin:32px auto 24px;padding:0 18px}
+.alpa-page-title p{font-size:11px;letter-spacing:.22em;color:#8c6d53}
+.alpa-page-title h2{font:400 clamp(2.4rem,5vw,4rem)/1.1 Georgia,serif;color:#411b26;margin:12px 0}
+.alpa-fashion-nav{scroll-behavior:smooth}
+</style></head>
 <body class="bg-[#F7F4EF] text-stone-900 font-sans antialiased min-h-screen flex flex-col justify-between">
 
     <!-- ENCABEZADO -->
@@ -404,9 +433,9 @@ body{background:#faf8f5;color:var(--alpa-ink);-webkit-font-smoothing:antialiased
                     <i class="fab fa-whatsapp text-sm"></i> WhatsApp
                 </a>
             </div>
-          <div class="alpa-mobile-actions" aria-label="Accesos rápidos"><a href="#coleccion" aria-label="Buscar productos" title="Buscar productos"><i class="fas fa-search" aria-hidden="true"></i></a><button type="button" onclick="showFavorites()" aria-label="Ver favoritos" title="Favoritos"><i class="far fa-heart" aria-hidden="true"></i></button><a href="https://wa.me/51981037981" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp" title="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></div>
+          <div class="alpa-mobile-actions" aria-label="Accesos rápidos"><a href="?page=tienda" aria-label="Buscar productos" title="Buscar productos"><i class="fas fa-search" aria-hidden="true"></i></a><button type="button" onclick="showFavorites()" aria-label="Ver favoritos" title="Favoritos"><i class="far fa-heart" aria-hidden="true"></i></button><a href="https://wa.me/51981037981" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp" title="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></div>
         </div>
-      <nav class="alpa-fashion-nav" aria-label="Navegación principal"><a href="#coleccion">COLECCIÓN</a><a href="#historia">NUESTRA HISTORIA</a><a href="#envios">ENVÍOS</a><a href="#opiniones">OPINIONES</a><a href="#faq">AYUDA</a></nav>
+      <nav class="alpa-fashion-nav" aria-label="Navegación principal"><a href="./">INICIO</a><a href="?page=tienda">TIENDA</a><a href="?page=historia">NUESTRA HISTORIA</a><a href="?page=envios">ENVÍOS</a><a href="?page=opiniones">OPINIONES</a><a href="?page=faq">AYUDA</a></nav>
     </header>
 
     <div class="bg-[#eee7df] border-b border-[#e2d6ca]">
@@ -425,7 +454,7 @@ body{background:#faf8f5;color:var(--alpa-ink);-webkit-font-smoothing:antialiased
             <p class="alpa-season">ALPAQUITAY / COLECCIÓN ARTESANAL</p>
             <h2 id="banner-title">La calidez de lo auténtico</h2>
             <p id="banner-desc">Prendas y accesorios artesanales de alpaca, hechos con dedicación en el corazón del valle del Mantaro.</p>
-            <div class="alpa-fashion-actions"><a href="#coleccion" class="alpa-fashion-button">VER COLECCIÓN <i class="fas fa-arrow-right" aria-hidden="true"></i></a><a href="#historia" class="alpa-fashion-textlink">NUESTRA HISTORIA</a></div>
+            <div class="alpa-fashion-actions"><a href="?page=tienda" class="alpa-fashion-button">VER COLECCIÓN <i class="fas fa-arrow-right" aria-hidden="true"></i></a><a href="?page=historia" class="alpa-fashion-textlink">NUESTRA HISTORIA</a></div>
             <div class="alpa-fashion-values"><span id="tag-1">🌿 Tintes naturales</span><span id="tag-2">🧶 Trabajo artesanal</span><span id="tag-3">🤎 Atención personalizada</span></div>
           </div>
           <div class="alpa-fashion-visual" role="img" aria-label="Imagen de producto artesanal de la colección Alpaquitay">
@@ -512,7 +541,7 @@ body{background:#faf8f5;color:var(--alpa-ink);-webkit-font-smoothing:antialiased
                 <p class="text-xs text-stone-400 mt-1" id="footer-desc">Textiles auténticos hechos a mano en el valle andino.</p>
             </div>
             
-            <div class="flex flex-wrap justify-center gap-4 text-xs text-stone-400"><a href="#historia">Historia</a><a href="#envios">Envíos</a><a href="#opiniones">Opiniones</a><a href="#faq">FAQ</a></div>
+            <div class="flex flex-wrap justify-center gap-4 text-xs text-stone-400"><a href="?page=historia">Historia</a><a href="?page=envios">Envíos</a><a href="?page=opiniones">Opiniones</a><a href="?page=faq">FAQ</a></div>
             <div class="flex items-center gap-6 text-xl">
                 <a href="https://www.instagram.com/artesaniasalpaquitaydelperu/" target="_blank" class="hover:text-[#D4C3B3] transition" title="Instagram"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.facebook.com/profile.php?id=100054454091170&locale=es_LA" target="_blank" class="hover:text-[#D4C3B3] transition" title="Facebook"><i class="fab fa-facebook"></i></a>
@@ -1366,5 +1395,37 @@ body{background:#faf8f5;color:var(--alpa-ink);-webkit-font-smoothing:antialiased
 })();
 </script>
 
-</body>
+<script id="alpa-pages-router">
+(function(){
+ const allowed=['inicio','tienda','historia','envios','opiniones','faq'];
+ const page=new URLSearchParams(location.search).get('page')||'inicio';
+ const current=allowed.includes(page)?page:'inicio';
+ document.body.dataset.alpaPage=current;
+ const names={inicio:'Inicio',tienda:'Tienda',historia:'Nuestra historia',envios:'Envíos',opiniones:'Opiniones',faq:'Preguntas frecuentes'};
+ document.title=names[current]+' | Artesanías Alpaquitay del Perú';
+ document.querySelectorAll('.alpa-fashion-nav a').forEach(a=>{
+   const url=new URL(a.href,location.href);
+   const target=url.searchParams.get('page')||'inicio';
+   if(target===current)a.setAttribute('aria-current','page');
+ });
+ const main=document.querySelector('main');
+ if(!main)return;
+ if(current==='inicio'){
+   const block=document.createElement('section');block.className='alpa-home-discover';
+   block.innerHTML='<p>ARTESANÍAS ALPAQUITAY DEL PERÚ</p><h2>Una tradición que se lleva puesta</h2><p>Descubre nuestras prendas y accesorios artesanales, creados en Hualhuas, Perú.</p><a href="?page=tienda">EXPLORAR LA TIENDA</a>';
+   const hero=main.querySelector('.alpa-fashion-hero');
+   if(hero)hero.insertAdjacentElement('afterend',block);
+ }
+ if(['historia','envios','opiniones','faq'].includes(current)){
+   const heading=document.createElement('div');heading.className='alpa-page-title';
+   heading.innerHTML='<p>ALPAQUITAY / PERÚ</p><h2>'+names[current]+'</h2>';
+   main.prepend(heading);
+ }
+ if(current==='tienda'){
+   const heading=document.createElement('div');heading.className='alpa-page-title';
+   heading.innerHTML='<p>COLECCIÓN ARTESANAL</p><h2>La tienda Alpaquitay</h2>';
+   main.prepend(heading);
+ }
+})();
+</script></body>
 </html>
