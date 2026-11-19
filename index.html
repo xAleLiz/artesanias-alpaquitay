@@ -903,6 +903,7 @@ body[data-alpa-page="historia"] #historia .alpa-story-intro>p:last-child{color:#
             grid.innerHTML = '';
 
             productsData.forEach((p, idx) => {
+                if(p.hidden === true) return;
                 const data = p[currentLang];
                 
                 if (currentCategory !== 'all' && p.category !== currentCategory) return;
@@ -1220,6 +1221,7 @@ body[data-alpa-page="historia"] #historia .alpa-story-intro>p:last-child{color:#
     const q=$('searchInput').value.trim().toLowerCase();
     grid.innerHTML='';
     productsData.forEach((p,i)=>{
+      if(p.hidden === true) return;
       const d=p[currentLang] || p.es || p.en || {};
       const key=String(p.id || i);
       if(currentCategory!=='all' && p.category!==currentCategory) return;
