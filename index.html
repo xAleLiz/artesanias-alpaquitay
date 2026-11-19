@@ -328,6 +328,41 @@ body>div:has(> #top-bar-text) #top-bar-text{max-width:55%;font-size:9px!importan
 .alpa-unified-header .alpa-fashion-nav{padding:14px 17px!important;gap:28px!important}
 }
 </style>
+
+<style id="alpa-editorial-polish-nov2026">
+/* Refinamiento visual no destructivo: boutique contemporánea Alpaquitay */
+:root{--alpa-wine:#6D1B2A;--alpa-cream:#F5E9D9;--alpa-ink:#30272a}
+body{background:#faf8f5;color:var(--alpa-ink);-webkit-font-smoothing:antialiased}
+.alpa-fashion-copy{background:#f8f1e9}
+.alpa-fashion-copy h2{font-family:Georgia,'Times New Roman',serif;font-weight:400;letter-spacing:-.045em;text-wrap:balance}
+.alpa-fashion-button{transition:background .2s ease,transform .2s ease;min-height:48px}
+.alpa-fashion-button:hover{transform:translateY(-2px)}
+.alpa-fashion-visual img{transition:transform .7s ease}
+@media(hover:hover){.alpa-fashion-visual:hover img{transform:scale(1.025)}}
+#coleccion .alpa-collection-heading h2{letter-spacing:-.035em}
+#product-grid{align-items:stretch}
+#product-grid .product-card{background:transparent!important;border:0!important;box-shadow:none!important;overflow:visible!important;transition:none}
+#product-grid .product-card:hover{box-shadow:none!important;transform:none!important}
+#product-grid .product-card>div:first-child{background:#eee7e0;overflow:hidden;border-radius:2px}
+#product-grid .product-card>div:first-child>img{aspect-ratio:3/4;height:auto!important;min-height:0;object-fit:cover;transition:transform .45s ease}
+@media(hover:hover){#product-grid .product-card:hover>div:first-child>img{transform:scale(1.045)}}
+#product-grid .product-card>.p-6{padding:15px 1px 24px!important}
+#product-grid .product-card h3{font-weight:600!important;line-height:1.45;letter-spacing:.005em}
+#product-grid .product-card .favorite-btn{border:1px solid #e9dfd7;box-shadow:0 2px 10px #00000010}
+#historia{border-radius:3px!important;box-shadow:none!important}
+#envios,#opiniones,#faq{box-shadow:none!important}
+#floatingCategoryToggle{box-shadow:0 7px 20px #30151c23}
+#product-grid button:focus-visible,.alpa-fashion-button:focus-visible{outline:3px solid #9b795e;outline-offset:3px}
+@media(max-width:720px){
+ .alpa-fashion-copy{padding:37px 23px 34px!important}
+ .alpa-fashion-copy h2{font-size:clamp(2.65rem,11vw,4rem)!important}
+ .alpa-fashion-visual{min-height:420px!important}
+ #product-grid{gap:14px 12px!important}
+ #product-grid .product-card>.p-6{padding:11px 1px 20px!important}
+ #product-grid .product-card>div:first-child>img{aspect-ratio:3/4}
+}
+@media(prefers-reduced-motion:reduce){.alpa-fashion-visual img,#product-grid .product-card>div:first-child>img,.alpa-fashion-button{transition:none!important}}
+</style>
 </head>
 <body class="bg-[#F7F4EF] text-stone-900 font-sans antialiased min-h-screen flex flex-col justify-between">
 
