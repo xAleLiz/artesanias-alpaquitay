@@ -4,7 +4,7 @@ window.ALPAQUITAY_PRODUCTS = [
             // 1. CHULLO RIZO ANDINO
             {
                 category: 'gorros',
-                stock: null, // null = consultar disponibilidad; 0 = agotado
+                stock: 10, // null = consultar disponibilidad; 0 = agotado
                 price: 20.00,
                 images: [
                     'img/chullo-rizo-1.jpg', 
