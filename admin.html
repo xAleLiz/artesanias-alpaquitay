@@ -11,13 +11,13 @@
 <h2>Productos y existencias</h2><p class="muted">Registra las cantidades por color cuando las conozcas. Los campos vacíos significan pendiente; el total existente se conserva hasta completar todos los colores. Los cambios no se publican hasta que los guardes en GitHub.</p>
 <div class="toolbar"><input type="search" id="search" placeholder="Buscar producto"><select id="filter"><option value="all">Todos</option><option value="low">Stock bajo</option><option value="out">Agotados</option><option value="unknown">Sin registrar</option></select></div>
 <div id="list" class="list"><p>Cargando catálogo…</p></div>
-<section class="steps" id="new-product"><h2>Agregar nuevo producto</h2><p class="muted">Completa los datos. Las fotografías deben subirse a la carpeta <code>img/</code> del repositorio. No escribas contraseñas aquí.</p>
+<section class="steps" id="new-product"><h2>Agregar nuevo producto</h2><p class="muted">Completa los datos y selecciona 3 fotos. Las fotografías deben subirse a la carpeta <code>img/</code> del repositorio. No escribas contraseñas aquí.</p>
 <form id="addForm" class="add-form">
 <label>Nombre del producto *<input name="name" required maxlength="100" placeholder="Ej. Bufanda tejida de alpaca"></label>
 <label>Categoría *<select name="category" required><option value="gorros">Gorros y chullos</option><option value="mitones">Mitones</option><option value="vinchas">Vinchas</option><option value="otros">Otros</option></select></label>
 <label>Precio en USD *<input name="price" type="number" min="0" step="0.01" required placeholder="20.00"></label>
-<label>Seleccionar fotografías del celular<input id="photoPicker" type="file" accept="image/jpeg,image/png,image/webp" multiple></label><div id="photoPreview" class="photo-preview" aria-live="polite"></div><p class="photo-help">Puedes seleccionar varias fotos y verlas aquí. Para que los clientes las vean, tendrás que subirlas también a la carpeta <code>img/</code> de GitHub con los nombres indicados.</p><label>Ruta de fotografía principal *<input name="image" required placeholder="img/mi-producto.jpg"></label>
-<label>Otras fotografías (opcional)<input name="extraImages" placeholder="img/foto2.jpg, img/foto3.jpg"></label>
+<label>3 fotografías obligatorias *<input id="photoPicker" type="file" accept="image/jpeg,image/png,image/webp" multiple required></label><div id="photoPreview" class="photo-preview" aria-live="polite"></div><p class="photo-help">Selecciona exactamente 3 fotos, en orden: principal, detalle y otro ángulo. Sus nombres seguirán el modelo <code>nombre-producto-1.jpg</code>, <code>-2.jpg</code>, <code>-3.jpg</code> (según el formato original). Luego súbelas a <code>img/</code> de GitHub con esos nombres.</p><label>Ruta de fotografía principal *<input name="image" readonly required placeholder="Selecciona las 3 fotos"></label>
+<label>Fotografías 2 y 3 *<input name="extraImages" readonly required placeholder="Se completan al seleccionar fotos"></label>
 <label>Colores separados por coma<input name="colors" placeholder="Beige, Blanco, Negro"></label>
 <label>Descripción *<textarea name="desc" rows="3" required placeholder="Describe la prenda y sus detalles"></textarea></label>
 <label>Material<input name="material" placeholder="100% fibra de alpaca"></label>
@@ -59,30 +59,40 @@ list.append(row);});if(!found)list.textContent='No hay productos con este filtro
 async function init(){try{const r=await fetch('productos.js',{cache:'no-store'});if(!r.ok)throw Error('No se pudo leer productos.js');source=await r.text();document.getElementById('copy').disabled=false;}catch(e){document.getElementById('feedback').textContent='No se pudo preparar el archivo: '+e.message;}render();}
 document.getElementById('copy').addEventListener('click',async()=>{let i=0;let updated=source.replace(/(\bstock:\s*)(null|\d+)(\s*,[^\n]*\n)(\s*stockByColor:\s*)(null|\{[^\n]*\})(\s*,)/g,(match,prefix,old,suffix,byColor,oldColors,ending)=>{const p=items[i++];if(!p)return match;const colors=p.stockByColor&&Object.keys(p.stockByColor).length?JSON.stringify(p.stockByColor):'null';return prefix+(p.stock===null||p.stock===undefined?'null':p.stock)+suffix+byColor+colors+ending;});if(i!==originalCount){document.getElementById('feedback').textContent='No se pudo validar el catálogo. No copies este archivo.';return;}if(items.length>originalCount){const newItems=items.slice(originalCount);const end=/\s*\];\s*$/.exec(updated);if(!end){document.getElementById('feedback').textContent='No se encontró el final del catálogo.';return;}const prefix=updated.slice(0,end.index).trimEnd();updated=prefix+(prefix.endsWith('}')?',\n':'\n')+newItems.map(p=>JSON.stringify(p,null,2)).join(',\n')+'\n];\n';}try{await navigator.clipboard.writeText(updated);document.getElementById('feedback').textContent='Archivo copiado. Ahora abre GitHub, pega el contenido y confirma el cambio.';}catch(e){document.getElementById('feedback').textContent='El navegador no permitió copiar. Prueba desde HTTPS o desde otro navegador.';}});
 const photoPicker=document.getElementById('photoPicker');
+const nameInput=document.querySelector('#addForm [name="name"]');
 let photoUrls=[];
-photoPicker.addEventListener('change',()=>{
+let selectedPhotoFiles=[];
+const slugify=value=>String(value).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,55);
+function refreshPhotos(){
  const preview=document.getElementById('photoPreview');photoUrls.forEach(URL.revokeObjectURL);photoUrls=[];preview.replaceChildren();
+ const slug=slugify(nameInput.value);
+ const valid=selectedPhotoFiles.length===3&&!!slug;
+ const paths=valid?selectedPhotoFiles.map((file,i)=>'img/'+slug+'-'+(i+1)+'.'+(file.type==='image/png'?'png':file.type==='image/webp'?'webp':'jpg')):[];
+ document.querySelector('#addForm [name="image"]').value=paths[0]||'';
+ document.querySelector('#addForm [name="extraImages"]').value=paths.slice(1).join(', ');
+ selectedPhotoFiles.forEach((file,i)=>{const url=URL.createObjectURL(file);photoUrls.push(url);const figure=document.createElement('figure');const img=document.createElement('img');img.src=url;img.alt='Vista previa '+(i+1);const cap=document.createElement('figcaption');cap.textContent=paths[i]||'Foto '+(i+1)+' (escribe el nombre del producto)';figure.append(img,cap);preview.append(figure);});
+ document.getElementById('addFeedback').textContent=selectedPhotoFiles.length!==3?'Debes seleccionar exactamente 3 fotografías.':!slug?'Escribe el nombre del producto para generar los nombres de las fotos.':'Fotos preparadas. Recuerda subir los 3 archivos a GitHub con los nombres mostrados.';
+}
+photoPicker.addEventListener('change',()=>{
  const files=Array.from(photoPicker.files||[]);
- if(files.length>8){alert('Selecciona un máximo de 8 fotografías.');photoPicker.value='';return;}
- if(files.some(f=>!['image/jpeg','image/png','image/webp'].includes(f.type)||f.size>10*1024*1024)){alert('Usa JPG, PNG o WebP de máximo 10 MB por imagen.');photoPicker.value='';return;}
- const paths=files.map((file,i)=>{const ext=file.type==='image/png'?'png':file.type==='image/webp'?'webp':'jpg';const base=file.name.replace(/\.[^.]+$/,'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,45)||'producto';return 'img/'+base+'-'+(i+1)+'.'+ext;});
- files.forEach((file,i)=>{const url=URL.createObjectURL(file);photoUrls.push(url);const figure=document.createElement('figure');const img=document.createElement('img');img.src=url;img.alt='Vista previa '+(i+1);const cap=document.createElement('figcaption');cap.textContent=paths[i];figure.append(img,cap);preview.append(figure);});
- if(paths.length){document.querySelector('#addForm [name="image"]').value=paths[0];document.querySelector('#addForm [name="extraImages"]').value=paths.slice(1).join(', ');}
- document.getElementById('addFeedback').textContent=files.length?'Vista previa lista. Importante: estas fotos aún NO se han subido a GitHub. Debes subirlas a img/ con los nombres mostrados.':'';
+ if(files.length!==3){selectedPhotoFiles=[];photoPicker.value='';refreshPhotos();return;}
+ if(files.some(f=>!['image/jpeg','image/png','image/webp'].includes(f.type)||f.size>10*1024*1024)){selectedPhotoFiles=[];photoPicker.value='';refreshPhotos();alert('Usa 3 imágenes JPG, PNG o WebP de máximo 10 MB cada una.');return;}
+ selectedPhotoFiles=files;refreshPhotos();
 });
+nameInput.addEventListener('input',()=>{if(selectedPhotoFiles.length)refreshPhotos();});
 document.getElementById('addForm').addEventListener('submit',e=>{
- e.preventDefault();const f=new FormData(e.target),name=String(f.get('name')||'').trim(),price=Number(f.get('price')),image=String(f.get('image')||'').trim();
+ e.preventDefault();if(selectedPhotoFiles.length!==3){document.getElementById('addFeedback').textContent='Selecciona exactamente 3 fotografías antes de agregar el producto.';return;}const f=new FormData(e.target),name=String(f.get('name')||'').trim(),price=Number(f.get('price')),image=String(f.get('image')||'').trim();
  const validImage=x=>/^img\/[a-zA-Z0-9_./-]+\.(jpg|jpeg|png|webp)$/i.test(x)&&!x.includes('..');
  if(!name||!Number.isFinite(price)||price<0||!validImage(image)){document.getElementById('addFeedback').textContent='Revisa el nombre, precio y ruta de imagen (ejemplo: img/producto.jpg).';return;}
  const extras=String(f.get('extraImages')||'').split(',').map(x=>x.trim()).filter(Boolean);
- if(!extras.every(validImage)){document.getElementById('addFeedback').textContent='Revisa las rutas de las fotografías adicionales.';return;}
+ if(extras.length!==2||!extras.every(validImage)){document.getElementById('addFeedback').textContent='Revisa las rutas de las fotografías adicionales.';return;}
  const colors=[...new Set(String(f.get('colors')||'').split(',').map(x=>x.trim()).filter(Boolean))];
  const desc=String(f.get('desc')||'').trim();if(!desc){document.getElementById('addFeedback').textContent='Falta la descripción.';return;}
  const material=String(f.get('material')||'').trim(),talla=String(f.get('size')||'').trim(),publico=String(f.get('audience')||'').trim();
  const es={name,eng:name,desc,material,colores:colors.join(', '),confeccion:'Artesanal',talla,publico,colorOptions:colors};
  const en={...es,colorOptions:[...colors]};
  items.push({category:String(f.get('category')),stock:null,stockByColor:null,price,images:[image,...extras],es,en});
- e.target.reset();photoUrls.forEach(URL.revokeObjectURL);photoUrls=[];document.getElementById('photoPreview').replaceChildren();render();document.getElementById('addFeedback').textContent='Producto agregado al borrador. Para publicarlo, usa «Copiar archivo actualizado» y confirma en GitHub. El texto en inglés es provisional.';document.getElementById('new-product').scrollIntoView({behavior:'smooth'});
+ e.target.reset();selectedPhotoFiles=[];photoUrls.forEach(URL.revokeObjectURL);photoUrls=[];document.getElementById('photoPreview').replaceChildren();render();document.getElementById('addFeedback').textContent='Producto agregado al borrador. Para publicarlo, usa «Copiar archivo actualizado» y confirma en GitHub. El texto en inglés es provisional.';document.getElementById('new-product').scrollIntoView({behavior:'smooth'});
 });
 search.addEventListener('input',render);filter.addEventListener('change',render);init();
 })();
