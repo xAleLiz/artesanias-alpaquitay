@@ -525,10 +525,17 @@ body[data-alpa-page="historia"] #historia .alpa-story-intro>p:last-child{color:#
  .alpa-unified-header .alpa-lang-wrap{padding:8px 9px!important}
 }
 </style><style id="alpa-banner-images-2026">
-/* Solo distribución de las fotografías de los banners */
-.alpa-fashion-visual .alpa-banner-photo-pair{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;gap:0}
-.alpa-fashion-visual .alpa-banner-photo-pair img{position:relative!important;inset:auto!important;width:100%;height:100%;min-width:0;object-fit:cover;object-position:center}
-@media(max-width:720px){.alpa-fashion-visual .alpa-banner-photo-pair{grid-template-columns:1fr 1fr}}
+/* Carrusel de fotos del banner principal, sin alterar otros banners */
+.alpa-fashion-visual .alpa-banner-carousel{position:absolute;inset:0;overflow:hidden}
+.alpa-fashion-visual .alpa-banner-slides{display:flex;width:100%;height:100%;transition:transform .45s ease}
+.alpa-fashion-visual .alpa-banner-slides img{position:relative!important;inset:auto!important;flex:0 0 100%;width:100%;height:100%;object-fit:cover;object-position:center}
+.alpa-banner-arrow{position:absolute;z-index:3;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:#fffdf4e8;color:#50222e;font-size:25px;box-shadow:0 3px 14px #0003;cursor:pointer}
+.alpa-banner-arrow--prev{left:14px}.alpa-banner-arrow--next{right:14px}
+.alpa-banner-dots{position:absolute;z-index:3;bottom:80px;left:50%;transform:translateX(-50%);display:flex;gap:9px}
+.alpa-banner-dot{width:10px;height:10px;border-radius:50%;border:1px solid #fff;background:#ffffff70;cursor:pointer}
+.alpa-banner-dot[aria-current="true"]{background:#fff}
+.alpa-fashion-visual .alpa-banner-carousel{touch-action:pan-y}
+@media(prefers-reduced-motion:reduce){.alpa-fashion-visual .alpa-banner-slides{transition:none}}
 </style>
 </head>
 <body class="bg-[#F7F4EF] text-stone-900 font-sans antialiased min-h-screen flex flex-col justify-between">
@@ -595,8 +602,13 @@ body[data-alpa-page="historia"] #historia .alpa-story-intro>p:last-child{color:#
             <div class="alpa-fashion-actions"><a href="?page=tienda" class="alpa-fashion-button">COLECCIÓN <i class="fas fa-arrow-right" aria-hidden="true"></i></a><a href="?page=historia" class="alpa-fashion-textlink">HISTORIA</a></div>
             <div class="alpa-fashion-values"><span id="tag-1">🌿 Tintes naturales</span><span id="tag-2">🧶 Trabajo artesanal</span><span id="tag-3">🤎 Atención personalizada</span></div>
           </div>
-          <div class="alpa-fashion-visual" role="img" aria-label="Imagen de producto artesanal de la colección Alpaquitay">
-            <div class="alpa-banner-photo-pair"><img src="img/banner-principal-1.webp" alt="Primera fotografía del banner principal Alpaquitay" loading="eager" decoding="async"><img src="img/banner-principal-2.webp" alt="Segunda fotografía del banner principal Alpaquitay" loading="eager" decoding="async"></div>
+          <div class="alpa-fashion-visual" aria-label="Fotografías de la colección Alpaquitay">
+            <div class="alpa-banner-carousel" aria-roledescription="carrusel" aria-label="Fotografías del banner principal">
+              <div class="alpa-banner-slides" id="alpa-banner-slides"><img src="img/banner-principal-1.webp" alt="Primera fotografía del banner principal Alpaquitay" loading="eager" decoding="async"><img src="img/banner-principal-2.webp" alt="Segunda fotografía del banner principal Alpaquitay" loading="eager" decoding="async"></div>
+              <button class="alpa-banner-arrow alpa-banner-arrow--prev" type="button" aria-label="Fotografía anterior" onclick="alpaMoveBanner(-1)">&#8249;</button>
+              <button class="alpa-banner-arrow alpa-banner-arrow--next" type="button" aria-label="Fotografía siguiente" onclick="alpaMoveBanner(1)">&#8250;</button>
+              <div class="alpa-banner-dots"><button type="button" class="alpa-banner-dot" aria-label="Mostrar fotografía 1" aria-current="true" onclick="alpaShowBanner(0)"></button><button type="button" class="alpa-banner-dot" aria-label="Mostrar fotografía 2" aria-current="false" onclick="alpaShowBanner(1)"></button></div>
+            </div>
             <span class="alpa-visual-caption">HECHO A MANO EN PERÚ <span>01 / ALPAQUITAY</span></span>
           </div>
         </section>
@@ -1603,5 +1615,33 @@ body[data-alpa-page="historia"] #historia .alpa-story-intro>p:last-child{color:#
   function apply(){if(typeof window.setCategoryFilter==='function'){window.setCategoryFilter(category);window.activeFloatingCategory=category;}}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply,{once:true});else apply();
 })();
-</script></body>
+</script><script id="alpa-banner-carousel-2026">
+(function(){
+  let active=0, touchStart=null;
+  window.alpaShowBanner=function(n){
+    active=(n+2)%2;
+    const slides=document.getElementById('alpa-banner-slides');
+    if(!slides)return;
+    slides.style.transform='translateX(-'+(active*100)+'%)';
+    document.querySelectorAll('.alpa-banner-dot').forEach((dot,i)=>dot.setAttribute('aria-current',String(i===active)));
+  };
+  window.alpaMoveBanner=function(step){window.alpaShowBanner(active+step)};
+  const setup=function(){
+    const carousel=document.querySelector('.alpa-banner-carousel');
+    if(!carousel)return;
+    carousel.addEventListener('touchstart',e=>{touchStart=e.changedTouches[0].clientX},{passive:true});
+    carousel.addEventListener('touchend',e=>{
+      if(touchStart===null)return;
+      const delta=e.changedTouches[0].clientX-touchStart;touchStart=null;
+      if(Math.abs(delta)>45)window.alpaMoveBanner(delta<0?1:-1);
+    },{passive:true});
+    carousel.addEventListener('keydown',e=>{
+      if(e.key==='ArrowRight'){e.preventDefault();window.alpaMoveBanner(1)}
+      if(e.key==='ArrowLeft'){e.preventDefault();window.alpaMoveBanner(-1)}
+    });
+  };
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup,{once:true});else setup();
+})();
+</script>
+</body>
 </html>
