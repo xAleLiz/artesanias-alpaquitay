@@ -5,6 +5,7 @@ window.ALPAQUITAY_PRODUCTS = [
             {
                 category: 'gorros',
                 stock: 10, // null = consultar disponibilidad; 0 = agotado
+                stockByColor: null, // Cantidades por color: se registrarán sin inventar existencias
                 price: 20.00,
                 images: [
                     'img/chullo-rizo-1.jpg', 
@@ -30,6 +31,7 @@ window.ALPAQUITAY_PRODUCTS = [
             {
                 category: 'mitones',
                 stock: null, // null = consultar disponibilidad; 0 = agotado
+                stockByColor: null, // Cantidades por color: se registrarán sin inventar existencias
                 price: 20.00,
                 images: [
                     'img/miton-rizo-1.jpg', 
@@ -55,6 +57,7 @@ window.ALPAQUITAY_PRODUCTS = [
             {
                 category: 'mitones',
                 stock: null, // null = consultar disponibilidad; 0 = agotado
+                stockByColor: null, // Cantidades por color: se registrarán sin inventar existencias
                 price: 20.00,
                 images: [
                     'img/muneca-botanica-1.jpg', 
@@ -80,6 +83,7 @@ window.ALPAQUITAY_PRODUCTS = [
             {
                 category: 'mitones',
                 stock: null, // null = consultar disponibilidad; 0 = agotado
+                stockByColor: null, // Cantidades por color: se registrarán sin inventar existencias
                 price: 20.00,
                 images: [
                     'img/muneca-amanecer-1.jpg', 
@@ -105,6 +109,7 @@ window.ALPAQUITAY_PRODUCTS = [
             {
                 category: 'vinchas',
                 stock: null, // null = consultar disponibilidad; 0 = agotado
+                stockByColor: null, // Cantidades por color: se registrarán sin inventar existencias
                 price: 18.00,
                 images: [
                     'img/vincha-bosque-1.jpg', 
@@ -130,6 +135,7 @@ window.ALPAQUITAY_PRODUCTS = [
             {
                 category: 'vinchas',
                 stock: null, // null = consultar disponibilidad; 0 = agotado
+                stockByColor: null, // Cantidades por color: se registrarán sin inventar existencias
                 price: 15.00,
                 images: [
                     'img/vincha-multitono-1.jpg', 
@@ -155,6 +161,7 @@ window.ALPAQUITAY_PRODUCTS = [
             {
                 category: 'vinchas',
                 stock: null, // null = consultar disponibilidad; 0 = agotado
+                stockByColor: null, // Cantidades por color: se registrarán sin inventar existencias
                 price: 20.00,
                 images: [
                     'img/vincha-botanica-1.jpg', 
@@ -180,6 +187,7 @@ window.ALPAQUITAY_PRODUCTS = [
             {
                 category: 'vinchas',
                 stock: null, // null = consultar disponibilidad; 0 = agotado
+                stockByColor: null, // Cantidades por color: se registrarán sin inventar existencias
                 price: 15.00,
                 images: [
                     'img/vincha-burbujas-1.jpg', 
@@ -205,6 +213,7 @@ window.ALPAQUITAY_PRODUCTS = [
             {
                 category: 'gorros',
                 stock: null, // null = consultar disponibilidad; 0 = agotado
+                stockByColor: null, // Cantidades por color: se registrarán sin inventar existencias
                 price: 20.00,
                 images: [
                     'img/chullo-tradicional-1.jpg', 
@@ -230,6 +239,7 @@ window.ALPAQUITAY_PRODUCTS = [
             {
                 category: 'gorros',
                 stock: null, // null = consultar disponibilidad; 0 = agotado
+                stockByColor: null, // Cantidades por color: se registrarán sin inventar existencias
                 price: 20.00,
                 images: [
                     'img/gorro-doble-1.jpg', 
@@ -255,6 +265,7 @@ window.ALPAQUITAY_PRODUCTS = [
             {
                 category: 'gorros',
                 stock: null, // null = consultar disponibilidad; 0 = agotado
+                stockByColor: null, // Cantidades por color: se registrarán sin inventar existencias
                 price: 20.00,
                 images: [
                     'img/gorro-copos-1.jpg', 
@@ -280,6 +291,7 @@ window.ALPAQUITAY_PRODUCTS = [
             {
                 category: 'gorros',
                 stock: null, // null = consultar disponibilidad; 0 = agotado
+                stockByColor: null, // Cantidades por color: se registrarán sin inventar existencias
                 price: 20.00,
                 images: [
                     'img/gorro-gato-1.jpg', 
