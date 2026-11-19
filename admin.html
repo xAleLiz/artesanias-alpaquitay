@@ -78,7 +78,7 @@ document.getElementById('editForm').addEventListener('submit',e=>{
  if(!p)return;
  const name=form.elements.name.value.trim(),price=Number(form.elements.price.value),desc=form.elements.desc.value.trim();
  const images=['photo1','photo2','photo3'].map(k=>form.elements[k].value.trim());
- if(!name||!desc||!Number.isFinite(price)||price<0||!images.every(x=>/^img\\/[a-zA-Z0-9_./-]+\\.(jpg|jpeg|png|webp)$/i.test(x)&&!x.includes('..'))){document.getElementById('editFeedback').textContent='Revisa nombre, precio, descripción y las 3 rutas de fotos.';return;}
+ if(!name||!desc||!Number.isFinite(price)||price<0||!images.every(x=>/^img\/[a-zA-Z0-9_./-]+\.(jpg|jpeg|png|webp)$/i.test(x)&&!x.includes('..'))){document.getElementById('editFeedback').textContent='Revisa nombre, precio, descripción y las 3 rutas de fotos.';return;}
  const oldColors=p.es?.colorOptions||[],colors=[...new Set(form.elements.colors.value.split(',').map(x=>x.trim()).filter(Boolean))];
  const oldEn=p.en?.colorOptions||[];
  const colorStock={};colors.forEach(c=>{if(p.stockByColor&&Object.prototype.hasOwnProperty.call(p.stockByColor,c))colorStock[c]=p.stockByColor[c];});
