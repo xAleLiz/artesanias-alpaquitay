@@ -258,6 +258,18 @@ header{top:0!important}
 }
 @media(min-width:721px) and (max-width:1024px){.alpa-lang-wrap{padding:5px 8px}header h1{font-size:1.15rem!important}}
 </style>
+<style id="alpa-responsive-utility-fix">
+/* Utility bar stays in normal flow so it never overlaps the sticky logo */
+body>div:has(> #top-bar-text){position:relative!important;top:auto!important;z-index:10!important}
+@media(max-width:720px){
+body>div:has(> #top-bar-text){padding:6px 10px!important;gap:8px!important;flex-wrap:nowrap!important}
+body>div:has(> #top-bar-text)>div{gap:7px!important;flex-shrink:0}
+body>div:has(> #top-bar-text) #cart-btn-text{display:none!important}
+body>div:has(> #top-bar-text) button[onclick="toggleCart()"]{padding:7px 9px!important}
+body>div:has(> #top-bar-text) #top-bar-text{max-width:55%;font-size:9px!important;line-height:1.25}
+}
+@media(min-width:721px) and (max-width:1024px){body>div:has(> #top-bar-text){padding:9px 18px!important;gap:12px}}
+</style>
 </head>
 <body class="bg-[#F7F4EF] text-stone-900 font-sans antialiased min-h-screen flex flex-col justify-between">
 
