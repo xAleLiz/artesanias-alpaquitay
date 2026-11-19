@@ -270,28 +270,50 @@ body>div:has(> #top-bar-text) #top-bar-text{max-width:55%;font-size:9px!importan
 }
 @media(min-width:721px) and (max-width:1024px){body>div:has(> #top-bar-text){padding:9px 18px!important;gap:12px}}
 </style>
+<style id="alpa-unified-header-style">
+/* One shared brand header; utility text, cart and language live inside it */
+.alpa-unified-header{top:0!important;background:#6D1B2A!important}
+.alpa-unified-header>div:first-child{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;grid-template-areas:"brand tools" "social social";gap:12px 20px!important;align-items:center!important;padding-top:17px!important;padding-bottom:15px!important}
+.alpa-unified-header>div:first-child>a[href="index.html"]{grid-area:brand;min-width:0}
+.alpa-unified-header>div:first-child>div:not(.alpa-unified-utility):not(.alpa-mobile-actions){grid-area:social;justify-content:center}
+.alpa-unified-utility{grid-area:tools;display:flex;align-items:center;justify-content:flex-end;gap:18px;min-width:0}
+.alpa-unified-utility #top-bar-text{font-size:10px;letter-spacing:.02em;line-height:1.45;color:#f4e5da;max-width:270px}
+.alpa-unified-tools{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.alpa-unified-cart{display:flex;align-items:center;gap:7px;padding:8px 11px;border:1px solid #ffffff50;border-radius:99px;font-size:11px;font-weight:700;color:#fff}
+.alpa-unified-cart:hover{background:#ffffff20}
+.alpa-unified-header .alpa-mobile-actions{display:none}
+.alpa-unified-header .alpa-fashion-nav{background:#581624}
+@media(min-width:1150px){.alpa-unified-header>div:first-child{grid-template-columns:minmax(0,1fr) auto auto!important;grid-template-areas:"brand social tools"!important}.alpa-unified-header>div:first-child>div:not(.alpa-unified-utility):not(.alpa-mobile-actions){justify-content:flex-end}}
+@media(min-width:721px) and (max-width:1149px){.alpa-unified-utility #top-bar-text{max-width:180px}.alpa-unified-header>div:first-child{gap:10px!important}}
+@media(max-width:720px){
+.alpa-unified-header>div:first-child{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;grid-template-areas:"brand tools"!important;gap:8px!important;padding:10px 12px!important}
+.alpa-unified-header>div:first-child>a[href="index.html"]{min-width:0;gap:8px!important}
+.alpa-unified-header>div:first-child>a[href="index.html"] h1{font-size:12px!important;overflow-wrap:anywhere;line-height:1.15!important}
+.alpa-unified-header>div:first-child>a[href="index.html"] img{width:40px!important;height:40px!important}
+.alpa-unified-header>div:first-child>div:not(.alpa-unified-utility):not(.alpa-mobile-actions){display:none!important}
+.alpa-unified-utility{display:flex!important;flex-direction:column-reverse;align-items:flex-end;gap:3px}
+.alpa-unified-utility #top-bar-text{display:none}
+.alpa-unified-tools{gap:5px}
+.alpa-unified-cart{padding:7px 9px;font-size:11px}
+.alpa-unified-cart #cart-btn-text{display:none}
+.alpa-unified-header .alpa-mobile-actions{display:none!important}
+.alpa-unified-header .alpa-fashion-nav{border-top:1px solid #ffffff20!important}
+}
+</style>
 </head>
 <body class="bg-[#F7F4EF] text-stone-900 font-sans antialiased min-h-screen flex flex-col justify-between">
 
-    <!-- BARRA SUPERIOR CON IDIOMA Y ACCESO AL CARRITO -->
-    <div class="bg-[#2D231E] text-[#E6D5C3] text-xs py-2 px-6 flex justify-between items-center tracking-wide font-medium sticky top-0 z-50">
-        <span id="top-bar-text">🌍 Envíos a todo el mundo | 100% Fibra de Alpaca y Tintes Naturales</span>
-        
-        <div class="flex items-center gap-4">
-            <!-- BOTÓN CARRITO -->
-            <button onclick="toggleCart()" class="bg-[#5C7654] hover:bg-[#4E6346] text-white px-3 py-1.5 rounded-full flex items-center gap-2 shadow font-bold text-xs transition">
-                <i class="fas fa-shopping-bag"></i> <span id="cart-btn-text">Carrito</span> (<span id="cart-count">0</span>)
-            </button>
-
-            <!-- Selector compacto de idioma: un único control -->
-            <label class="alpa-lang-wrap" aria-label="Idioma de la tienda"><i class="fas fa-globe" aria-hidden="true"></i><select id="alpa-language-select" aria-label="Idioma" onchange="setLanguage(this.value)"><option value="es">ES</option><option value="en">EN</option></select></label>
-        </div>
-    </div>
-
     <!-- ENCABEZADO -->
-    <header class="bg-[#4A3B32] text-white shadow-lg border-b border-[#6B5547] sticky top-[33px] z-40">
+    <header class="alpa-unified-header bg-[#4A3B32] text-white shadow-lg border-b border-[#6B5547] sticky top-0 z-40">
         <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
             
+            <div class="alpa-unified-utility" aria-label="Información y opciones de compra">
+                <span id="top-bar-text">🌍 Envíos a todo el mundo | 100% Fibra de Alpaca y Tintes Naturales</span>
+                <div class="alpa-unified-tools">
+                    <button onclick="toggleCart()" class="alpa-unified-cart" aria-label="Abrir carrito"><i class="fas fa-shopping-bag" aria-hidden="true"></i><span id="cart-btn-text">Carrito</span> <span id="cart-count">0</span></button>
+                    <label class="alpa-lang-wrap" aria-label="Idioma de la tienda"><i class="fas fa-globe" aria-hidden="true"></i><select id="alpa-language-select" aria-label="Idioma" onchange="setLanguage(this.value)"><option value="es">ES</option><option value="en">EN</option></select></label>
+                </div>
+            </div>
             <!-- LOGO Y NOMBRE CON ENLACE AL INICIO -->
             <a href="index.html" class="flex items-center gap-3 hover:opacity-90 transition-opacity">
                 <img src="logo.png" alt="Logo Artesanías Alpaquitay" class="w-14 h-14 rounded-full object-cover">
