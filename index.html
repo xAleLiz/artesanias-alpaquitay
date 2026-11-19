@@ -159,6 +159,18 @@ header img[alt="Logo Artesanías Alpaquitay"]{background:#fff9ef;padding:3px;bor
 #opiniones,#faq,#envios,#historia{scroll-margin-top:135px}
 @media(max-width:640px){.alpa-collection-heading{margin-top:28px;align-items:start;flex-direction:column}.alpa-collection-heading .alpa-handmade{font-size:.69rem}#coleccion .alpa-filter-panel{padding:15px}#filter-buttons{flex-wrap:nowrap!important;overflow-x:auto;justify-content:flex-start!important;padding-bottom:6px;scrollbar-width:thin}#filter-buttons button{white-space:nowrap;flex-shrink:0}}
 </style>
+<style id="alpa-inventory-ready">
+/* Catálogo preparado para fotografías reales y nuevos ingresos */
+#product-grid .product-card{min-width:0}
+#product-grid .product-card img{display:block;object-fit:cover}
+#product-grid .product-card button{min-height:40px}
+#product-grid .product-card .favorite-btn{min-height:38px}
+#coleccion .alpa-filter-panel{position:relative}
+.alpa-photo-note{font-size:.75rem;color:#78685e;line-height:1.7;margin:12px 0 0;text-align:center}
+.alpa-photo-note i{color:#6D1B2A}
+@media(min-width:1024px){#product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:420px){main{padding-left:14px!important;padding-right:14px!important}#product-grid{gap:16px!important}.product-card .p-6{padding:17px!important}}
+</style>
 </head>
 <body class="bg-[#F7F4EF] text-stone-900 font-sans antialiased min-h-screen flex flex-col justify-between">
 
@@ -297,6 +309,8 @@ header img[alt="Logo Artesanías Alpaquitay"]{background:#fff9ef;padding:3px;bor
                 <button onclick="setCategoryFilter('vinchas')" class="filter-btn bg-white hover:bg-[#EBDDCF] text-stone-700 px-4 py-2 rounded-full text-sm font-semibold transition border border-stone-200" id="filter-vinchas">Vinchas</button>
             </div>
         </div>
+
+        <p class="alpa-photo-note"><i class="fas fa-camera-retro mr-2" aria-hidden="true"></i>Fotografías y disponibilidad de cada artículo en su ficha. Consulta por WhatsApp antes de confirmar tu pedido.</p>
 
         <!-- REJILLA DINÁMICA DE PRODUCTOS -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="product-grid">
