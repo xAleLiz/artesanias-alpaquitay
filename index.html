@@ -524,7 +524,13 @@ body[data-alpa-page="historia"] #historia .alpa-story-intro>p:last-child{color:#
  .alpa-unified-header .alpa-unified-cart{padding:9px 10px!important}
  .alpa-unified-header .alpa-lang-wrap{padding:8px 9px!important}
 }
-</style></head>
+</style><style id="alpa-banner-images-2026">
+/* Solo distribución de las fotografías de los banners */
+.alpa-fashion-visual .alpa-banner-photo-pair{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;gap:0}
+.alpa-fashion-visual .alpa-banner-photo-pair img{position:relative!important;inset:auto!important;width:100%;height:100%;min-width:0;object-fit:cover;object-position:center}
+@media(max-width:720px){.alpa-fashion-visual .alpa-banner-photo-pair{grid-template-columns:1fr 1fr}}
+</style>
+</head>
 <body class="bg-[#F7F4EF] text-stone-900 font-sans antialiased min-h-screen flex flex-col justify-between">
 
     <!-- ENCABEZADO -->
@@ -590,7 +596,7 @@ body[data-alpa-page="historia"] #historia .alpa-story-intro>p:last-child{color:#
             <div class="alpa-fashion-values"><span id="tag-1">🌿 Tintes naturales</span><span id="tag-2">🧶 Trabajo artesanal</span><span id="tag-3">🤎 Atención personalizada</span></div>
           </div>
           <div class="alpa-fashion-visual" role="img" aria-label="Imagen de producto artesanal de la colección Alpaquitay">
-            <img src="img/banner-coleccion.jpg" alt="Fotografía de la colección Alpaquitay" loading="eager" decoding="async" onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='img/chullo-rizo-1.jpg';}else{this.style.display='none';}">
+            <div class="alpa-banner-photo-pair"><img src="img/banner-principal-1.webp" alt="Primera fotografía del banner principal Alpaquitay" loading="eager" decoding="async"><img src="img/banner-principal-2.webp" alt="Segunda fotografía del banner principal Alpaquitay" loading="eager" decoding="async"></div>
             <span class="alpa-visual-caption">HECHO A MANO EN PERÚ <span>01 / ALPAQUITAY</span></span>
           </div>
         </section>
@@ -1571,7 +1577,7 @@ body[data-alpa-page="historia"] #historia .alpa-story-intro>p:last-child{color:#
    const products=Array.isArray(window.ALPAQUITAY_PRODUCTS)?window.ALPAQUITAY_PRODUCTS:[];
    const images=products.flatMap(p=>Array.isArray(p.images)?p.images:[]).filter(Boolean);
    block.querySelectorAll('.alpa-editorial-product-image').forEach(img=>{
-     img.src='img/banner-tienda.jpg';
+     img.src='img/banner-inferior.webp.jpg';
      img.onerror=function(){
        if(!this.dataset.fallback){this.dataset.fallback='1';this.src=images[0]||'img/chullo-rizo-1.jpg';}
        else if(!this.dataset.lastFallback){this.dataset.lastFallback='1';this.src='img/chullo-rizo-1.jpg';}
