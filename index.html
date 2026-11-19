@@ -426,7 +426,7 @@ body[data-alpa-page="inicio"] .alpa-fashion-visual img{object-fit:cover}
 .alpa-home-editorial__copy{grid-column:1!important;grid-row:2!important;padding:38px 25px 43px}
 .alpa-home-editorial__copy h2{font-size:clamp(2.5rem,10vw,3.6rem)}
 }
-</style></head>
+</style><style id="alpa-workshop-anchor-2026">#taller{scroll-margin-top:180px}body[data-alpa-page="inicio"] #taller{max-width:1080px;margin:0 auto 38px!important}</style></head>
 <body class="bg-[#F7F4EF] text-stone-900 font-sans antialiased min-h-screen flex flex-col justify-between">
 
     <!-- ENCABEZADO -->
@@ -488,7 +488,7 @@ body[data-alpa-page="inicio"] .alpa-fashion-visual img{object-fit:cover}
             <p class="alpa-season">ALPAQUITAY / COLECCIÓN ARTESANAL</p>
             <h2 id="banner-title">La calidez de lo auténtico</h2>
             <p id="banner-desc">Prendas y accesorios artesanales de alpaca, hechos con dedicación en el corazón del valle del Mantaro.</p>
-            <div class="alpa-fashion-actions"><a href="?page=tienda" class="alpa-fashion-button">VER COLECCIÓN <i class="fas fa-arrow-right" aria-hidden="true"></i></a><a href="?page=historia" class="alpa-fashion-textlink">NUESTRA HISTORIA</a></div>
+            <div class="alpa-fashion-actions"><a href="?page=tienda" class="alpa-fashion-button">VER COLECCIÓN <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div>
             <div class="alpa-fashion-values"><span id="tag-1">🌿 Tintes naturales</span><span id="tag-2">🧶 Trabajo artesanal</span><span id="tag-3">🤎 Atención personalizada</span></div>
           </div>
           <div class="alpa-fashion-visual" role="img" aria-label="Imagen de producto artesanal de la colección Alpaquitay">
@@ -497,7 +497,7 @@ body[data-alpa-page="inicio"] .alpa-fashion-visual img{object-fit:cover}
           </div>
         </section>
                 <!-- SECCIÓN DE TIENDA FÍSICA / PRESENCIAL -->
-        <div class="bg-white rounded-2xl p-6 mb-8 shadow-sm border border-stone-200 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div id="taller" class="bg-white rounded-2xl p-6 mb-8 shadow-sm border border-stone-200 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div class="flex items-center gap-4">
                 <div class="bg-[#F7F4EF] p-4 rounded-xl text-[#4A3B32] text-2xl border border-[#EBDDCF]">
                     <i class="fas fa-store"></i>
@@ -1454,13 +1454,13 @@ body[data-alpa-page="inicio"] .alpa-fashion-visual img{object-fit:cover}
    const block=document.createElement('div');
    block.className='alpa-home-editorials';
    block.innerHTML=`
-     <section class="alpa-home-editorial alpa-home-editorial--text-first" aria-label="Nuestra esencia">
-       <div class="alpa-home-editorial__copy"><p class="alpa-home-eyebrow">ALPAQUITAY · HUALHUAS, PERÚ</p><h2>Una tradición que se lleva puesta</h2><p>Textiles y accesorios artesanales que combinan dedicación, tradición y calidez. Descubre piezas creadas en el corazón del valle del Mantaro.</p><a href="?page=historia">CONOCE NUESTRA HISTORIA <span aria-hidden="true">→</span></a></div>
+     <section class="alpa-home-editorial alpa-home-editorial--text-first" aria-label="Nuestra tienda y taller">
+       <div class="alpa-home-editorial__copy"><p class="alpa-home-eyebrow">VISÍTANOS EN HUALHUAS, PERÚ</p><h2>Conoce nuestra tienda y taller</h2><p>Acércate al lugar donde compartimos nuestras prendas y accesorios artesanales. Descubre Alpaquitay en Hualhuas, en el valle del Mantaro.</p><a href="#taller">CONOCE NUESTRA TIENDA Y TALLER <span aria-hidden="true">→</span></a></div>
        <div class="alpa-home-editorial__image"><img class="alpa-editorial-product-image" alt="Detalle de una prenda artesanal de Alpaquitay" loading="lazy"></div>
      </section>
      <section class="alpa-home-editorial alpa-home-editorial--photo-first" aria-label="Explora la colección">
        <div class="alpa-home-editorial__image"><img class="alpa-editorial-product-image" alt="Accesorio de la colección artesanal Alpaquitay" loading="lazy"></div>
-       <div class="alpa-home-editorial__copy"><p class="alpa-home-eyebrow">COLECCIÓN ARTESANAL</p><h2>Hecho para acompañarte</h2><p>Conoce nuestros gorros, vinchas y accesorios de alpaca. Encuentra detalles únicos para cada ocasión.</p><a href="?page=tienda">DESCUBRIR COLECCIÓN <span aria-hidden="true">→</span></a></div>
+       <div class="alpa-home-editorial__copy"><p class="alpa-home-eyebrow">NUESTRA ESENCIA</p><h2>Una tradición que se lleva puesta</h2><p>Conoce la inspiración y la dedicación detrás de Artesanías Alpaquitay del Perú.</p><a href="?page=historia">CONOCE NUESTRA HISTORIA <span aria-hidden="true">→</span></a></div>
      </section>`;
    const hero=main.querySelector('.alpa-fashion-hero');
    if(hero)hero.insertAdjacentElement('afterend',block);
