@@ -300,6 +300,34 @@ body>div:has(> #top-bar-text) #top-bar-text{max-width:55%;font-size:9px!importan
 .alpa-unified-header .alpa-fashion-nav{border-top:1px solid #ffffff20!important}
 }
 </style>
+<style id="alpa-header-breathing-room">
+/* Header with clearer visual hierarchy and generous responsive spacing */
+.alpa-unified-header>div:first-child{max-width:1380px!important;padding:24px 30px!important;gap:22px 36px!important}
+.alpa-unified-header>div:first-child>a[href="index.html"]{gap:14px!important}
+.alpa-unified-header>div:first-child>a[href="index.html"] img{width:58px!important;height:58px!important}
+.alpa-unified-header>div:first-child>a[href="index.html"] h1{font-size:clamp(16px,1.7vw,24px)!important;line-height:1.15!important;letter-spacing:.045em!important}
+.alpa-unified-header .alpa-unified-utility{gap:22px!important}
+.alpa-unified-header .alpa-unified-tools{gap:12px!important}
+.alpa-unified-header .alpa-unified-cart{padding:11px 15px!important}
+.alpa-unified-header .alpa-lang-wrap{padding:10px 12px!important}
+.alpa-unified-header .alpa-fashion-nav{padding:16px 18px!important;gap:clamp(20px,3.2vw,48px)!important}
+@media(min-width:721px) and (max-width:1149px){
+.alpa-unified-header>div:first-child{grid-template-columns:1fr auto!important;grid-template-areas:"brand tools" "social social"!important;padding:18px 24px!important;gap:18px!important}
+.alpa-unified-header>div:first-child>div:not(.alpa-unified-utility):not(.alpa-mobile-actions){justify-content:center!important;padding-top:5px}
+.alpa-unified-header .alpa-unified-utility #top-bar-text{max-width:220px!important}
+}
+@media(max-width:720px){
+.alpa-unified-header>div:first-child{grid-template-columns:minmax(0,1fr) auto!important;grid-template-areas:"brand tools"!important;padding:14px 13px!important;gap:12px!important}
+.alpa-unified-header>div:first-child>a[href="index.html"]{gap:9px!important}
+.alpa-unified-header>div:first-child>a[href="index.html"] img{width:43px!important;height:43px!important}
+.alpa-unified-header>div:first-child>a[href="index.html"] h1{font-size:clamp(11px,3.3vw,15px)!important;letter-spacing:0!important;overflow-wrap:normal!important}
+.alpa-unified-header .alpa-unified-utility{gap:5px!important}
+.alpa-unified-header .alpa-unified-tools{gap:6px!important}
+.alpa-unified-header .alpa-unified-cart{padding:8px 10px!important}
+.alpa-unified-header .alpa-lang-wrap{padding:7px 8px!important}
+.alpa-unified-header .alpa-fashion-nav{padding:14px 17px!important;gap:28px!important}
+}
+</style>
 </head>
 <body class="bg-[#F7F4EF] text-stone-900 font-sans antialiased min-h-screen flex flex-col justify-between">
 
