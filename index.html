@@ -1096,7 +1096,7 @@ body[data-alpa-page="historia"] #historia .alpa-story-intro>p:last-child{color:#
             const item = productsData[index];
             const data = item[currentLang];
             const name = data.name;
-            if (Number.isFinite(Number(item.stock)) && Number(item.stock) <= 0) { alert('Este producto está agotado por el momento.'); return; }
+            if ((item.stock !== null && item.stock !== undefined && item.stock !== '' && Number.isFinite(Number(item.stock))) && Number(item.stock) <= 0) { alert('Este producto está agotado por el momento.'); return; }
             
             let selectedColor = 'Estándar / Único';
             if (data.colorOptions && data.colorOptions.length > 0) {
@@ -1105,7 +1105,7 @@ body[data-alpa-page="historia"] #historia .alpa-story-intro>p:last-child{color:#
             
             const existing = cart.find(p => p.index === index && p.color === selectedColor);
             const alreadyInCart = existing ? existing.qty : 0;
-            if (Number.isFinite(Number(item.stock)) && alreadyInCart >= Number(item.stock)) { alert('No puedes agregar más unidades que las disponibles.'); return; }
+            if ((item.stock !== null && item.stock !== undefined && item.stock !== '' && Number.isFinite(Number(item.stock))) && alreadyInCart >= Number(item.stock)) { alert('No puedes agregar más unidades que las disponibles.'); return; }
             if (existing) {
                 existing.qty++;
             } else {
@@ -1236,7 +1236,7 @@ body[data-alpa-page="historia"] #historia .alpa-story-intro>p:last-child{color:#
         <div class="p-6 flex-1 flex flex-col justify-between"><div class="cursor-pointer" onclick="openModal(${i})">
         <h3 class="font-bold text-lg text-stone-900">${esc(d.name)}</h3><p class="text-xs text-[#8C6D53] italic mb-2">${esc(d.eng||'')}</p>
         <p class="text-stone-600 text-xs leading-relaxed">${esc(d.desc)}</p></div>
-        <div class="mt-3 text-[11px] ${Number.isFinite(Number(p.stock))?'text-stone-500':'text-stone-400'}">${Number.isFinite(Number(p.stock))?(Number(p.stock)>0?`Disponibles: ${Math.max(0,Number(p.stock))}`:'Agotado'):'Consultar disponibilidad'}</div>
+        <div class="mt-3 text-[11px] ${(p.stock !== null && p.stock !== undefined && p.stock !== '' && Number.isFinite(Number(p.stock)))?'text-stone-500':'text-stone-400'}">${(p.stock !== null && p.stock !== undefined && p.stock !== '' && Number.isFinite(Number(p.stock)))?(Number(p.stock)>0?`Disponibles: ${Math.max(0,Number(p.stock))}`:'Agotado'):'Consultar disponibilidad'}</div>
         <div class="mt-4 pt-4 border-t border-stone-100 flex items-center justify-between gap-2"><div><span class="text-lg font-extrabold text-[#4A3B32]">$${Number(p.price||0).toFixed(2)} USD</span><p class="text-[10px] text-stone-400">Envío no incluido</p></div>
         <button onclick="openModal(${i})" class="bg-[#5C7654] hover:bg-[#4E6346] text-white text-xs px-3 py-2.5 rounded-xl font-bold">Ver producto</button></div></div>`;
       grid.appendChild(card);
@@ -1281,7 +1281,7 @@ body[data-alpa-page="historia"] #historia .alpa-story-intro>p:last-child{color:#
   const oldChangeQty=window.changeQty;
   window.changeQty=function(i,delta){
     const item=cart[i]; if(!item)return;
-    if(delta>0){const product=productsData[item.index];if(product && Number.isFinite(Number(product.stock)) && item.qty>=Number(product.stock)){alert('No hay más unidades disponibles de este producto.');return;}}
+    if(delta>0){const product=productsData[item.index];if(product && (product.stock !== null && product.stock !== undefined && product.stock !== '' && Number.isFinite(Number(product.stock))) && item.qty>=Number(product.stock)){alert('No hay más unidades disponibles de este producto.');return;}}
     oldChangeQty(i,delta);save('alpaquitay_cart',cart);
   };
   const oldRemove=window.removeFromCart;
