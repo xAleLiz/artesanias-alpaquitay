@@ -1635,6 +1635,22 @@ body[data-alpa-page="historia"] #historia .alpa-story-intro>p:last-child{color:#
       const delta=e.changedTouches[0].clientX-touchStart;touchStart=null;
       if(Math.abs(delta)>45)window.alpaMoveBanner(delta<0?1:-1);
     },{passive:true});
+    // Cambia automáticamente cada 5 segundos; se detiene mientras interactúan.
+    let autoplay=null;
+    const stop=()=>{if(autoplay!==null){clearInterval(autoplay);autoplay=null;}};
+    const start=()=>{
+      stop();
+      if(document.hidden||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+      autoplay=setInterval(()=>window.alpaMoveBanner(1),5000);
+    };
+    carousel.addEventListener('mouseenter',stop);
+    carousel.addEventListener('mouseleave',start);
+    carousel.addEventListener('focusin',stop);
+    carousel.addEventListener('focusout',e=>{if(!carousel.contains(e.relatedTarget))start();});
+    carousel.addEventListener('touchstart',stop,{passive:true});
+    carousel.addEventListener('touchend',start,{passive:true});
+    document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();else start();});
+    start();
     carousel.addEventListener('keydown',e=>{
       if(e.key==='ArrowRight'){e.preventDefault();window.alpaMoveBanner(1)}
       if(e.key==='ArrowLeft'){e.preventDefault();window.alpaMoveBanner(-1)}
