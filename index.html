@@ -503,7 +503,7 @@ body[data-alpa-page="inicio"] .alpa-fashion-visual img{object-fit:cover}
             <div class="alpa-fashion-values"><span id="tag-1">🌿 Tintes naturales</span><span id="tag-2">🧶 Trabajo artesanal</span><span id="tag-3">🤎 Atención personalizada</span></div>
           </div>
           <div class="alpa-fashion-visual" role="img" aria-label="Imagen de producto artesanal de la colección Alpaquitay">
-            <img src="img/chullo-rizo-1.jpg" alt="Chullo artesanal de la colección Alpaquitay" loading="eager" decoding="async" onerror="this.style.display='none'">
+            <img src="img/banner-coleccion.jpg" alt="Fotografía de la colección Alpaquitay" loading="eager" decoding="async" onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='img/chullo-rizo-1.jpg';}else{this.style.display='none';}">
             <span class="alpa-visual-caption">HECHO A MANO EN PERÚ <span>01 / ALPAQUITAY</span></span>
           </div>
         </section>
@@ -1475,9 +1475,13 @@ body[data-alpa-page="inicio"] .alpa-fashion-visual img{object-fit:cover}
    // Reutiliza fotografías reales del catálogo, sin incorporar imágenes ajenas a la marca.
    const products=Array.isArray(window.ALPAQUITAY_PRODUCTS)?window.ALPAQUITAY_PRODUCTS:[];
    const images=products.flatMap(p=>Array.isArray(p.images)?p.images:[]).filter(Boolean);
-   block.querySelectorAll('.alpa-editorial-product-image').forEach((img,i)=>{
-     img.src=images[i]||'img/chullo-rizo-1.jpg';
-     img.onerror=function(){if(!this.src.endsWith('chullo-rizo-1.jpg'))this.src='img/chullo-rizo-1.jpg';};
+   block.querySelectorAll('.alpa-editorial-product-image').forEach(img=>{
+     img.src='img/banner-tienda.jpg';
+     img.onerror=function(){
+       if(!this.dataset.fallback){this.dataset.fallback='1';this.src=images[0]||'img/chullo-rizo-1.jpg';}
+       else if(!this.dataset.lastFallback){this.dataset.lastFallback='1';this.src='img/chullo-rizo-1.jpg';}
+       else this.style.display='none';
+     };
    });
  }
  if(['historia','envios','opiniones','faq'].includes(current)){
