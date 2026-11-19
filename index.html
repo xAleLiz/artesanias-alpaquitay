@@ -460,6 +460,17 @@ body[data-alpa-page="historia"] #historia.alpa-story{display:block!important;wid
 .alpa-story-end a:hover{background:#4a1220}
 @media(max-width:760px){.alpa-story-chapter{grid-template-columns:1fr;gap:22px}.alpa-story-chapter:nth-child(even) .alpa-story-photo{order:0}.alpa-story-photo img{height:clamp(310px,85vw,530px)}.alpa-story-copy{padding:4px 5px}.alpa-story-intro{padding-top:15px}.alpa-story-end{margin-top:60px}}
 @media(prefers-reduced-motion:reduce){.alpa-story-photo img{transition:none!important}}
+</style><style id="alpa-story-header-fix-2026">
+/* La cabecera de la historia no es la cabecera fija de navegación */
+body[data-alpa-page="historia"] #historia .alpa-story-intro{
+ position:static!important;top:auto!important;z-index:auto!important;
+ display:block!important;width:100%!important;max-width:810px!important;
+ margin:0 auto clamp(45px,7vw,92px)!important;padding:30px 10px!important;
+ background:transparent!important;background-color:transparent!important;
+ color:#481e2b!important;box-shadow:none!important;transform:none!important;
+}
+body[data-alpa-page="historia"] #historia .alpa-story-intro h2{color:#481e2b!important}
+body[data-alpa-page="historia"] #historia .alpa-story-intro>p:last-child{color:#665b55!important}
 </style></head>
 <body class="bg-[#F7F4EF] text-stone-900 font-sans antialiased min-h-screen flex flex-col justify-between">
 
