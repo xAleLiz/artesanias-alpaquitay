@@ -426,7 +426,18 @@ body[data-alpa-page="inicio"] .alpa-fashion-visual img{object-fit:cover}
 .alpa-home-editorial__copy{grid-column:1!important;grid-row:2!important;padding:38px 25px 43px}
 .alpa-home-editorial__copy h2{font-size:clamp(2.5rem,10vw,3.6rem)}
 }
-</style><style id="alpa-workshop-anchor-2026">#taller{scroll-margin-top:180px}body[data-alpa-page="inicio"] #taller{max-width:1080px;margin:0 auto 38px!important}</style><style id="alpa-two-banner-only-2026">body[data-alpa-page="inicio"] #taller{display:none!important}body[data-alpa-page="inicio"] .alpa-home-editorials{margin-bottom:70px}body[data-alpa-page="inicio"] .alpa-home-editorial--photo-first{display:none!important}</style></head>
+</style><style id="alpa-workshop-anchor-2026">#taller{scroll-margin-top:180px}body[data-alpa-page="inicio"] #taller{max-width:1080px;margin:0 auto 38px!important}</style><style id="alpa-two-banner-only-2026">body[data-alpa-page="inicio"] #taller{display:none!important}body[data-alpa-page="inicio"] .alpa-home-editorials{margin-bottom:70px}body[data-alpa-page="inicio"] .alpa-home-editorial--photo-first{display:none!important}</style><style id="alpa-second-banner-zoom-2026">
+/* Mismo zoom suave del banner principal, también en el segundo */
+.alpa-home-editorial__image{overflow:hidden;isolation:isolate}
+.alpa-home-editorial__image img{transform:scale(1);transition:transform .75s cubic-bezier(.2,.65,.2,1),filter .75s ease;will-change:transform}
+@media(hover:hover) and (pointer:fine){
+ .alpa-home-editorial:hover .alpa-home-editorial__image img,
+ .alpa-home-editorial__image:hover img{transform:scale(1.055)}
+ .alpa-home-editorial__copy>a{transition:background .25s ease,transform .25s ease}
+ .alpa-home-editorial__copy>a:hover{transform:translateY(-2px)}
+}
+@media(prefers-reduced-motion:reduce){.alpa-home-editorial__image img,.alpa-home-editorial__copy>a{transition:none!important;transform:none!important}}
+</style></head>
 <body class="bg-[#F7F4EF] text-stone-900 font-sans antialiased min-h-screen flex flex-col justify-between">
 
     <!-- ENCABEZADO -->
