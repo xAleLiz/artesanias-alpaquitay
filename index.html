@@ -243,6 +243,21 @@ main{max-width:1440px!important;padding-top:0!important}
   #product-grid .product-card .text-xs.leading-relaxed{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 }
 </style>
+<style id="alpa-language-layout">
+/* Language selector shares the utility bar without covering the brand */
+.alpa-lang-wrap{display:inline-flex;align-items:center;gap:5px;flex-shrink:0;border:1px solid #ffffff40;border-radius:999px;padding:5px 9px;color:white;background:#ffffff14}
+.alpa-lang-wrap select{background:transparent;color:inherit;font-size:11px;font-weight:800;cursor:pointer;outline:none}
+.alpa-lang-wrap option{color:#35272a;background:white}
+@media(max-width:720px){
+body>div:first-of-type:has(#top-bar-text){position:relative!important;top:auto!important;z-index:10!important}
+#top-bar-text{font-size:10px!important;line-height:1.35!important}
+#top-bar-text+div{flex-shrink:0}
+.alpa-lang-wrap{padding:4px 6px;gap:3px}
+.alpa-lang-wrap select{font-size:10px}
+header{top:0!important}
+}
+@media(min-width:721px) and (max-width:1024px){.alpa-lang-wrap{padding:5px 8px}header h1{font-size:1.15rem!important}}
+</style>
 </head>
 <body class="bg-[#F7F4EF] text-stone-900 font-sans antialiased min-h-screen flex flex-col justify-between">
 
@@ -256,12 +271,8 @@ main{max-width:1440px!important;padding-top:0!important}
                 <i class="fas fa-shopping-bag"></i> <span id="cart-btn-text">Carrito</span> (<span id="cart-count">0</span>)
             </button>
 
-            <!-- BOTONES DE IDIOMA -->
-            <div class="flex items-center gap-2">
-                <button onclick="setLanguage('es')" id="btn-es" class="font-bold underline text-white px-2 py-0.5 rounded bg-[#4A3B32]">ES</button>
-                <span class="text-stone-500">|</span>
-                <button onclick="setLanguage('en')" id="btn-en" class="hover:text-white px-2 py-0.5 rounded">EN</button>
-            </div>
+            <!-- Selector compacto de idioma: un único control -->
+            <label class="alpa-lang-wrap" aria-label="Idioma de la tienda"><i class="fas fa-globe" aria-hidden="true"></i><select id="alpa-language-select" aria-label="Idioma" onchange="setLanguage(this.value)"><option value="es">ES</option><option value="en">EN</option></select></label>
         </div>
     </div>
 
@@ -681,13 +692,9 @@ main{max-width:1440px!important;padding-top:0!important}
             currentLang = lang;
             const t = translations[lang];
 
-            if (lang === 'es') {
-                document.getElementById('btn-es').className = 'font-bold underline text-white px-2 py-0.5 rounded bg-[#4A3B32]';
-                document.getElementById('btn-en').className = 'hover:text-white px-2 py-0.5 rounded';
-            } else {
-                document.getElementById('btn-en').className = 'font-bold underline text-white px-2 py-0.5 rounded bg-[#4A3B32]';
-                document.getElementById('btn-es').className = 'hover:text-white px-2 py-0.5 rounded';
-            }
+            const languageSelect = document.getElementById('alpa-language-select');
+            if (languageSelect) languageSelect.value = lang;
+            document.documentElement.lang = lang;
 
             document.getElementById('top-bar-text').innerText = t.topBar;
             document.getElementById('header-subtitle').innerText = t.headerSub;
