@@ -4,6 +4,7 @@ window.ALPAQUITAY_PRODUCTS = [
             // 1. CHULLO RIZO ANDINO
             {
                 category: 'gorros',
+                stock: null, // null = consultar disponibilidad; 0 = agotado
                 price: 20.00,
                 images: [
                     'img/chullo-rizo-1.jpg', 
@@ -28,6 +29,7 @@ window.ALPAQUITAY_PRODUCTS = [
             // 2. MITÓN RIZO ANDINO
             {
                 category: 'mitones',
+                stock: null, // null = consultar disponibilidad; 0 = agotado
                 price: 20.00,
                 images: [
                     'img/miton-rizo-1.jpg', 
@@ -52,6 +54,7 @@ window.ALPAQUITAY_PRODUCTS = [
             // 3. MUÑEQUERA BOTÁNICA ANDINA
             {
                 category: 'mitones',
+                stock: null, // null = consultar disponibilidad; 0 = agotado
                 price: 20.00,
                 images: [
                     'img/muneca-botanica-1.jpg', 
@@ -76,6 +79,7 @@ window.ALPAQUITAY_PRODUCTS = [
             // 4. MUÑEQUERA AMANECER ANDINO
             {
                 category: 'mitones',
+                stock: null, // null = consultar disponibilidad; 0 = agotado
                 price: 20.00,
                 images: [
                     'img/muneca-amanecer-1.jpg', 
@@ -100,6 +104,7 @@ window.ALPAQUITAY_PRODUCTS = [
             // 5. VINCHA "AMIGOS DEL BOSQUE" DE ALPACA
             {
                 category: 'vinchas',
+                stock: null, // null = consultar disponibilidad; 0 = agotado
                 price: 18.00,
                 images: [
                     'img/vincha-bosque-1.jpg', 
@@ -124,6 +129,7 @@ window.ALPAQUITAY_PRODUCTS = [
             // 6. VINCHAS MULTITONO ANDINAS
             {
                 category: 'vinchas',
+                stock: null, // null = consultar disponibilidad; 0 = agotado
                 price: 15.00,
                 images: [
                     'img/vincha-multitono-1.jpg', 
@@ -148,6 +154,7 @@ window.ALPAQUITAY_PRODUCTS = [
             // 7. VINCHA BOTÁNICA ANDINA (BORDADO FLORAL)
             {
                 category: 'vinchas',
+                stock: null, // null = consultar disponibilidad; 0 = agotado
                 price: 20.00,
                 images: [
                     'img/vincha-botanica-1.jpg', 
@@ -172,6 +179,7 @@ window.ALPAQUITAY_PRODUCTS = [
             // 8. VINCHA BURBUJAS ANDINAS
             {
                 category: 'vinchas',
+                stock: null, // null = consultar disponibilidad; 0 = agotado
                 price: 15.00,
                 images: [
                     'img/vincha-burbujas-1.jpg', 
@@ -196,6 +204,7 @@ window.ALPAQUITAY_PRODUCTS = [
             // 9. CHULLO ANDINO TRADICIONAL
             {
                 category: 'gorros',
+                stock: null, // null = consultar disponibilidad; 0 = agotado
                 price: 20.00,
                 images: [
                     'img/chullo-tradicional-1.jpg', 
@@ -220,6 +229,7 @@ window.ALPAQUITAY_PRODUCTS = [
             // 10. GORRO DOBLE CON CHISPA
             {
                 category: 'gorros',
+                stock: null, // null = consultar disponibilidad; 0 = agotado
                 price: 20.00,
                 images: [
                     'img/gorro-doble-1.jpg', 
@@ -244,6 +254,7 @@ window.ALPAQUITAY_PRODUCTS = [
             // 11. GORRO COPOS DE ALPACA
             {
                 category: 'gorros',
+                stock: null, // null = consultar disponibilidad; 0 = agotado
                 price: 20.00,
                 images: [
                     'img/gorro-copos-1.jpg', 
@@ -268,6 +279,7 @@ window.ALPAQUITAY_PRODUCTS = [
             // 12. GORRO "OREJAS DE GATO" DE ALPACA
             {
                 category: 'gorros',
+                stock: null, // null = consultar disponibilidad; 0 = agotado
                 price: 20.00,
                 images: [
                     'img/gorro-gato-1.jpg', 
