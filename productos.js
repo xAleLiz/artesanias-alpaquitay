@@ -127,7 +127,8 @@ window.ALPAQUITAY_PRODUCTS = [
                 price: 15.00,
                 images: [
                     'img/vincha-multitono-1.jpg', 
-                    'img/vincha-multitono-2.jpg'
+                    'img/vincha-multitono-2.jpg',
+                    'img/vincha-multitono-3.jpg'
                 ],
                 es: { 
                     name: 'Vinchas Multitono Andinas', eng: 'Andean Striped Alpaca Headband', 
