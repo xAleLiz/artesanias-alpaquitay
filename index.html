@@ -1220,7 +1220,7 @@ body[data-alpa-page="historia"] #historia .alpa-story-intro>p:last-child{color:#
                 ? `Hola! Quisiera realizar el siguiente pedido:\n\n${itemsText}\n\n*Total estimado:* $${total.toFixed(2)} USD\n\nQuisiera pagar mediante (indicar Wise, Remitly, BCP o Yape). ¿Me confirma los detalles del envío por favor?`
                 : `Hello! I would like to place the following order:\n\n${itemsText}\n\n*Estimated Total:* $${total.toFixed(2)} USD\n\nI would like to pay via (please indicate Wise, Remitly, etc.). Could you please confirm shipping details?`;
 
-            window.open(`https://wa.me/51981037981?text=${encodeURIComponent(msg)}`, '_blank');
+            window.open(`https://wa.me/51981037981?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -1233,11 +1233,25 @@ body[data-alpa-page="historia"] #historia .alpa-story-intro>p:last-child{color:#
   const $ = id => document.getElementById(id);
   const save = (k,v) => localStorage.setItem(k, JSON.stringify(v));
   const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  let favorites = JSON.parse(localStorage.getItem('alpaquitay_favorites') || '[]');
+  // Los datos del navegador no son confiables: pueden estar dañados o manipulados.
+  const readLocalArray = key => {
+    try { const value = JSON.parse(localStorage.getItem(key) || '[]'); return Array.isArray(value) ? value : []; }
+    catch (_) { return []; }
+  };
+  let favorites = readLocalArray('alpaquitay_favorites').filter(x => typeof x === 'string' && x.length <= 100);
   let favoritesOnly = false;
   let editing = null;
 
-  cart = JSON.parse(localStorage.getItem('alpaquitay_cart') || '[]');
+  cart = readLocalArray('alpaquitay_cart').filter(item =>
+    item && typeof item === 'object' && typeof item.name === 'string' &&
+    Number.isFinite(Number(item.price)) && Number(item.price) >= 0 &&
+    Number.isInteger(Number(item.qty)) && Number(item.qty) > 0 &&
+    Number.isInteger(Number(item.index)) && Number(item.index) >= 0
+  ).slice(0, 100).map(item => ({
+    ...item, price: Number(item.price), qty: Math.min(Number(item.qty), 100),
+    index: Number(item.index), name: item.name.slice(0, 200),
+    color: String(item.color ?? '').slice(0, 100)
+  }));
 
   function drawProducts(){
     const grid=$('product-grid'); if(!grid) return;
@@ -1324,16 +1338,32 @@ body[data-alpa-page="historia"] #historia .alpa-story-intro>p:last-child{color:#
   };
 
   // Customer reviews remain local to this browser; they are not presented as verified testimonials.
-  function getReviews(){return JSON.parse(localStorage.getItem('alpaquitay_reviews')||'[]');}
+  function getReviews(){return readLocalArray('alpaquitay_reviews').filter(r =>
+    r && typeof r.name === 'string' && typeof r.text === 'string' &&
+    Number.isInteger(Number(r.rating)) && Number(r.rating) >= 1 && Number(r.rating) <= 5
+  ).slice(-50);}
   function drawReviews(){
     const box=$('reviews-list');if(!box)return;const items=getReviews();box.innerHTML='';
     if(!items.length){box.innerHTML='<div class="col-span-full text-center text-xs text-stone-500 bg-white border rounded-xl p-6">Todavía no hay opiniones. Puedes compartir tu experiencia.</div>';return;}
     items.slice(-6).reverse().forEach(r=>{const el=document.createElement('article');el.className='bg-white border border-stone-200 rounded-xl p-5';
-      el.innerHTML=`<div class="text-amber-600 text-sm mb-2">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div><p class="text-sm text-stone-600">“${esc(r.text)}”</p><p class="text-xs font-bold text-[#4A3B32] mt-4">${esc(r.name)}</p><p class="text-[10px] text-stone-400">Guardada en este dispositivo</p>`;box.appendChild(el);});
+      el.innerHTML=`<div class="text-amber-600 text-sm mb-2">${'★'.repeat(Number(r.rating))}${'☆'.repeat(5-Number(r.rating))}</div><p class="text-sm text-stone-600">“${esc(r.text)}”</p><p class="text-xs font-bold text-[#4A3B32] mt-4">${esc(r.name)}</p><p class="text-[10px] text-stone-400">Guardada en este dispositivo</p>`;box.appendChild(el);});
   }
   window.openReviewForm=function(){$('reviewModal').classList.remove('hidden');$('reviewModal').classList.add('flex');};
   window.closeReviewForm=function(){$('reviewModal').classList.add('hidden');$('reviewModal').classList.remove('flex');};
-  window.submitReview=function(e){e.preventDefault();const f=new FormData(e.target),a=getReviews();a.push({name:f.get('reviewName'),rating:Number(f.get('reviewRating')),text:f.get('reviewText')});save('alpaquitay_reviews',a);e.target.reset();closeReviewForm();drawReviews();};
+  window.submitReview=function(e){
+    e.preventDefault();
+    const f=new FormData(e.target),a=getReviews();
+    const name=String(f.get('reviewName')||'').trim().slice(0,80);
+    const rating=Number(f.get('reviewRating'));
+    const reviewText=String(f.get('reviewText')||'').trim().slice(0,1500);
+    if(!name || !reviewText || !Number.isInteger(rating) || rating<1 || rating>5){
+      alert('Completa tu nombre, opinión y una calificación válida.');return;
+    }
+    a.push({name,rating,text:reviewText});
+    try { save('alpaquitay_reviews',a.slice(-50)); }
+    catch (_) { alert('No se pudo guardar la opinión en este dispositivo.');return; }
+    e.target.reset();closeReviewForm();drawReviews();
+  };
 
   document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeCheckout();closeReviewForm();}});
   document.addEventListener('DOMContentLoaded',()=>{drawProducts();updateCartUI();drawReviews();});
