@@ -1287,13 +1287,15 @@ body[data-alpa-page="historia"] #historia .alpa-story-intro>p:last-child{color:#
       card.innerHTML=`<div class="relative overflow-hidden group cursor-pointer" onclick="openModal(${i})">
         <img src="${image}" alt="${esc(d.name)}" loading="lazy" onerror="this.onerror=null;this.src='logo.png'" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
         <span class="absolute top-3 left-3 bg-[#4A3B32]/90 text-white text-xs px-2.5 py-1 rounded-full">Artesanal</span></div>
-        <button class="favorite-btn ${favorites.includes(key)?'active':''}" onclick="toggleFavorite('${key}')" aria-label="Favorito"><i class="${favorites.includes(key)?'fas':'far'} fa-heart"></i></button>
+        <button class="favorite-btn ${favorites.includes(key)?'active':''}" data-favorite-action="toggle" aria-label="Favorito"><i class="${favorites.includes(key)?'fas':'far'} fa-heart"></i></button>
         <div class="p-6 flex-1 flex flex-col justify-between"><div class="cursor-pointer" onclick="openModal(${i})">
         <h3 class="font-bold text-lg text-stone-900">${esc(d.name)}</h3><p class="text-xs text-[#8C6D53] italic mb-2">${esc(d.eng||'')}</p>
         <p class="text-stone-600 text-xs leading-relaxed">${esc(d.desc)}</p></div>
         <div class="mt-3 text-[11px] ${(p.stock !== null && p.stock !== undefined && p.stock !== '' && Number.isFinite(Number(p.stock)))?'text-stone-500':'text-stone-400'}">${(p.stock !== null && p.stock !== undefined && p.stock !== '' && Number.isFinite(Number(p.stock)))?(Number(p.stock)>0?`Disponibles: ${Math.max(0,Number(p.stock))}`:'Agotado'):'Consultar disponibilidad'}</div>
         <div class="mt-4 pt-4 border-t border-stone-100 flex items-center justify-between gap-2"><div><span class="text-lg font-extrabold text-[#4A3B32]">$${Number(p.price||0).toFixed(2)} USD</span><p class="text-[10px] text-stone-400">Envío no incluido</p></div>
         <button onclick="openModal(${i})" class="bg-[#5C7654] hover:bg-[#4E6346] text-white text-xs px-3 py-2.5 rounded-xl font-bold">Ver producto</button></div></div>`;
+      const favoriteButton = card.querySelector('[data-favorite-action="toggle"]');
+      if (favoriteButton) favoriteButton.addEventListener('click', () => window.toggleFavorite(key));
       grid.appendChild(card);
     });
     if(!grid.children.length) grid.innerHTML=`<div class="col-span-full text-center py-12 text-stone-500 text-sm">${favoritesOnly?'Aún no tienes favoritos guardados.':'No se encontraron productos.'}</div>`;
