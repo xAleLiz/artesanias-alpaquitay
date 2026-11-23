@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <link rel="canonical" href="https://xaleliz.github.io/artesanias-alpaquitay/">
     <meta name="robots" content="index,follow">
     <title>Artesanías Alpaquitay del Perú | Catálogo artesanal</title>
@@ -832,7 +833,12 @@ body[data-alpa-page="historia"] #historia .alpa-story-intro>p:last-child{color:#
         let currentLang = 'es';
         let currentModalIndex = 0;
         let currentCategory = 'all';
-        let cart = JSON.parse(localStorage.getItem('alpaquitay_cart') || '[]');
+        // Un carrito corrupto no debe impedir que cargue la tienda.
+        let cart = [];
+        try {
+            const storedCart = JSON.parse(localStorage.getItem('alpaquitay_cart') || '[]');
+            cart = Array.isArray(storedCart) ? storedCart : [];
+        } catch (_) { cart = []; }
 
         // BASE DE DATOS CON LOS 12 PRODUCTOS Y SUS 3 IMÁGENES JPG EN LA CARPETA img/
         let productsData = window.ALPAQUITAY_PRODUCTS || [];
@@ -1249,11 +1255,19 @@ body[data-alpa-page="historia"] #historia .alpa-story-intro>p:last-child{color:#
     Number.isFinite(Number(item.price)) && Number(item.price) >= 0 &&
     Number.isInteger(Number(item.qty)) && Number(item.qty) > 0 &&
     Number.isInteger(Number(item.index)) && Number(item.index) >= 0
-  ).slice(0, 100).map(item => ({
-    ...item, price: Number(item.price), qty: Math.min(Number(item.qty), 100),
-    index: Number(item.index), name: item.name.slice(0, 200),
-    color: String(item.color ?? '').slice(0, 100)
-  }));
+  ).slice(0, 100).map(item => {
+    const index = Number(item.index);
+    const product = productsData[index];
+    // El precio del carrito guardado puede ser alterado por cualquier visitante.
+    // Tomamos el precio y nombre actuales del catálogo, nunca del navegador.
+    if (!product || product.hidden === true || !Number.isFinite(Number(product.price))) return null;
+    const details = product[currentLang] || product.es || product.en || {};
+    return {
+      index, price: Number(product.price), qty: Math.min(Number(item.qty), 100),
+      name: String(details.name || '').slice(0, 200),
+      color: String(item.color ?? '').slice(0, 100)
+    };
+  }).filter(Boolean);
 
   function drawProducts(){
     const grid=$('product-grid'); if(!grid) return;
@@ -1336,7 +1350,7 @@ body[data-alpa-page="historia"] #historia .alpa-story-intro>p:last-child{color:#
     const f=new FormData(e.target),lines=cart.map(x=>`- ${x.qty} x ${x.name} (${x.color}) — $${(x.qty*x.price).toFixed(2)} USD`).join('\n');
     const total=cart.reduce((s,x)=>s+x.qty*x.price,0);
     const msg=`Hola, deseo realizar este pedido:\n\n${lines}\n\nTotal estimado: $${total.toFixed(2)} USD (envío no incluido)\n\nNombre: ${f.get('customerName')}\nTeléfono: ${f.get('customerPhone')}\nDestino: ${f.get('destination')}\nDirección: ${f.get('address')||'No indicada'}\nComentario: ${f.get('notes')||'Ninguno'}\n\nPor favor, confirmen disponibilidad, envío y medios de pago.`;
-    window.open('https://wa.me/51981037981?text='+encodeURIComponent(msg),'_blank','noopener');closeCheckout();
+    window.open('https://wa.me/51981037981?text='+encodeURIComponent(msg),'_blank','noopener,noreferrer');closeCheckout();
   };
 
   // Customer reviews remain local to this browser; they are not presented as verified testimonials.
